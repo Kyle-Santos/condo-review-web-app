@@ -150,10 +150,11 @@
             }
 
             .main-image{
-                background-image: url('C:\VSCode\ccapdev\Rectangle 8.jpg');
+                background-image: url('Rectangle 8.png');
+                background-size: cover;
                 background-repeat: no-repeat;
                 height: 704px;
-                background-color:red;
+                
                 display: flex;
                 flex-direction:column;
             }
@@ -211,7 +212,7 @@
                 bottom: 0;
                 right: 50%;
                 left: 50%;
-                height: 500px;
+                height: 550px;
                 transform: translate(-50%, -50%);
                 width: 40%;
                 background-color: #2D2D2D;
@@ -225,6 +226,31 @@
                 padding: 10px;
                 display: flex;
                 justify-content: center;
+            }
+
+            .select-avatar{
+                padding:0 5px;
+                justify-content: center;
+            }
+
+            .select-avatar > div{
+                display:flex;
+                justify-content: center;
+            }
+
+            .create-account > div > div{
+                display:flex;
+                flex-direction: column;
+            }
+
+            .create-account > div > div > div{
+                display: flex;
+                justify-content: center;
+            }
+
+            .avatar{
+                width: 40px;
+                height: 40px;
             }
 
             .create-account > form > div{
@@ -313,12 +339,13 @@
                 <button class="nav-button" id="show-create-account">
                     <b class = "login-font" > Sign Up</b>
                 </button>
-                 
                 <i class="fa-solid fa-bars white-bar padding-5"></i>
+                
             </div>            
         </div>
 
         <div class="login-popup" id="login">
+            
             <form name="login-form" onsubmit="return checkLoginForm()">
                 <div class="x-container">
                     <button type="button" id="close">X</button>
@@ -360,6 +387,54 @@
             <div>
                 <textarea rows="4" placeholder="Tell us about yourself (optional)" name="new-description"></textarea>
                 
+            </div>
+            <div>
+                Select an avatar:
+            </div>
+            
+            <div>
+                <div class="select-avatar">
+                    <div>
+                        <img src="gamer.png" class="avatar">   
+                    </div>
+                     <div>
+                        <input type="radio" name="avatar" value="1" checked>
+                     </div>    
+                           
+                </div>
+                <div class="select-avatar">
+                    <div>
+                        <img src="man (1).png" class="avatar">
+                    </div>
+                    <div>
+                        <input type="radio" name="avatar" value="2">
+                    </div>
+                                   
+                </div>
+                <div class="select-avatar">
+                    <div>
+                        <img src="man.png" class="avatar">
+                    </div>
+                    <div>
+                        <input type="radio" name="avatar" value="3">
+                    </div>                     
+                </div>
+                <div class="select-avatar">
+                    <div>
+                        <img src="woman (1).png" class="avatar">
+                    </div>
+                    <div>
+                        <input type="radio" name="avatar" value="4">
+                    </div>
+                </div>
+                <div class="select-avatar">
+                    <div>
+                        <img src="woman.png" class="avatar">
+                    </div>
+                    <div>
+                        <input type="radio" name="avatar" value="5">
+                    </div>
+                </div>
             </div>
             <div>
                 <button type="submit" class="submit">Sign Up</button>
