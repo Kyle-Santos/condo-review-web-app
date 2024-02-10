@@ -7,6 +7,7 @@
         <script>
             $(document).ready(function(){
                 $("#login").hide();
+                $("#create-account").hide();
             
                 $("#show-login").click(function(){
                     $("#login").slideDown();
@@ -14,7 +15,23 @@
                 $("#close").click(function(){
                     $("#login").hide();
                 })
+                
+                $("#close-create").click(function(){
+                    $("#create-account").hide();
+                })
+
+                $("#show-create-account").click(function(){
+                    $("#create-account").show();
+                })
             });
+
+            function checkWhiteSpace(text){
+                if(text.indexOf(' ') !== -1){
+                    return true;
+                }
+
+                return false;
+            }
 
             function checkLoginForm(){
                 let username = document.forms["login-form"]["username"].value;
@@ -24,8 +41,37 @@
                     alert("Login fields must not be empty.");
                     return false;
                 }
+
+                if(checkWhiteSpace(username) || checkWhiteSpace(password)){
+                    alert("Username and password must not contain white space.");
+                    return false;
+                }
                 return true;
                 
+            }
+
+            function checkCreateAccountForm(){
+                let username = document.forms["create-account-form"]["new-username"].value;
+                let password = document.forms["create-account-form"]["new-password"].value;
+                let confirmPassword = document.forms["create-account-form"]["new-confirm-password"].value;
+
+                if(username.length < 1 || password.length < 1 || confirmPassword.length < 1){
+                    alert("Required fields must not be empty.");
+                    return false;
+                }
+
+                if(checkWhiteSpace(username) || checkWhiteSpace(password) || checkWhiteSpace(confirmPassword)){
+                    alert("Username and password must not contain white space.");
+                    return false;
+                }
+
+                if(password !== confirmPassword){
+                    alert("Passwords do not match. Please try again.");
+                    return false;
+                }
+
+
+                return true;
             }
         </script>
 
@@ -63,20 +109,12 @@
                                    
             }
 
-            .x-container{
-                display: flex;
-                justify-content: right;
+            #close-create{
+                width: 20px;
+                height: 20px;
             }
 
-            .x-container > div{
-                background-color:#D9D9D9;
-                color: black;
-                padding: 5px;
-                width: 10px;
-                height: 10px;
-                display: flex;
-                align-items: center;
-            }
+            
 
             .login-submit{
                 display:flex;
@@ -164,6 +202,102 @@
                 right: 175px;
                 position: fixed;
             }
+
+            .create-account{
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 55%;
+                bottom: 0;
+                right: 50%;
+                left: 50%;
+                height: 500px;
+                transform: translate(-50%, -50%);
+                width: 40%;
+                background-color: #2D2D2D;
+                color: white;
+                align-items: center;
+                justify-content: center;
+                border-radius: 25px;
+            }
+
+            .create-account > div{
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .create-account > form > div{
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+            }
+
+
+            .create-account > form > div > input{
+                border-radius: 5px;
+                height: 30px;
+                padding: 10px;
+                width: 300px;
+                display: flex;
+
+            }
+
+            #close-create{
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                box-shadow: none;
+
+            }
+
+            #exit-signup{
+                display:flex;
+                justify-content: flex-end;
+                width: 100%;
+                position: absolute;
+                top: 0;
+            }
+
+            #exit-signup > button{
+                background-color: #2B2B2B;
+                color: white;
+            }
+
+            .create-account > form > div > textarea{
+                width: 300px;
+
+            }
+
+            .create-account > form > div > .submit{
+                display: flex;
+                width: 300px;
+                align-items: center;
+                border-radius: 5px;
+                height: 30px;
+                padding: 10px;
+                background-color: #0094FF;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+            }
+
+            .x-container{
+                display: flex;
+                justify-content: right;
+            }
+
+            .x-container > div{
+                background-color:#D9D9D9;
+                color: black;
+                padding: 5px;
+                width: 10px;
+                height: 10px;
+                display: flex;
+                align-items: center;
+            }
+
+
         </style>
     </head>
     <body>       
@@ -176,7 +310,7 @@
                 <button class="nav-button" id="show-login">
                     <b class = "login-font"> Log In</b>
                 </button>
-                <button class="nav-button" onclick="window.location.href = 'https://www.youtube.com/';">
+                <button class="nav-button" id="show-create-account">
                     <b class = "login-font" > Sign Up</b>
                 </button>
                  
@@ -204,6 +338,34 @@
                 </div>
                 
             </form>          
+        </div>
+
+        <div class="create-account" id="create-account">
+            <div id="exit-signup">
+                <button type="button" id="close-create">X</button>
+            </div>
+            <div>The<br/>Condo<br/>Bro<br/></div>
+            <div>Welcome! Let's get started.</div>
+
+            <form name="create-account-form" onsubmit="return checkCreateAccountForm()">
+            <div>
+                <input type="text" placeholder="Username (required)" name="new-username">
+            </div>
+            <div>
+                <input type="password" placeholder="Password (required)" name="new-password">
+            </div>
+            <div>
+                <input type="password" placeholder="Confirm Password (required)" name="new-confirm-password">
+            </div>
+            <div>
+                <textarea rows="4" placeholder="Tell us about yourself (optional)" name="new-description"></textarea>
+                
+            </div>
+            <div>
+                <button type="submit" class="submit">Sign Up</button>
+            </div>
+            </form>
+            
         </div>
 
         <div class="main-image">
