@@ -1,0 +1,229 @@
+<html>
+    <head>
+        <title> Home Page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
+        
+        <script>
+            $(document).ready(function(){
+                $("#login").hide();
+            
+                $("#show-login").click(function(){
+                    $("#login").slideDown();
+                })
+                $("#close").click(function(){
+                    $("#login").hide();
+                })
+            });
+
+            function checkLoginForm(){
+                let username = document.forms["login-form"]["username"].value;
+                let password = document.forms["login-form"]["password"].value;
+
+                if(username.length < 1 || password.length < 1){
+                    alert("Login fields must not be empty.");
+                    return false;
+                }
+                return true;
+                
+            }
+        </script>
+
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+            }
+
+
+            .nav-button{
+                background-color: #2B2B2B;
+            }
+
+            .nav-bar{
+                height: 87px;
+                width: 100%;
+                background-color: #2B2B2B;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;  
+               position:fixed;
+                
+            }
+
+            .white-bar{
+                color: white;
+                font-size: 21pt;
+                
+            }
+
+            .right-nav{
+                display: flex;
+                justify-content: right;
+                                   
+            }
+
+            .x-container{
+                display: flex;
+                justify-content: right;
+            }
+
+            .x-container > div{
+                background-color:#D9D9D9;
+                color: black;
+                padding: 5px;
+                width: 10px;
+                height: 10px;
+                display: flex;
+                align-items: center;
+            }
+
+            .login-submit{
+                display:flex;
+                padding-top: 10px;
+            }
+
+            .login-submit > button{
+                margin: 0px 10px;
+            }
+            
+            .login-details{
+                padding:5px;
+                display: flex;
+            }
+
+            .login-details > div{
+                padding: 0 10px;
+                width: 20%;
+            }
+
+            .login-font{
+                font-family: Libre Franklin;
+                font-size: 15pt;
+                color: white;
+            }
+
+            .right-nav > div{
+                padding: 20px;
+            }
+
+            .padding-5{
+                padding: 20px;
+            }
+
+            .main-image{
+                background-image: url('C:\VSCode\ccapdev\Rectangle 8.jpg');
+                background-repeat: no-repeat;
+                height: 704px;
+                background-color:red;
+                display: flex;
+                flex-direction:column;
+            }
+
+            .title{
+                display: flex;
+                height: 70%;
+                justify-content: center;
+                color: white;
+            }
+            .height{
+                height:1000px;
+            }
+            .search-bar{
+                display: flex;
+                justify-content: center;
+            }
+            .search-bar > form > input{
+                width: 600px;
+                height: 70px;
+                border-radius: 20px 0 0 20px;
+                padding: 20px;
+            }
+            .search-bar > form > button{
+                height: 70px;
+                padding: 25px;
+                width: 100px;
+                border-radius: 0 20px 20px 0;
+                
+            }
+            .extra-bold-italic{
+                font-family: Inter;
+                font-size: 90px;
+                font-style: italic;
+            }
+            .title-bold{
+                padding-top: 250px;
+            }
+            .login-popup{
+                width:350px;
+                height:150px;
+                background-color: black;
+                color: white;
+                align-content: center;
+                top: 87px;
+                right: 175px;
+                position: fixed;
+            }
+        </style>
+    </head>
+    <body>       
+        <div class="nav-bar">
+            <div class="padding-5 login-font">
+                <b>The </br>Condo</br>Bro</b>
+            </div>
+            <div></div>
+            <div class="right-nav">
+                <button class="nav-button" id="show-login">
+                    <b class = "login-font"> Log In</b>
+                </button>
+                <button class="nav-button">
+                    <b class = "login-font"> Sign Up</b>
+                </button>
+                 
+                <i class="fa-solid fa-bars white-bar padding-5"></i>
+            </div>            
+        </div>
+
+        <div class="login-popup" id="login">
+            <form name="login-form" onsubmit="return checkLoginForm()">
+                <div class="x-container">
+                    <button type="button" id="close">X</button>
+                </div>
+                <div class="login-details">
+                    <div>Username: </div>
+                    <input type="text" name="username">
+                </div>
+                <div class="login-details">
+                    <div>Password: </div>
+                    <input type="password" name="password">
+                </div>
+                <div class="login-submit">
+                    <button type="submit">Log In</button>
+                    <input type="checkbox">
+                    <div>Remember me on this computer</div>
+                </div>
+                
+            </form>          
+        </div>
+
+        <div class="main-image">
+            <div class="title extra-bold-italic">
+                <b class="title-bold">What's Your Condo Bro?</b>
+                </div>
+                <div class="right-nav">
+            </div>
+            <div class="search-bar">
+                <form>
+                  <input type="text"></input>  
+                  <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </form>
+                
+            </div>
+        </div>
+        
+        
+        
+    </body>
+</html>
