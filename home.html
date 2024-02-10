@@ -5,9 +5,13 @@
         <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
         
         <script>
+            
             $(document).ready(function(){
+                $(".nav-logged-in").hide();
+
                 $("#login").hide();
                 $("#create-account").hide();
+                
             
                 $("#show-login").click(function(){
                     $("#login").slideDown();
@@ -24,6 +28,11 @@
                     $("#create-account").show();
                 })
             });
+
+            function showLogInView(){
+                $(".nav-logged-out").hide();
+                $(".nav-logged-in").show();
+            }
 
             function checkWhiteSpace(text){
                 if(text.indexOf(' ') !== -1){
@@ -46,6 +55,8 @@
                     alert("Username and password must not contain white space.");
                     return false;
                 }
+
+                showLogInView();
                 return true;
                 
             }
@@ -79,11 +90,63 @@
             body{
                 margin: 0;
                 padding: 0;
+                background-color: gray;
+            }
+
+            .list-label{
+                display:flex;
+                justify-content: center;
+            }
+
+            .condo-list{
+                display: flex;
+                justify-content: center;
+            }
+
+            .condo-list > div{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 25px;
+                width: 300px;
+                border-radius: 25px;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+                background-color: white;
+            }
+
+            .condo-description-container, .condo-name-container{
+                display: flex;
+                justify-content: center;
+                padding: 0 10px;
+            }
+
+            .condo-image-container{
+                width: 100%;
+            }
+
+            .condo-list-img{
+                border-radius: 25px 25px 0 0;
+                max-height: 150px;
+                min-height: 150px;
+                width: 100%;
+            }
+
+            .nav-logged-in > img{
+                width: 50px;
+                height: 50px;
+            }
+
+            .nav-logged-in > button{
+                margin: 20px;
+                height: 20px;
+                background-color: #2B2B2B;
+                color: white;
             }
 
 
             .nav-button{
                 background-color: #2B2B2B;
+                height: 60px;
             }
 
             .nav-bar{
@@ -106,7 +169,17 @@
             .right-nav{
                 display: flex;
                 justify-content: right;
-                                   
+                align-items: center;    
+            }
+
+            .right-nav > div{
+                display:flex;
+                align-items: center;
+                color: white;
+            }
+
+            .right-nav > div > img{
+                padding-right: 10px;
             }
 
             #close-create{
@@ -333,14 +406,21 @@
             </div>
             <div></div>
             <div class="right-nav">
-                <button class="nav-button" id="show-login">
-                    <b class = "login-font"> Log In</b>
-                </button>
-                <button class="nav-button" id="show-create-account">
-                    <b class = "login-font" > Sign Up</b>
-                </button>
+                <div class="nav-logged-in">
+                    <img src="man.png">
+                    <div>Username</div>
+                    <button class="log-out">Log Out</button>
+                </div>  
+                <div class="nav-logged-out">
+                    <button class="nav-button" id="show-login">
+                        <b class = "login-font"> Log In</b>
+                    </button>
+                    <button class="nav-button" id="show-create-account">
+                        <b class = "login-font" > Sign Up</b>
+                    </button>
+                </div>    
                 <i class="fa-solid fa-bars white-bar padding-5"></i>
-                
+              
             </div>            
         </div>
 
@@ -352,11 +432,11 @@
                 </div>
                 <div class="login-details">
                     <div>Username: </div>
-                    <input type="text" name="username">
+                    <input type="text" name="username" id="log-username">
                 </div>
                 <div class="login-details">
                     <div>Password: </div>
-                    <input type="password" name="password">
+                    <input type="password" name="password" id="log-password">
                 </div>
                 <div class="login-submit">
                     <button type="submit">Log In</button>
@@ -457,6 +537,92 @@
                   </button>
                 </form>
                 
+            </div>
+        </div>
+
+        <div class="list-label">
+            <h1>List of Condominiums</h1>
+        </div>
+
+        <div class="condo-list">
+            <div>
+                <div class="condo-image-container">
+                    <img src="wh taft.jpg" class="condo-list-img"> <br/>
+                </div>
+                <div class="condo-name-container">
+                    <h2>W.H. Taft Residences</h2>
+                </div>
+                <div class="condo-description-container">
+                    <p> From studio rooms to study and game rooms, WH Taft Residences has rooms conducive for play, study, and work activities. Look no further as our amenities are suited to compliment your student life.</p>
+                </div>
+                <div class="condo-rating-container">
+                    Average Rating: 4/5 <br/>
+                    <progress value="4" max="5"></progress>                  
+                </div>
+            </div>
+
+            <div>
+                <div class="condo-image-container">
+                    <img src="2 torre.gif" class="condo-list-img"> <br/>
+                </div>
+                <div class="condo-name-container">
+                    <h2>2 Torre Lorenzo</h2>
+                </div>
+                <div class="condo-description-container">
+                    <p> 2Torre Lorenzo is located along Taft Avenue, right across De La Salle University and at the gateway to the rest of the metro. It offers the same convenience, accessibility and security that are trademarks of all Torre Lorenzo properties.</p>
+                </div>
+                <div class="condo-rating-container">
+                    Average Rating: 4/5 <br/>
+                    <progress value="4" max="5"></progress>                  
+                </div>
+            </div>
+
+            <div>
+                <div class="condo-image-container">
+                    <img src="burgundy.jpg" class="condo-list-img"> <br/>
+                </div>
+                <div class="condo-name-container">
+                    <h2>Burgundy Transpacific Taft</h2>
+                </div>
+                <div class="condo-description-container">
+                    <p> Burgundy Transpacific Taft is a residence right across Gate 2 of De La Salle Univeristy. The place offers comfortable and convenient rooms with restaurants close in proximity.</p>
+                </div>
+                <div class="condo-rating-container">
+                    Average Rating: 4/5 <br/>
+                    <progress value="4" max="5"></progress>                  
+                </div>
+            </div>
+
+            <div>
+                <div class="condo-image-container">
+                    <img src="manila residences.jpg" class="condo-list-img"> <br/>
+                </div>
+                <div class="condo-name-container">
+                    <h2>The Manila Residences Tower 1</h2>
+                </div>
+                <div class="condo-description-container">
+                    <p> THE MANILA RESIDENCES TOWER I is a towering 39-storey office, commercial and residential condominium designed to provide quality and luxury living at very affordable prices. </p>
+                </div>
+                <div class="condo-rating-container">
+                    Average Rating: 3/5 <br/>
+                    <progress value="3" max="5"></progress>                  
+                </div>
+            </div>
+
+            <div>
+                <div class="condo-image-container">
+                    <img src="green residences.jpg" class="condo-list-img"> <br/>
+                </div>
+                <div class="condo-name-container">
+                    <h2>Green Residences</h2>
+                </div>
+                <div class="condo-description-container">
+                    <p> Located right beside De La Salle University in Manila, Green Residences Taft gives you a great place to live out the best parts of college life: a stress-free, easy, and fun one that every college student should experience</p>
+                </div>
+                <div class="condo-rating-container">
+                    Average Rating: 4/5 <br/>
+                    <progress value="4" max="5"></progress>                  
+                </div>
             </div>
         </div>
         
