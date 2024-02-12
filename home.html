@@ -87,6 +87,7 @@
         </script>
 
         <link rel="stylesheet" href="home.css">
+        <link rel="stylesheet" href="general.css">
 
         <!-- Inter font extrabold-->
         <!-- Libre Franklin extrabold-->
@@ -97,8 +98,8 @@
     </head>
     <body>       
         <div class="nav-bar">
-            <div class="padding-5 login-font">
-                <b>The </br>Condo</br>Bro</b>
+            <div class="login-font">
+                <a href="home.html"><b>The </br>Condo</br>Bro</b></a>
             </div>
             <div></div>
             <div class="right-nav">
@@ -143,80 +144,82 @@
             </form>          
         </div>
 
-        <div class="create-account" id="create-account">
-            <div id="exit-signup">
-                <button type="button" id="close-create">X</button>
+        <div class="create-account pop-up" id="create-account">
+            <div>
+                <button type="button" class="close-button" id="close-create">X</button>
             </div>
-            <div>The<br/>Condo<br/>Bro<br/></div>
-            <div>Welcome! Let's get started.</div>
 
-            <form name="create-account-form" onsubmit="return checkCreateAccountForm()">
-            <div>
-                <input type="text" placeholder="Username (required)" name="new-username">
-            </div>
-            <div>
-                <input type="password" placeholder="Password (required)" name="new-password">
-            </div>
-            <div>
-                <input type="password" placeholder="Confirm Password (required)" name="new-confirm-password">
-            </div>
-            <div>
-                <textarea rows="4" placeholder="Tell us about yourself (optional)" name="new-description"></textarea>
+            <div class="pop-up-body">
+                <div>The<br/>Condo<br/>Bro<br/></div>
+                <div>Welcome! Let's get started.</div>
+
+                <form name="create-account-form" onsubmit="return checkCreateAccountForm()">
+                <div>
+                    <input type="text" placeholder="Username (required)" name="new-username">
+                </div>
+                <div>
+                    <input type="password" placeholder="Password (required)" name="new-password">
+                </div>
+                <div>
+                    <input type="password" placeholder="Confirm Password (required)" name="new-confirm-password">
+                </div>
+                <div>
+                    <textarea rows="4" placeholder="Tell us about yourself (optional)" name="new-description"></textarea>
+                    
+                </div>
+                <div>
+                    Select an avatar:
+                </div>
                 
-            </div>
-            <div>
-                Select an avatar:
-            </div>
-            
-            <div>
-                <div class="select-avatar">
-                    <div>
-                        <img src="images/gamer.png" class="avatar">   
+                <div>
+                    <div class="select-avatar">
+                        <div>
+                            <img src="images/gamer.png" class="avatar">   
+                        </div>
+                        <div>
+                            <input type="radio" name="avatar" value="1" checked>
+                        </div>    
+                            
                     </div>
-                     <div>
-                        <input type="radio" name="avatar" value="1" checked>
-                     </div>    
-                           
-                </div>
-                <div class="select-avatar">
-                    <div>
-                        <img src="images/man (1).png" class="avatar">
+                    <div class="select-avatar">
+                        <div>
+                            <img src="images/man (1).png" class="avatar">
+                        </div>
+                        <div>
+                            <input type="radio" name="avatar" value="2">
+                        </div>
+                                    
                     </div>
-                    <div>
-                        <input type="radio" name="avatar" value="2">
+                    <div class="select-avatar">
+                        <div>
+                            <img src="images/man.png" class="avatar">
+                        </div>
+                        <div>
+                            <input type="radio" name="avatar" value="3">
+                        </div>                     
                     </div>
-                                   
-                </div>
-                <div class="select-avatar">
-                    <div>
-                        <img src="images/man.png" class="avatar">
+                    <div class="select-avatar">
+                        <div>
+                            <img src="images/woman (1).png" class="avatar">
+                        </div>
+                        <div>
+                            <input type="radio" name="avatar" value="4">
+                        </div>
                     </div>
-                    <div>
-                        <input type="radio" name="avatar" value="3">
-                    </div>                     
-                </div>
-                <div class="select-avatar">
-                    <div>
-                        <img src="images/woman (1).png" class="avatar">
-                    </div>
-                    <div>
-                        <input type="radio" name="avatar" value="4">
-                    </div>
-                </div>
-                <div class="select-avatar">
-                    <div>
-                        <img src="images/woman.png" class="avatar">
-                    </div>
-                    <div>
-                        <input type="radio" name="avatar" value="5">
+                    <div class="select-avatar">
+                        <div>
+                            <img src="images/woman.png" class="avatar">
+                        </div>
+                        <div>
+                            <input type="radio" name="avatar" value="5">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <button type="submit" class="submit">Sign Up</button>
-            </div>
-            </form>
-            
+                <div>
+                    <button type="submit" class="submit">Sign Up</button>
+                </div>
+                </form>
+            </div>    
         </div>
 
         <div class="main-image">

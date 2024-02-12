@@ -1,0 +1,146 @@
+.main-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(rgba(30, 34, 39, 0.48), #3A3535);
+}
+
+.review-button {
+    background-color: #676362;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 0;
+}
+.review-button img {
+    height: 90px;
+}
+
+.main-image, .main-image img{
+    width: 100%;
+}
+
+.condo-name h1 {
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 90px;
+    font-style: normal;
+}
+.line {
+    width: 80%;
+    height: 2px;
+    background: #FFF;
+}
+.stars {
+    display: flex;
+}
+.stars svg {
+    width: 101px;
+    height: 101px;
+}
+.rating {
+    color: #FFF;
+    font-family: "Iowan Old Style";
+    font-size: 40px;
+    margin-top: 20px;
+}
+.brief-bg {
+    width: 80%;
+    height: 190px;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    margin-top: 20px;
+    font-size: 20px;
+}
+p {
+    border-top: 0;
+    margin: 15px;
+    margin-top: 0;
+}
+.reviews {
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 50px;
+    font-style: normal;
+}
+
+
+/* create review */
+.create-review{
+    position: fixed;
+    top: 55%;
+    bottom: 0;
+    right: 50%;
+    left: 50%;
+    height: 550px;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    background-color: #2D2D2D;
+    color: white;
+    border-radius: 25px;
+}
+
+.create-review-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+#review-title {
+    width: 180px;
+}
+
+#review-content {
+    width: 280px;
+}
+
+#submit-btn {
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+
+/* stars in review */
+.star-rating-button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+}
+
+.star-rating-button:focus {
+    outline: none;
+}
+
+.star-rating-button .ipc-icon {
+    width: 24px;
+    height: 24px;
+    fill: #ccc;
+}
+
+.star-rating-button.active .ipc-icon {
+    fill: #ffcc00;
+}
+
+.star-rating-button:hover .ipc-icon {
+    fill: #ffcc00;
+}
+
+
+.create-review-body > form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+/* create review end */
