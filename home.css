@@ -9,15 +9,18 @@
     justify-content: center;
 }
 
-.condo-list > div{
+.condo-list > a > div{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 25px;
-    width: 300px;
+    width: 250px;
+    height: 450px;
     border-radius: 25px;
+    margin: 20px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     background-color: white;
+    text-align: center;
 }
 
 .condo-description-container, .condo-name-container{
@@ -35,6 +38,10 @@
     max-height: 150px;
     min-height: 150px;
     width: 100%;
+}
+
+.condo-list h2 {
+    margin-bottom: 0;
 }
 
 .main-image{
@@ -79,4 +86,7 @@
     font-size: 90px;
     padding-top: 250px;
     font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    line-height: normal;
+    text-shadow: 3px 4px 5px #000;
 }

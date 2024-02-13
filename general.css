@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     background: linear-gradient(rgba(30, 34, 39, 0.48), #3A3535);
+    width: 100%;
 }
 
 a {
@@ -35,7 +36,7 @@ textarea {
 }
 
 .nav-bar{
-    height: 87px;
+    height: 65px;
     width: 100%;
     background-color: #2B2B2B;
     display: flex;
@@ -86,7 +87,7 @@ textarea {
 .login-font{
     margin-left: 20px;
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 12pt;
+    font-size: 10pt;
     color: white;
 }
 
@@ -100,8 +101,8 @@ textarea {
     background-color: black;
     color: white;
     align-content: center;
-    top: 87px;
-    right: 175px;
+    top: 65px;
+    right: 170px;
     position: fixed;
 }
 
