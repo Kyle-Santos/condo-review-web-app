@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href= editprofile.css>
+<link rel="stylesheet" href= general.css>
+<title>Edit Profile</title>
+
+</head>
+<body>
+    <form>
+        <div class="edit-profile-container">
+            <h1>Edit Profile</h1>
+            <form>
+              <div class="image-upload-container" id="profile-photo-container">
+                <img src="https://placehold.co/180x180" alt="Click to change profile photo" id="profile-photo-preview">
+                <div class="image-upload-overlay">
+                  <span>Change Profile Photo</span>
+                </div>
+                <input type="file" id="profile-photo" name="profile-photo" class="image-upload-input">
+              </div>
+          
+              <div class="image-upload-container" id="cover-photo-container" style="height: 200px;">
+                <img src="https://placehold.co/1000x250" alt="Click to change cover photo" id="cover-photo-preview">
+                <div class="image-upload-overlay">
+                  <span>Change Cover Photo</span>
+                </div>
+                <input type="file" id="cover-photo" name="cover-photo" class="image-upload-input">
+              </div>
+    <div class="edit-profile-container">
+      <h1>Edit Profile</h1>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="Jane Doe">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="email@example.com">
+        
+        <label for="bio">Bio:</label>
+        <textarea id="bio" name="bio" rows="4">Bio information...</textarea>
+        
+        <div class="optional-settings">
+          <p>Add Job Title</p>
+          <label class="switch">
+            <input type="checkbox" id="toggle-job" name="toggle-job">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <input type="text" id="job" name="job" value="Job title at Company" style="display: none;">
+    
+        <div class="optional-settings">
+          <p>Add Education</p>
+          <label class="switch">
+            <input type="checkbox" id="toggle-education" name="toggle-education">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <input type="text" id="education" name="education" value="Studied at University" style="display: none;">
+    
+        <div class="optional-settings">
+          <p>Add City</p>
+          <label class="switch">
+            <input type="checkbox" id="toggle-city" name="toggle-city">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <input type="text" id="city" name="city" value="Lives in City" style="display: none;">
+    
+        <div class="optional-settings">
+          <p>Add Hometown</p>
+          <label class="switch">
+            <input type="checkbox" id="toggle-hometown" name="toggle-hometown">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <input type="text" id="hometown" name="hometown" value="From Hometown" style="display: none;">
+        
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+    
+    <script>
+        document.getElementById('profile-photo-container').addEventListener('click', function() {
+          document.getElementById('profile-photo').click();
+        });
+      
+        document.getElementById('profile-photo').addEventListener('change', function(event) {
+          const [file] = event.target.files;
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              const profilePhotoPreview = document.getElementById('profile-photo-preview');
+              profilePhotoPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      
+        document.getElementById('cover-photo-container').addEventListener('click', function() {
+          document.getElementById('cover-photo').click();
+        });
+      
+        document.getElementById('cover-photo').addEventListener('change', function(event) {
+          const [file] = event.target.files;
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              const coverPhotoPreview = document.getElementById('cover-photo-preview');
+              coverPhotoPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      // JavaScript for handling the toggle switches
+      document.addEventListener('DOMContentLoaded', () => {
+        let toggles = document.querySelectorAll('.switch input');
+        toggles.forEach(toggle => {
+          toggle.addEventListener('change', function() {
+            let inputToToggle = this.id.replace('toggle-', '');
+            let textInput = document.getElementById(inputToToggle);
+            textInput.style.display = this.checked ? 'block' : 'none';
+          });
+        });
+      });
+    </script>
+    
+    </body>
+    </html>
