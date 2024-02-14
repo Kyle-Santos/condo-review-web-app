@@ -3,31 +3,12 @@
         <title>W.H. Taft Residences</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
+        <script src="navbar.js"></script>
         
         <script>
-            
             $(document).ready(function(){
-                $(".nav-logged-in").hide();
-
-                $("#login").hide();
-                $("#create-account").hide();
                 $("#create-review").hide();
-                
-            
-                $("#show-login").click(function(){
-                    $("#login").slideDown();
-                })
-                $("#close").click(function(){
-                    $("#login").hide();
-                })
-                
-                $("#close-create").click(function(){
-                    $("#create-account").hide();
-                })
 
-                $("#show-create-account").click(function(){
-                    $("#create-account").show();
-                })
 
                 $("#close-create-review").click(function(){
                     $("#create-review").hide();
@@ -42,64 +23,6 @@
                 $(".nav-logged-out").hide();
                 $(".nav-logged-in").show();
             }
-
-            function checkWhiteSpace(text){
-                if(text.indexOf(' ') !== -1){
-                    return true;
-                }
-
-                return false;
-            }
-
-            function checkLoginForm(){
-                let username = document.forms["login-form"]["username"].value;
-                let password = document.forms["login-form"]["password"].value;
-
-                if(username.length < 1 || password.length < 1){
-                    alert("Login fields must not be empty.");
-                    return false;
-                }
-
-                if(checkWhiteSpace(username) || checkWhiteSpace(password)){
-                    alert("Username and password must not contain white space.");
-                    return false;
-                }
-
-                // Prevent default form submission behavior
-                event.preventDefault();
-
-                // Set the text of the <div> element to the entered username
-                document.getElementById("username-display").innerText = username;
-
-                showLogInView();
-                return true;
-                
-            }
-
-            function checkCreateAccountForm(){
-                let username = document.forms["create-account-form"]["new-username"].value;
-                let password = document.forms["create-account-form"]["new-password"].value;
-                let confirmPassword = document.forms["create-account-form"]["new-confirm-password"].value;
-
-                if(username.length < 1 || password.length < 1 || confirmPassword.length < 1){
-                    alert("Required fields must not be empty.");
-                    return false;
-                }
-
-                if(checkWhiteSpace(username) || checkWhiteSpace(password) || checkWhiteSpace(confirmPassword)){
-                    alert("Username and password must not contain white space.");
-                    return false;
-                }
-
-                if(password !== confirmPassword){
-                    alert("Passwords do not match. Please try again.");
-                    return false;
-                }
-
-
-                return true;
-            }
-
 
             // 
             document.addEventListener('DOMContentLoaded', function() {
@@ -162,7 +85,7 @@
             <div></div>
             <div class="right-nav">
                 <div class="nav-logged-in">
-                    <img src="../images/man.png">
+                    <a href="editprofile.html" class="hover-element"><img src="../images/man.png"></a>
                     <div id="username-display"></div></a>   
                     <button class="log-out">Log Out</button>
                 </div>  
@@ -171,7 +94,7 @@
                         <b class = "login-font"> Log In</b>
                     </button>
                     <button class="nav-button" id="show-create-account">
-                        <b class = "login-font" > Sign Up</b>
+                        <b class = "login-font"> Sign Up</b>
                     </button>   
                 </div> 
                 <div class="icon">
@@ -390,7 +313,7 @@
                         <div class="review-header">
                             <div>
                                 <h3>Nice condo!!</h3>
-                                25 days ago
+                                12 days ago
                             </div>
                             <div>
                                 <div class="star-rating" id="rating">
@@ -414,6 +337,7 @@
                         </div>
                         <div class="review-body">
                             <p>Absolutely delighted with my experience at this condominium! The facilities are top-notch, offering a luxurious and comfortable living environment. The location is unbeatable, providing convenient access to shopping, dining, and transportation. The staff are incredibly friendly and accommodating, always ready to assist with any inquiries. The overall ambiance is serene and well-maintained, making it a perfect retreat after a long day. Highly recommended for those seeking upscale living with convenience at its core!</p>
+                            <img src="../images/condo-room.jpeg"/>
                         </div>
                         <div class="review-footer">
                             <img src="../images/man.png"/>
