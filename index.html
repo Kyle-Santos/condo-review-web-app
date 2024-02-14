@@ -29,6 +29,7 @@
             });
 
             function showLogInView(){
+                console.log("hello");
                 $(".nav-logged-out").hide();
                 $(".nav-logged-in").show();
             }
@@ -54,6 +55,12 @@
                     alert("Username and password must not contain white space.");
                     return false;
                 }
+
+                // Prevent default form submission behavior
+                event.preventDefault();
+
+                // Set the text of the <div> element to the entered username
+                document.getElementById("username-display").innerText = username;
 
                 showLogInView();
                 return true;
@@ -104,7 +111,7 @@
             <div class="right-nav">
                 <div class="nav-logged-in">
                     <img src="images/man.png">
-                    <div>Username</div>
+                    <div id="username-display"></div>
                     <button class="log-out">Log Out</button>
                 </div>  
                 <div class="nav-logged-out">

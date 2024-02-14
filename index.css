@@ -1,7 +1,10 @@
 .list-label{
     display:flex;
     justify-content: center;
+    margin: 10px;
+    margin-top: 20px;
     color: white;
+    text-shadow: 3px 4px 5px #000;
 }
 
 .condo-list{

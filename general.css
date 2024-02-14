@@ -9,6 +9,11 @@ a {
     all: unset;
 }
 
+.condo-list a:hover {
+    background-color: rgb(136, 136, 132);
+    border-radius: 50px;
+  }
+
 textarea {
     padding: 5px 10px;
 }
@@ -18,10 +23,11 @@ textarea {
     display: flex;
     align-items: center;
     color: white;
+    font-size: 10pt;
 }
 
 .nav-logged-in > img{
-    height: 50px;
+    height: 40px;
 }
 
 .nav-logged-in > button{
@@ -48,6 +54,7 @@ textarea {
     justify-content: space-between;
     align-items: center;  
     position:fixed;
+    font-family: 'Libre Franklin', sans-serif;
 }
 
 .white-bar{
@@ -91,7 +98,6 @@ textarea {
 
 .login-font{
     margin-left: 20px;
-    font-family: 'Libre Franklin', sans-serif;
     font-size: 10pt;
     color: white;
 }
