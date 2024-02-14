@@ -5,6 +5,9 @@
         <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
         
         <script>
+            function goToLoggedOut(){
+                window.location.href="index.html"
+            }
             $(document).ready(function(){
                 $(".nav-logged-in").hide();
 
@@ -63,6 +66,7 @@
                 document.getElementById("username-display").innerText = username;
 
                 showLogInView();
+                $("#login").hide();
                 return true;
                 
             }
@@ -111,8 +115,8 @@
             <div class="right-nav">
                 <div class="nav-logged-in">
                     <img src="images/man.png">
-                    <div id="username-display"></div>
-                    <button class="log-out">Log Out</button>
+                    <a href="public/editprofile.html"><div id="username-display"></div></a>                 
+                    <button class="log-out" onclick="goToLoggedOut()">Log Out</button>
                 </div>  
                 <div class="nav-logged-out">
                     <button class="nav-button" id="show-login">
@@ -132,7 +136,7 @@
 
         <div class="login-popup" id="login">
             
-            <form name="login-form" onsubmit="return checkLoginForm()">
+            <form name="login-form" onsubmit="return checkLoginForm()" action="logged-in.html" method="POST">
                 <div class="x-container">
                     <button type="button" id="close">X</button>
                 </div>
