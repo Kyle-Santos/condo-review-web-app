@@ -44,6 +44,12 @@ textarea {
     background: none;
     outline: none;
     box-shadow: none;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.nav-button:hover{
+    background-color: #3f3f3f;
 }
 
 .nav-bar{
@@ -60,7 +66,6 @@ textarea {
 .white-bar{
     color: white;
     font-size: 21pt;  
-    margin: 0 20px;
 }
 
 .right-nav{
@@ -74,7 +79,9 @@ textarea {
 }
 
 .nav-logged-out {
-    gap: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
 }
 
 .login-submit{
@@ -91,16 +98,35 @@ textarea {
     display: flex;
 }
 
+.icon:hover{
+    background-color: #3f3f3f;
+}
+
+.icon{
+    border-radius:5px;
+    height: 100%;
+}
+
 .login-details > div{
     padding: 0 10px;
     width: 20%;
 }
 
 .login-font{
-    margin-left: 20px;
     font-size: 10pt;
     color: white;
+    border-radius: 10px;
 }
+
+div.login-font {
+    margin-left: 20px;
+}
+
+.login-font:hover{
+    background-color: #3f3f3f;
+}
+
+
 
 .right-nav > div{
     padding: 20px;
