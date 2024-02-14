@@ -7,7 +7,7 @@ $(document).ready(function(){
     $("#login").hide();
     $("#create-account").hide();
 
-    // Dropdown functionality
+    // Dropdown magic
     $(".icon").hover(function(){
         $(this).toggleClass("highlighted");
     });
@@ -30,7 +30,25 @@ $(document).ready(function(){
     $("#show-create-account").click(function(){
         $("#create-account").show();
     });
+
+    // Login button click event
+    $("#login-button").click(function(){
+        $("#login").slideDown();
+        $(".nav-dropdown").hide(); // Hides dropdown after click
+    });
+
+    // Signup button click event
+    $("#signup-button").click(function(){
+        $("#create-account").show();
+        $(".nav-dropdown").hide(); // Hides dropdown after click
+    });
 });
+
+function updateDropdownText(username) { // this gave me cancer but this is the change dropdown after login
+    $("#login-button").text(username !== '' ? username : 'Login'); // Change login to username if not empty, otherwise revert to Login
+    $("#signup-button").text(username !== '' ? 'Edit Profile' : 'Signup'); // Change signup to View Profile if username is not empty, otherwise revert to Signup
+}
+
 
 function showLogInView(){
     console.log("hello");
@@ -66,10 +84,12 @@ function checkLoginForm(){
     // Set the text of the <div> element to the entered username
     document.getElementById("username-display").innerText = username;
 
+
     showLogInView();
     $("#login").hide();
+    updateDropdownText(username); // changes the dropdown
     return true;
-    
+
 }
 
 function checkCreateAccountForm(){
