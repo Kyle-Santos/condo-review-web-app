@@ -45,7 +45,7 @@
 
 .review-button:hover{
     cursor: pointer;
-    background-color: white;
+    background-color: rgba(182, 182, 182, 0.576);
 }
 
 .review-button img {
