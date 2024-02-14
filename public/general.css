@@ -18,6 +18,10 @@ textarea {
     padding: 5px 10px;
 }
 
+.hover-element:hover{
+    cursor:pointer;
+}
+
 
 .nav-logged-in {
     display: flex;
@@ -26,8 +30,9 @@ textarea {
     font-size: 10pt;
 }
 
-.nav-logged-in > img{
+.nav-logged-in > a > img{
     height: 40px;
+    margin-right: 10px;
 }
 
 .nav-logged-in > button{
