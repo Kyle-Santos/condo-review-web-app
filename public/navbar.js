@@ -6,22 +6,30 @@ $(document).ready(function(){
 
     $("#login").hide();
     $("#create-account").hide();
-    
+
+    // Dropdown functionality
+    $(".icon").hover(function(){
+        $(this).toggleClass("highlighted");
+    });
+
+    $(".icon").hover(function(){
+        $(".nav-dropdown").toggle($(this).hasClass("highlighted"));
+    });
 
     $("#show-login").click(function(){
         $("#login").slideDown();
-    })
+    });
     $("#close").click(function(){
         $("#login").hide();
-    })
-    
+    });
+
     $("#close-create").click(function(){
         $("#create-account").hide();
-    })
+    });
 
     $("#show-create-account").click(function(){
         $("#create-account").show();
-    })
+    });
 });
 
 function showLogInView(){

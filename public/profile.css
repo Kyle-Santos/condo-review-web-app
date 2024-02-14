@@ -147,3 +147,26 @@ body, h1, h2, p, ul, li, div, img {
 .contactfooter h6, .contactfooter h7 {
   text-align: center;
 }
+
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #2B2B2B;
+  color: white;
+  max-width: 120px;
+  right: 0;
+  top: 100%;
+  z-index: 1;
+}
+
+.icon.highlighted .nav-dropdown {
+  display: block;
+}
+
+.nav-dropdown-item {
+  padding: 10px;
+}
+
+.nav-dropdown-item:hover {
+  background-color: gray;
+}
