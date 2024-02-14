@@ -25,17 +25,30 @@
 }
 
 .review-button {
-    background-color: #676362;
+    background-color: transparent;
     position: fixed;
     bottom: 15px;
     right: 15px;
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    border: 0;
+    border: 0 ;
 }
+
+.review-button:hover{
+    cursor: pointer;
+    background-color: white;
+}
+
 .review-button img {
     height: 90px;
+}
+
+.review-button-container{
+    display:flex;
+    justify-content: center;
+    border: 20px solid black;
+    background-color: red;
 }
 
 .condo-name h1 {
