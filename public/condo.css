@@ -1,6 +1,14 @@
 .main-image, .main-image img{
     width: 100%;
+    max-height: 250px;
+    overflow: hidden;
 }
+
+.main-image img{
+    object-fit:cover;
+
+}
+
 .main-body {
     padding: 40px 0;
     width: 100%;
@@ -58,7 +66,14 @@
     font-style: normal;
     text-align: center;
     text-shadow: 3px 4px 5px #000;
+    margin-bottom: 5px;
 }
+
+.condo-address > h2{
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
 .line {
     width: 80%;
     height: 2px;

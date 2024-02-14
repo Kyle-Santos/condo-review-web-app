@@ -135,12 +135,14 @@ div.login-font {
 .login-popup{
     width:350px;
     height:150px;
-    background-color: black;
+    background-color: 2D2D2D;
     color: white;
     align-content: center;
     top: 65px;
     right: 170px;
     position: fixed;
+    justify-content: center;
+    border-radius: 0 0 10px 10px;
 }
 
 .pop-up {
