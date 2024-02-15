@@ -4,139 +4,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
         <script src="navbar.js"></script>
-        
-        <script>
-            var ratingButtons;
-            $(document).ready(function(){
-                $("#create-review").hide();
-
-
-                $("#close-create-review").click(function(){
-                    $("#create-review").hide();
-                })
-
-                $("#show-create-review").click(function(){
-                    $("#create-review").show();
-                })
-
-                function showLogInView(){
-                    $(".nav-logged-out").hide();
-                    $(".nav-logged-in").show();
-                }
-
-                // 
-                ratingButtons = document.querySelectorAll('.star-rating-button');
-                console.log(ratingButtons);
-
-                ratingButtons.forEach(button => {
-                    button.addEventListener('mouseenter', function() {
-                        const ratingValue = button.getAttribute('data-rating');
-                        console.log(ratingValue);
-                        highlightStars(ratingValue);
-                    });
-
-                    button.addEventListener('click', function() {
-                        // event.preventDefault(); // Prevent form submission
-                        const ratingValue = button.getAttribute('data-rating');
-                        console.log('You rated:', ratingValue);
-                        highlightStars(ratingValue);
-                    });
-
-                    button.addEventListener('mouseleave', resetStars);
-                });
-
-                function highlightStars(rating) {
-                    ratingButtons.forEach(button => {
-                        const buttonRating = button.getAttribute('data-rating');
-                        if (buttonRating <= rating) {
-                            button.classList.add('active');
-                        } else {
-                            button.classList.remove('active');
-                        }
-                    });
-                }
-
-                function resetStars() {
-                    ratingButtons.forEach(button => {
-                        button.classList.remove('active');
-                    });
-                }
-            });
-
-            function getRating() {
-                let maxRating = 0;
-                ratingButtons.forEach(button => {
-                    if (button.classList.contains('active')) {
-                        const buttonRating = parseInt(button.getAttribute('data-rating'));
-                        maxRating = Math.max(maxRating, buttonRating);
-                    }
-                });
-                return maxRating;
-            }
-
-            function addReview() {
-                    // Get values from form inputs
-                    var title = document.getElementById("review-title").value;
-                    var content = document.getElementById("review-content").value;
-                    var rating = getRating(); 
-                    
-                    // Get uploaded image if available
-                    var imageFileInput = document.getElementById("image-upload");
-                    var image = imageFileInput != null ? imageFileInput.files[0] : null;
-
-                    console.log(rating);
-                    let starIcons = '';
-                    for (let i = 1; i <= rating; i++) {
-                        starIcons += '<svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">' +
-                            '<path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>' +
-                            '</svg>';
-                    }
-                    for (let i = rating + 1; i <= 5; i++) {
-                        starIcons += '<svg xmlns="http://www.w3.org/2000/svg" class="star-off" viewBox="0 0 24 24" fill="currentColor" role="presentation">' +
-                            '<path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>' +
-                            '</svg>';
-                    }
-
-                    // Create a new review element
-                    var reviewElement = document.createElement("div");
-                    reviewElement.classList.add("grid-item");
-                    
-                    // Construct HTML content for the new review
-                    reviewElement.innerHTML = `
-                        <div class="review-header">
-                            <div>
-                                <h3>${title}</h3>
-                                ${new Date().toLocaleDateString()} <!-- Use current date for review date -->
-                            </div>
-                            <div class="star-rating" id="rating">
-                                ${starIcons} <!-- Render star icons based on the rating -->
-                            </div>
-                        </div>
-                        <div class="review-body">
-                            <p>${content}</p>
-                            ${image ? `<img src="${URL.createObjectURL(image)}" alt="Review Image"/>` : ''} <!-- Include uploaded image if available -->
-                        </div>
-                        <div class="review-footer">
-                            <img src="../images/man.png"/>
-                            <div>
-                                <b>Unknown</b>
-                                <br/>N/A
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Append the new review to the reviews container
-                    var container = document.getElementsByClassName("reviews-container")[0];
-                    container.insertBefore(reviewElement, container.firstChild);
-                    
-                    // Clear form inputs
-                    document.getElementById("review-title").value = "";
-                    document.getElementById("review-content").value = "";
-                    // document.getElementById("image-upload").value = ""; // Reset file input
-                    return false; // Prevent page refresh
-                }
-            // 
-        </script>
+        <script src="condo.js"></script>
 
         <link rel="stylesheet" href="general.css">
         <link rel="stylesheet" href="condo.css">
@@ -416,10 +284,19 @@
                             <img src="../images/condo-room.jpeg"/>
                         </div>
                         <div class="review-footer">
-                            <img src="../images/man.png"/>
-                            <div>
-                                <b>Kyle Santos</b>
-                                <br/>College Student
+                            <div class="review-profile">
+                                <img src="../images/man.png"/>
+                                <div>
+                                    <b>Kyle Santos</b>
+                                    <br/>College Student | Social Media Influencer
+                                </div>
+                            </div>
+                            <div class="react-post">
+                                <div class="icon-like">
+                                    <button type="button" class="fa fa-thumbs-up"></button>
+                                    <button type="button" class="fa fa-thumbs-down"></button>
+                                </div>
+                                999 people liked
                             </div>
                         </div>
                     </div>
@@ -453,10 +330,19 @@
                             <p>An exemplary living experience awaits at this condominium! From the moment I stepped in, I was captivated by the stunning architecture and impeccable design. The amenities surpass expectations, catering to every need and desire with elegance and sophistication. The location is a gem, nestled in a vibrant neighborhood yet offering a peaceful sanctuary away from the hustle and bustle. The staff goes above and beyond, providing exceptional service with genuine warmth and professionalism. Maintenance is prompt and meticulous, ensuring a seamless living experience. Without a doubt, this condominium sets the standard for luxurious urban living, earning my highest recommendation with five stars!</p>
                         </div>
                         <div class="review-footer">
-                            <img src="../images/gamer.png"/>
-                            <div>
-                                <b>Enzo Sitoy</b>
-                                <br/>College Student
+                            <div class="review-profile">
+                                <img src="../images/gamer.png"/>
+                                <div>
+                                    <b>Enzo Sitoy</b>
+                                    <br/>College Student
+                                </div>
+                            </div>
+                            <div class="react-post">
+                                <div class="icon-like">
+                                    <button type="button" class="fa fa-thumbs-up"></button>
+                                    <button type="button" class="fa fa-thumbs-down"></button>
+                                </div>
+                                23 people liked
                             </div>
                         </div>
                     </div>
@@ -490,10 +376,19 @@
                             <p>Five-star living defined! This condominium exceeds all expectations with its flawless blend of luxury, convenience, and comfort. The amenities are unparalleled, offering a resort-like experience right at home. From the state-of-the-art fitness center to the stunning rooftop pool, every detail is thoughtfully crafted to elevate the resident experience. The location is prime, surrounded by trendy shops, delicious dining options, and easy access to transportation. The staff are incredibly attentive and welcoming, making every interaction a pleasure. If you're seeking the pinnacle of urban living, look no further than this exceptional condominium. Five stars without hesitation!</p>
                         </div>
                         <div class="review-footer">
-                            <img src="../images/gamer.png"/>
-                            <div>
-                                <b>Kailu Baradas</b>
-                                <br/>Web Developer
+                            <div class="review-profile">
+                                <img src="../images/gamer.png"/>
+                                <div>
+                                    <b>Kailu Baradas</b>
+                                    <br/>Web Developer
+                                </div>
+                            </div>
+                            <div class="react-post">
+                                <div class="icon-like">
+                                    <button type="button" class="fa fa-thumbs-up"></button>
+                                    <button type="button" class="fa fa-thumbs-down"></button>
+                                </div>
+                                20 people liked
                             </div>
                         </div>
                     </div>
@@ -527,10 +422,19 @@
                             <p>Exceptional in every aspect, this condominium earns a resounding five stars! From the moment you step into the grand lobby, you're greeted by elegance and sophistication. The amenities are nothing short of extraordinary, providing residents with a lifestyle of luxury and convenience. Whether relaxing by the meticulously landscaped pool or enjoying the panoramic views from the sky lounge, every moment feels like a retreat. The location is unbeatable, offering easy access to entertainment, dining, and transportation options. The staff are friendly, attentive, and always go above and beyond to ensure resident satisfaction. Without a doubt, this condominium sets the standard for upscale urban living. Five stars for an unparalleled experience!</p>
                             </div>
                         <div class="review-footer">
-                            <img src="../images/gamer.png"/>
-                            <div>
-                                <b>Karl Ordinario</b>
-                                <br/>Web Designer
+                            <div class="review-profile">
+                                <img src="../images/gamer.png"/>
+                                <div>
+                                    <b>Karl Ordinario</b>
+                                    <br/>Web Designer
+                                </div>
+                            </div>
+                            <div class="react-post">
+                                <div class="icon-like">
+                                    <button type="button" class="fa fa-thumbs-up"></button>
+                                    <button type="button" class="fa fa-thumbs-down"></button>
+                                </div>
+                                12 people liked
                             </div>
                         </div>
                     </div>
@@ -564,10 +468,19 @@
                             <p>Unbeatable value! This condominium offers a five-star living experience at a remarkably affordable price. Despite its luxurious amenities and prime location, the cost of living here is surprisingly reasonable compared to other options in the area. From the beautifully landscaped grounds to the stylishly appointed interiors, every aspect reflects quality and attention to detail without breaking the bank. Plus, with a range of floor plans available, there's something to suit every budget and lifestyle. Whether you're a first-time buyer or a seasoned investor, this condominium offers exceptional value that's hard to beat. Five stars for delivering luxury living without the hefty price tag!</p>
                             </div>
                         <div class="review-footer">
-                            <img src="../images/man.png"/>
-                            <div>
-                                <b>Bob Bobby</b>
-                                <br/>Professor
+                            <div class="review-profile">
+                                <img src="../images/man.png"/>
+                                <div>
+                                    <b>Bob Bobby</b>
+                                    <br/>Professor
+                                </div>
+                            </div>
+                            <div class="react-post">
+                                <div class="icon-like">
+                                    <button type="button" class="fa fa-thumbs-up"></button>
+                                    <button type="button" class="fa fa-thumbs-down"></button>
+                                </div>
+                                8 people liked
                             </div>
                         </div>
                     </div>
