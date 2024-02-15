@@ -8,7 +8,9 @@ body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+#user-icon{
+  height: 40px;
+}
 .edit-profile-container {
   margin-top: 20px; /* Adds space between nav-bar and this container */
   background: #fff;
