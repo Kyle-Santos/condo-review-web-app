@@ -127,7 +127,21 @@ body, h1, h2, p, ul, li, div, img {
     border-radius: 8px;
     background: #ccc;
   }
+  .icon-like button:hover{
+    background-color: #686565;
+}
 
+.icon-like{
+    border-radius:5px;
+    height: 100%;
+    width: 3%;
+    display: flex;
+}
+.icon-like button{
+  border: none;
+    background: none;
+
+}
 .footerbottom {
   background-color: #2B2B2B;
   display: flex;
