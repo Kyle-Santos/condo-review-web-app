@@ -1,3 +1,7 @@
+.html {
+    scroll-behavior: smooth;
+}
+
 .list-label{
     display:flex;
     justify-content: center;
@@ -141,4 +145,5 @@
     display: flex;
     justify-content: center;
     gap: 5px;
+    margin-bottom: 20px;
 }
