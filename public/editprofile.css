@@ -138,3 +138,23 @@ button:hover {
 .image-upload-input {
   display: none;
 }
+
+.footerbottom {
+  background-color: #2B2B2B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 80px;
+  padding: 10px;
+}
+
+.contactfooter {
+  max-height: 80px;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.contactfooter h6, .contactfooter h7 {
+  text-align: center;
+}
