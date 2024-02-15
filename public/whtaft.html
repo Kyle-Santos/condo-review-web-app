@@ -36,7 +36,7 @@
                     });
 
                     button.addEventListener('click', function() {
-                        event.preventDefault(); // Prevent form submission
+                        // event.preventDefault(); // Prevent form submission
                         const ratingValue = button.getAttribute('data-rating');
                         console.log('You rated:', ratingValue);
                         highlightStars(ratingValue);
