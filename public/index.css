@@ -136,3 +136,9 @@
 .nav-dropdown-item:hover {
     background-color: gray;
 }
+
+.filterclass {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}

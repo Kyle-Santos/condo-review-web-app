@@ -172,13 +172,17 @@
             <h1>List of Condominiums</h1>
         </div>
 
-        <div class="search">
-            <select name="filter" id="filter">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+        <div class="filterclass">
+            <select name="filter" id="filter" onchange="updateFilterInput()">
+                <option value="rating">Rating</option>
+                <option value="price">Rent Price</option>
+                <option value="location">Location</option>
             </select>
+            <div class="filterinput">
+                <select name="Type" id="filterinput">
+                    <!-- Automatic fillup in javascript -->
+                </select>
+            </div>
         </div>
 
         <div class="condo-list">

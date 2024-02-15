@@ -115,3 +115,43 @@ function checkCreateAccountForm(){
 
     return true;
 }
+
+function updateFilterInput() {
+    var filterSelect = document.getElementById("filter");
+    var filterInputSelect = document.getElementById("filterinput");
+    var selectedOption = filterSelect.value;
+    filterInputSelect.innerHTML = ""; // Clear prev options
+
+    if (selectedOption === "rating") {
+        // Pfor rating
+        var options = ["4 Star +", "3 Star", "2 Star", "1 Star -"];
+        options.forEach(function(option) {
+            var optionElement = document.createElement("option");
+            optionElement.value = option;
+            optionElement.textContent = option;
+            filterInputSelect.appendChild(optionElement);
+        });
+    } else if (selectedOption === "price") {
+        // for rent price
+        var options = ["P10000 Below", "P15000 - P20000", "P20001 - P25000", "Above P25000"];
+        options.forEach(function(option) {
+            var optionElement = document.createElement("option");
+            optionElement.value = option;
+            optionElement.textContent = option;
+            filterInputSelect.appendChild(optionElement);
+        });
+    } else if (selectedOption === "location") {
+        // for locations
+        var options = ["Taft", "Espana", "Katipunan", "Other"];
+        options.forEach(function(option) {
+            var optionElement = document.createElement("option");
+            optionElement.value = option;
+            optionElement.textContent = option;
+            filterInputSelect.appendChild(optionElement);
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateFilterInput(); // DO NOT DELETE(For Filter)
+});
