@@ -50,7 +50,11 @@ $(document).ready(function(){
     });
 
     $("#view-condo").click(function(){
-        window.scrollTo(0, 650);
+        window.scrollBy({
+            top: 650, // could be negative value
+            left: 0,
+            behavior: 'smooth'
+        });
     });
 });
 
