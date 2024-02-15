@@ -3,6 +3,7 @@ function goToLoggedOut(){
 }
 $(document).ready(function(){
     $(".nav-logged-in").hide();
+    $("#logout-button").hide();
 
     $("#login").hide();
     $("#create-account").hide();
@@ -42,11 +43,22 @@ $(document).ready(function(){
         $("#create-account").show();
         $(".nav-dropdown").hide(); // Hides dropdown after click
     });
+
+    $("#logout-button").click(function(){
+        window.location.href="index.html";
+        $(".nav-dropdown").hide(); // Hides dropdown after click
+    });
+
+    $("#view-condo").click(function(){
+        window.scrollTo(0, 650);
+    });
 });
 
 function updateDropdownText(username) { // this gave me cancer but this is the change dropdown after login
-    $("#login-button").text(username !== '' ? username : 'Login'); // Change login to username if not empty, otherwise revert to Login
+    $("#login-button").text(username !== '' ? "View Profile" : 'Login'); // Change login to username if not empty, otherwise revert to Login
     $("#signup-button").text(username !== '' ? 'Edit Profile' : 'Signup'); // Change signup to View Profile if username is not empty, otherwise revert to Signup
+    $("#logout-button").text(username !== '' ? 'Log Out' : 'Log Out');
+    $("#logout-button").show();
 }
 
 
