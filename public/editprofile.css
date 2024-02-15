@@ -1,21 +1,24 @@
-body, h1, input, label, textarea, button, .switch {
+body, h1, input, label, textarea, .switch {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
-  background-color: #eef1f5;
-  padding: 40px;
+  padding-top: 60px; /* Adjust based on the height of your nav-bar */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 .edit-profile-container {
+  margin-top: 20px; /* Adds space between nav-bar and this container */
   background: #fff;
   border-radius: 10px;
-  width: 100%;
-  max-width: 768px;
-  margin: 0 auto;
   padding: 40px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  max-width: 768px;
+  margin: 20px auto; /* Centers the container with margin on all sides */
 }
+
 h1 {
   font-size: 28px;
   color: #333;
@@ -87,17 +90,20 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 button {
-  background-color: #4CAF50;
-  color: white;
   padding: 12px 20px;
-  border: none;
   border-radius: 6px;
-  cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
 }
 button:hover {
-  background-color: #45a049;
+  background-color: #0094FF;
+}
+.blue-bg{
+  background-color: #0094FF;
+  width: 15%;
+  border-radius: 5px;
+}
+.edit-profile-section form button{
+  background-color: #4CAF50;
 }
 .optional-settings {
   display: flex;
@@ -113,10 +119,15 @@ button:hover {
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .image-upload-container img {
-  width: 100%;
+  width: 40%;
   height: auto;
+  
+
 }
 .image-upload-overlay {
   position: absolute;
@@ -138,15 +149,16 @@ button:hover {
 .image-upload-input {
   display: none;
 }
-
 .footerbottom {
+  width: 100%;
+  position: relative; /* Change to fixed or absolute if you want it always at the bottom */
+  bottom: 0;
   background-color: #2B2B2B;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: 80px;
-  padding: 10px;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
 }
+
 
 .contactfooter {
   max-height: 80px;
@@ -157,4 +169,36 @@ button:hover {
 
 .contactfooter h6, .contactfooter h7 {
   text-align: center;
+}
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #2B2B2B;
+  color: white;
+  max-width: 120px;
+  right: 0;
+  top: 100%;
+  z-index: 1;
+}
+.nav-bar {
+  width: 100%;
+  position: fixed; /* Change this from absolute if needed */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure nav-bar is above other content */
+  background-color: #fff; /* Or any other color */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for depth */
+}
+
+
+.icon.highlighted .nav-dropdown {
+  display: block;
+}
+
+.nav-dropdown-item {
+  padding: 10px;
+}
+
+.nav-dropdown-item:hover {
+  background-color: gray;
 }
