@@ -39,7 +39,7 @@ $(document).ready(function(){
                 window.location.href = "public/profile.html";
             } else {
                 $("#login").slideDown();
-                $(".nav-dropdown").hide(); // Hides dropdown after click
+                $(".nav-dropdown").hide(); // Hides dropdown after clicks
             }
         }
         else {
