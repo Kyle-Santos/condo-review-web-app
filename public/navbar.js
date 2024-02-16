@@ -93,7 +93,7 @@ $(document).ready(function(){
     });
 });
 
-function updateDropdownText(username) { // this gave me cancer but this is the change dropdown after login
+function updateDropdownText(username) { 
     $("#login-button").text(username !== '' ? "View Profile" : 'Login'); // Change login to username if not empty, otherwise revert to Login
     $("#signup-button").text(username !== '' ? 'Edit Profile' : 'Signup'); // Change signup to View Profile if username is not empty, otherwise revert to Signup
     $("#logout-button").text(username !== '' ? 'Log Out' : 'Log Out');

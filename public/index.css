@@ -146,4 +146,19 @@
     justify-content: center;
     gap: 5px;
     margin-bottom: 20px;
+} 
+  
+.filterinput select, .filterclass select {
+    width: 130px; 
+    padding: 6px;
+    font-size: 14px;
+    font-family: 'Libre Franklin', sans-serif;
+    border: 1px solid #ccc;
+    color: white;
+    border-radius: 5px;
+    appearance: none; 
+    -webkit-appearance: none; 
+    cursor: pointer;
+    background-color: #434141;
 }
+  

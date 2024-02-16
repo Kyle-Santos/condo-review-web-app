@@ -99,6 +99,7 @@ body, h1, h2, p, ul, li, div, img {
   }
   .photo-grid img {
     width: 100%;
+    height: 130px;
     border-radius: 4px;
     background: #ccc;
   }

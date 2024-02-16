@@ -9,6 +9,10 @@
                 event.preventDefault();
                 let form = document.getElementById("search-condo");
                 let url = form.elements["condo-name"].value;
+                
+                url = url.replace(/\b\w/g, function(char) {
+                    return char.toUpperCase();
+                });
 
                 switch (url) {
                     case "2 Torre Lorenzo":
@@ -23,6 +27,8 @@
                     case "Green Residences":
                         url = "public/green-res.html";
                         break;
+                    default:
+                        url = "public/other-condos.html";
                 }
 
                 window.location.href = url;
