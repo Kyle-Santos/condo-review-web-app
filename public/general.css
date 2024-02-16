@@ -129,6 +129,10 @@ textarea {
     border-radius: 10px;
 }
 
+.login-font:hover{
+    cursor: pointer;
+}
+
 div.login-font {
     margin-left: 20px;
 }
