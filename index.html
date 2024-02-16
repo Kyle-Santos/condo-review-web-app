@@ -4,6 +4,32 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
         <script src="public/navbar.js"></script>
+        <script>
+            function goToCondoPage() {
+                event.preventDefault();
+                let form = document.getElementById("search-condo");
+                let url = form.elements["condo-name"].value;
+
+                switch (url) {
+                    case "2 Torre Lorenzo":
+                        url = "public/2-torre.html";
+                        break;
+                    case "W.H. Taft residences":
+                        url = "public/whtaft.html";
+                        break;
+                    case "Burgundy Transpacific Taft":
+                        url = "public/burgundy.html";
+                        break; // corrected typo here
+                    case "Green Residences":
+                        url = "public/green-res.html";
+                        break;
+                }
+
+                window.location.href = url;
+
+                
+            }
+        </script>
 
         <link rel="stylesheet" href="public/index.css">
         <link rel="stylesheet" href="public/general.css">
@@ -156,11 +182,17 @@
                 <div class="right-nav">
             </div>
             <div class="search-bar">
-                <form>
-                  <input type="text" placeholder="Search a Condo"></input>  
+                <form id="search-condo" onsubmit="goToCondoPage()">
+                  <input id="condo-name" list="condo-list" type="text" placeholder="Search a Condo" required></input>  
                   <button type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
+                  <datalist id="condo-list">
+                    <option>2 Torre Lorenzo</option>
+                    <option>W.H. Taft residences</option>
+                    <option>Burgundy Transpacific Taft</option>
+                    <option>Green Residences</option>
+                  </datalist>
                 </form>       
 
                 
