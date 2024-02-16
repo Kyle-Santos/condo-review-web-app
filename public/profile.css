@@ -107,6 +107,7 @@ body, h1, h2, p, ul, li, div, img {
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
+    position: relative;
   }
   .post h3 {
     font-size: 18px;
@@ -188,4 +189,24 @@ body, h1, h2, p, ul, li, div, img {
 .edit-profile{
   background: none;
   border: none;
+}
+.post button{
+  width: 100%;
+  border-radius: 3px;
+}
+.edit-delete-icons {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  display: flex;
+  gap: 5px; /* Space between buttons */
+}
+.edit-icon-btn, .delete-icon-btn {
+  border: none;
+  background: none;
+  color: #555; /* Adjust color as needed */
+  cursor: pointer;
+}
+.edit-icon-btn:hover, .delete-icon-btn:hover {
+  color: #000; /* Change color on hover */
 }
