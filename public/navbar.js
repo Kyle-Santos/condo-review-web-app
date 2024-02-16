@@ -34,21 +34,40 @@ $(document).ready(function(){
 
     // Login button click event
     $("#login-button").click(function(){
-        if ($(this).text() === "View Profile") {
-            window.location.href = "public/profile.html";
-        } else {
-            $("#login").slideDown();
-            $(".nav-dropdown").hide(); // Hides dropdown after click
+        if (window.location.pathname.includes("index.html")) {
+            if ($(this).text() === "View Profile") {
+                window.location.href = "public/profile.html";
+            } else {
+                $("#login").slideDown();
+                $(".nav-dropdown").hide(); // Hides dropdown after click
+            }
+        }
+        else {
+            if ($(this).text() === "View Profile") {
+                window.location.href = "profile.html";
+            } else {
+                $("#login").slideDown();
+                $(".nav-dropdown").hide(); // Hides dropdown after click
+            }
         }
     });
 
     // Signup button click event
     $("#signup-button").click(function(){
-        if ($(this).text() === "Edit Profile") {
-            window.location.href = "public/editprofile.html";
+        if (window.location.pathname.includes("index.html")) {
+            if ($(this).text() === "Edit Profile") {
+                window.location.href = "public/editprofile.html";
+            } else {
+                $("#create-account").show();
+                $(".nav-dropdown").hide(); // Hides dropdown after click
+            }
         } else {
-            $("#create-account").show();
-            $(".nav-dropdown").hide(); // Hides dropdown after click
+            if ($(this).text() === "Edit Profile") {
+                window.location.href = "editprofile.html";
+            } else {
+                $("#create-account").show();
+                $(".nav-dropdown").hide(); // Hides dropdown after click
+            }
         }
     });
 
