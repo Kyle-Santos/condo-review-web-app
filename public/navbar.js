@@ -4,7 +4,6 @@ function goToLoggedOut(){
 $(document).ready(function(){
     $(".nav-logged-in").hide();
     $("#logout-button").hide();
-
     $("#login").hide();
     $("#create-account").hide();
 
@@ -19,6 +18,7 @@ $(document).ready(function(){
 
     $("#show-login").click(function(){
         $("#login").slideDown();
+        $(".nav-dropdown").hide(); // Hides dropdown after click
     });
     $("#close").click(function(){
         $("#login").hide();
@@ -34,14 +34,22 @@ $(document).ready(function(){
 
     // Login button click event
     $("#login-button").click(function(){
-        $("#login").slideDown();
-        $(".nav-dropdown").hide(); // Hides dropdown after click
+        if ($(this).text() === "View Profile") {
+            window.location.href = "public/profile.html";
+        } else {
+            $("#login").slideDown();
+            $(".nav-dropdown").hide(); // Hides dropdown after click
+        }
     });
 
     // Signup button click event
     $("#signup-button").click(function(){
-        $("#create-account").show();
-        $(".nav-dropdown").hide(); // Hides dropdown after click
+        if ($(this).text() === "Edit Profile") {
+            window.location.href = "public/editprofile.html";
+        } else {
+            $("#create-account").show();
+            $(".nav-dropdown").hide(); // Hides dropdown after click
+        }
     });
 
     $("#logout-button").click(function(){
