@@ -32,6 +32,8 @@
     /* background-color: #D9D9D9; */
 }
 
+
+
 .review-button {
     background-color: transparent;
     position: fixed;
@@ -134,7 +136,24 @@ p {
     display: flex;
     justify-content: space-between;
     font-size: 10px;
+
 }
+
+.establishment-response-container {
+    background-color: rgb(240, 240, 235);
+    border-radius: 25px;
+    font-size: 12px;
+    padding: 20px;
+}
+
+.establishment-response-container > p {
+    padding: 10px;
+}
+
+.establishment-response-container > b {
+    font-size: 15px;
+}
+
 
 .review-header svg {
     width: 20px;
@@ -196,11 +215,17 @@ p {
     height: 40px;
 }
 
-.review-profile {
+.review-profile, .owner-profile{
     display: flex;
     align-items: center;
     gap: 15px;
 }
+
+.owner-profile img{
+    height: 40px;
+}
+
+
 .react-post {
     display: flex;
     flex-direction: column;
