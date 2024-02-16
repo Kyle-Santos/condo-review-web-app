@@ -185,3 +185,7 @@ body, h1, h2, p, ul, li, div, img {
 .nav-dropdown-item:hover {
   background-color: gray;
 }
+.edit-profile{
+  background: none;
+  border: none;
+}
