@@ -7,7 +7,7 @@ body, h1, h2, p, ul, li, div, img {
   .cover-photo {
     height: 250px;
     background-color: #3b5998;
-    background-image: url('https://placehold.co/1000x250');
+    background-image: url('https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/401509879_1838088799994507_616738312726490537_n.jpg?_nc_cat=105&cb=99be929b-b574a898&ccb=1-7&_nc_sid=783fdb&_nc_eui2=AeHpoh-4rSrTks1Z-wGg1HJyUOOS2iRRvutQ45LaJFG-67jf1y17HeEM74nucn9aZEfIhWu2C8JJtTncShXcm8lb&_nc_ohc=yhx_dw1lQp8AX-mndQ-&_nc_oc=AQmYRP6IxEU96U7ojX5BtFdUMA3onbF29LuovF1Ri9-iEmmAuz0sNLEUOQWFHPrMdHE&_nc_ht=scontent.fmnl4-2.fna&oh=00_AfDGFUBo0eY25vWIwnmL4rntR-7JW63AP0ppzvsEK_WJIg&oe=65D2E849');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -30,7 +30,7 @@ body, h1, h2, p, ul, li, div, img {
     margin-right: 20px;
     border-radius: 50%;
     border: 4px solid #fff;
-    background-image: url('https://placehold.co/180x180');
+    background-image: url('https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/411035997_1855615164908537_808068026862625268_n.jpg?_nc_cat=110&cb=99be929b-b574a898&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeF3qziYc2-pz5sowSvb2Nn_ooPX35oTCNWig9ffmhMI1e8IZMoNkmFGyOjsj332WI9lEgjiWatuCb_v9l1CQWbb&_nc_ohc=w_IiwQxiy0oAX_Zjvbp&_nc_ht=scontent.fmnl4-3.fna&oh=00_AfAl2W8ztQwwGBWekk_rvW1YBO5PEodkujbqUxVjRJVTlQ&oe=65D290EF');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -121,6 +121,7 @@ body, h1, h2, p, ul, li, div, img {
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
     margin-top: 10px;
+
   }
   .post-images img {
     width: 100%;
