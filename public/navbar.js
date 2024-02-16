@@ -59,11 +59,18 @@ $(document).ready(function(){
     });
 
     $("#view-condo").click(function(){
-        window.scrollBy({
-            top: 650, // could be negative value
-            left: 0,
-            behavior: 'smooth'
-        });
+        // Check if the current page is index.html
+        if (window.location.pathname.includes("index.html")) {
+            // Smooth scrolling behavior
+            window.scrollBy({
+                top: 650,
+                left: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            // Redirect to index.html
+            window.location.href = "../index.html";
+        }
     });
 });
 
