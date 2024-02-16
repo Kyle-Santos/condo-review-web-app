@@ -53,7 +53,8 @@ $(document).ready(function(){
     });
 
     $("#logout-button").click(function(){
-        window.location.href="index.html";
+        // window.location.href="index.html";
+        location.reload();
         $(".nav-dropdown").hide(); // Hides dropdown after click
     });
 
