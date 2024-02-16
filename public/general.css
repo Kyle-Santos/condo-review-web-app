@@ -42,6 +42,11 @@ textarea {
     color: white;
 }
 
+.pop-up-color{
+    background-color:#2B2B2B;
+    color: white;
+}
+
 .nav-button{
     background-color: #2B2B2B;
     height: 60px;
@@ -66,6 +71,7 @@ textarea {
     align-items: center;  
     position:fixed;
     font-family: 'Libre Franklin', sans-serif;
+    z-index: 9999;
 }
 
 .white-bar{
