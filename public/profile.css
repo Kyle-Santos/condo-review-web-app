@@ -4,6 +4,49 @@ body, h1, h2, p, ul, li, div, img {
     box-sizing: border-box;
   }
 
+  .edit-post{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 500px;
+    width: 500px;
+    z-index: 9998;
+    background-color: yellow;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .submit-button{
+    border-radius: 50px;
+    background-color:#2395db;
+    color: white;
+  }
+
+  .exit-edit-post:hover{
+    cursor: pointer;
+  }
+
+  
+
+  .exit-edit-post{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 25px;
+  }
+
+  .edit-post div{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
   .cover-photo {
     height: 250px;
     background-color: #3b5998;

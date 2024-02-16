@@ -5,12 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Social Media Profile</title>
 <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $(".delete-icon-btn").click(function(){
+      $(this).closest(".post").fadeOut();
+    })
+
+    $(".edit-icon-btn").click(function(){
+      var editPopup = document.createElement("div");
+      
+/* edit
+      <div class="edit-post pop-up-color"></div>
+  <button class="exit-edit-post">X</button>
+    <form>
+      
+      <div>
+        Title <br/>
+        <input id="edited-title" type="text" value="nfireonfioregrn">
+      </div>
+      <div>
+        Body <br/>
+        <textarea id="edited-body">regergergregerr</textarea>
+      </div>
+      <div>
+        Add Image (optional) <br/>
+      <input type="file" id="edited-image" >
+      </div>
+      
+      <button class="submit-button" type="submit">Submit Changes</button>
+
+    </form>
+*/
+
+    
+
+    })
+
+    $(".exit-edit-post").click(function(){
+      $(".edit-post").remove();
+    })
+  })
+
+  
+</script>
 <link rel="stylesheet" href="profile.css">
 <link rel="stylesheet" href="general.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
   <div class="nav-bar">
     <div class="login-font">
         <a href="../index.html"><b>The </br>Condo</br>Bro</b></a>
@@ -26,6 +72,8 @@
 </div>
 
   <div class="cover-photo"></div>
+
+  
 
   <div class="profile-container">
       <div class="profile-info">
