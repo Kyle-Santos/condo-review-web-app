@@ -215,6 +215,11 @@ p {
     height: 40px;
 }
 
+.review-footer a:hover , .establishment-response-container a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .review-profile, .owner-profile{
     display: flex;
     align-items: center;
