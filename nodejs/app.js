@@ -36,7 +36,7 @@ server.listen(port, function(){
 });
 
 server.post('/loginAjax', function(req, resp){
-    logStatus = 1; //change to include owner
+    
     logUsername = req.body.username;
     let password = req.body.password;
 
@@ -45,4 +45,9 @@ server.post('/loginAjax', function(req, resp){
     console.log(logUsername + ' ' + password);
 
     resp.send(logUsername);
+    logStatus = 1; //change to include owner
+});
+
+server.get('/loggedInStatus', function(req, resp){
+    resp.send({status: logStatus, username: logUsername});
 });
