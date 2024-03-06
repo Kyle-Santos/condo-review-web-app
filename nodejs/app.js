@@ -20,14 +20,16 @@ server.get('/', function(req,resp){
     });
 });
 
-server.get('/condo', function(req, resp){
-    resp.render('condo',{
-        layout: 'index',
-        title: 'View Condo'
-    })
+server.get('/:condoId', function(req, resp){
+    const condoId = req.params.condoId; // Retrieve the condo ID from the URL
+    const formattedCondoId = condoId.replace('-', ' ').toUpperCase(); // Format the condo ID
+    resp.render('condo', {
+        layout: 'condo',
+        title: formattedCondoId,
+    });
 });
 
-const port = process.env.PORT || 9090;
+const port = process.env.PORT || 3000;
 server.listen(port, function(){
     console.log('Listening at port '+port);
 });
