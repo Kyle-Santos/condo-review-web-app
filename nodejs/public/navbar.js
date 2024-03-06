@@ -134,13 +134,28 @@ function checkLoginForm(){
     // Prevent default form submission behavior
     event.preventDefault();
 
+    $.post(
+        'loginAjax',
+        {username: username, password: password},
+
+        function(data, status){
+            if(status === 'success'){
+                document.getElementById("username-display").innerText = data;
+                showLogInView();
+                $("#login").hide();
+                updateDropdownText(username); // changes the dropdown
+                
+            }
+            else{
+                alert('Error.');
+            }
+        }
+    );
+
+    
+
     // Set the text of the <div> element to the entered username
-    document.getElementById("username-display").innerText = username;
-
-
-    showLogInView();
-    $("#login").hide();
-    updateDropdownText(username); // changes the dropdown
+    
     return true;
 
 }
