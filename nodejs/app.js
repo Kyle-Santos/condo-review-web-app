@@ -20,7 +20,14 @@ server.get('/', function(req,resp){
     });
 });
 
-const port = process.env.PORT | 9090;
+server.get('/condo', function(req, resp){
+    resp.render('condo',{
+        layout: 'index',
+        title: 'View Condo'
+    })
+});
+
+const port = process.env.PORT || 9090;
 server.listen(port, function(){
     console.log('Listening at port '+port);
 });
