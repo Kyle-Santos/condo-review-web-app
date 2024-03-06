@@ -2,9 +2,27 @@ function goToLoggedOut(){
     window.location.href="index.html"
 }
 $(document).ready(function(){
-    $(".nav-logged-in").hide();
-    $("#logout-button").hide();
-    $("#login").hide();
+    $.get(
+        'loggedInStatus',
+        function(data){
+            $("#login").hide();
+            if(data.status === 0){
+                $(".nav-logged-in").hide();
+                $("#logout-button").hide();
+                
+            }
+            else{
+                $(".nav-logged-out").hide();
+                $(".nav-logged-in").show();
+                document.getElementById("username-display").innerText = data.username;
+                showLogInView();
+                $("#login").hide();
+                updateDropdownText(data.username); // changes the dropdown
+            }
+        }
+    );
+
+
     $("#create-account").hide();
 
     // Dropdown magic
@@ -104,7 +122,6 @@ function updateDropdownText(username) {
 
 
 function showLogInView(){
-    console.log("hello");
     $(".nav-logged-out").hide();
     $(".nav-logged-in").show();
 }

@@ -1,1 +1,5 @@
 exit button in log in not complete
+
+password/username checking and matching
+
+logout, back to 0 loggedStatus
