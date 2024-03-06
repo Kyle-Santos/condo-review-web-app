@@ -13,6 +13,9 @@ server.engine('hbs', handlebars.engine({
 
 server.use(express.static('public'));
 
+var logStatus = 0; //0 for logged out, 1 for logged in and regular, 2 for owner
+var logUsername = "";
+
 server.get('/', function(req,resp){
     resp.render('home',{
         layout: 'index',
@@ -30,4 +33,16 @@ server.get('/condo', function(req, resp){
 const port = process.env.PORT || 9090;
 server.listen(port, function(){
     console.log('Listening at port '+port);
+});
+
+server.post('/loginAjax', function(req, resp){
+    logStatus = 1; //change to include owner
+    logUsername = req.body.username;
+    let password = req.body.password;
+
+    //insert check if passwords and username match
+
+    console.log(logUsername + ' ' + password);
+
+    resp.send(logUsername);
 });
