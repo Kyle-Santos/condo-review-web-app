@@ -16,6 +16,9 @@ server.use(express.static('public'));
 var logStatus = 0; //0 for logged out, 1 for logged in and regular, 2 for owner
 var logUsername = "";
 
+const dataInfo = require("./DataInfo");
+var dataCondo = dataInfo.getDataCondo();
+
 server.get('/', function(req,resp){
     resp.render('home',{
         layout: 'index',
@@ -29,12 +32,13 @@ server.get('/:condoId', function(req, resp){
     resp.render('condo', {
         layout: 'condo',
         title: formattedCondoId,
+        'data': dataCondo.find(element => element.id === condoId),
     });
 });
 
 const port = process.env.PORT || 3000;
 server.listen(port, function(){
-    console.log('Listening at port '+port);
+    console.log('Listening at port '+ port);
 });
 
 server.post('/loginAjax', function(req, resp){

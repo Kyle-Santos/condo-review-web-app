@@ -5,7 +5,7 @@
 
     <div class="create-review-body">
         <div>The<br/>Condo<br/>Bro<br/></div>
-        <div><h1>W.H. Taft Residences</h1></div>
+        <div><h1>{{data.name}}</h1></div>
         
 
         <form name="create-review-form" onsubmit="return addReview()">
@@ -59,15 +59,15 @@
 
 
 <div class="main-image">
-    <img src="../images/wh taft.jpg"/>
+    <img src="{{data.img}}"/>
 </div>
 
 <div class="main-body">
     <div class="main-left">
         <div class="condo-name">
-            <h1>W.H. Taft Residences</h1>
+            <h1>{{data.name}}</h1>
         </div>
-        <div class="condo-address"><h2>Taft Ave, Malate, Manila, 1004 Metro Manila</h2></div>
+        <div class="condo-address"><h2>{{data.address}}</h2></div>
         <div class="line"></div><br/><br/>
         <div class="stars">
             <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 101 101">
@@ -87,12 +87,10 @@
             </svg>       
         </div>
         <div class="rating">
-            <p><b>4.3</b> out of <b>5</b></p>
+            <p><b>{{data.rating}}</b> out of <b>5</b></p>
         </div>
         <div class="brief-bg">
-            <p>Move with ease as you reside in WH Taft Residences’ prime location.
-
-                As the paramount of accessibility you will find yourself in close proximity to prime colleges and universities. It’s proximity being right beside De La Salle University, UP Manila, St. Scholastica's College, Philippine Christian College and Philippine Normal College makes it a highly preferred address among parents. </p>
+            <p>{{data.description}}</p>
         </div>
     </div>
     <div class="main-right">

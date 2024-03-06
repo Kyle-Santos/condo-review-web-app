@@ -227,7 +227,7 @@ div.login-font {
 }
 
 .pop-up-body > form > div{
-    padding: 10px;
+    padding: 5px;
     display: flex;
     justify-content: center;
 }
@@ -235,7 +235,6 @@ div.login-font {
 
 .pop-up-body > form > div > input{
     border-radius: 5px;
-    height: 30px;
     padding: 10px;
     width: 300px;
     display: flex;
@@ -243,7 +242,6 @@ div.login-font {
 
 .pop-up-body > form > div > textarea{
     width: 300px;
-
 }
 
 .pop-up-body > form > div > .submit{
