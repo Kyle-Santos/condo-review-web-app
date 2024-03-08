@@ -281,5 +281,7 @@ function updateFilterInput() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    updateFilterInput(); // DO NOT DELETE(For Filter)
+    if (window.location.pathname === "/")
+        updateFilterInput(); // DO NOT DELETE(For Filter)
+
 });

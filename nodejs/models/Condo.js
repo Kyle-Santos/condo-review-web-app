@@ -11,8 +11,11 @@ const commentSchema = new mongoose.Schema({
 
 // Define the schema for a review
 const reviewSchema = new mongoose.Schema({
+    title: String,
+    content: String,
     rating: Number,
-    text: String,
+    image: String,
+    date: Date,
     // likes: Number,
     comments: [commentSchema] // Array of comments associated with the review
 });
