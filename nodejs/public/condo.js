@@ -36,20 +36,20 @@ $(document).ready(function(){
         };
 
         // Send PATCH request to server
-        $.ajax({
-            url: '/create-review',
-            type: 'PATCH',
-            data: formData,
-            success: function(response) {
-                // Handle success response
-                alert(response.message); // Display success message
-            },
-            error: function(xhr, status, error) {
-                // Handle failure response
-                console.error('Error publishing review:', error);
-                alert(xhr.responseJSON.message); // Display error message
-            }
-        });
+        // $.ajax({
+        //     url: '/create-review',
+        //     type: 'PATCH',
+        //     data: formData,
+        //     success: function(response) {
+        //         // Handle success response
+        //         alert(response.message); // Display success message
+        //     },
+        //     error: function(xhr, status, error) {
+        //         // Handle failure response
+        //         console.error('Error publishing review:', error);
+        //         alert(xhr.responseJSON.message); // Display error message
+        //     }
+        // });
 
         let starIcons = '';
         for (let i = 1; i <= rating; i++) {
@@ -80,7 +80,7 @@ $(document).ready(function(){
             </div>
             <div class="review-body">
                 <p>${content}</p>
-                ${image ? `<img src="${URL.createObjectURL(image)}" alt="Review Image"/>` : ''} <!-- Include uploaded image if available -->
+                ${image ? `<img src="" alt="Review Image"/>` : ``} <!-- Include uploaded image if available -->
             </div>
             <div class="review-footer">
                 <img src="../images/man.png"/>
@@ -94,6 +94,17 @@ $(document).ready(function(){
         // Append the new review to the reviews container
         var container = $(".reviews-container");
         container.prepend(reviewElement);
+
+        var img = container.children(":first").find(".review-body img");
+        if (image) {
+            var reader = new FileReader();
+            
+            reader.onload = function(event) {
+                img.attr("src", event.target.result);
+            };
+            
+            reader.readAsDataURL(image);
+        }
         
         // Clear form inputs
         $("#review-title").value = "";
