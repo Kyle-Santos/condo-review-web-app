@@ -7,9 +7,15 @@ $(document).ready(function(){
         $("#create-review").hide();
     })
 
-    $("#show-create-review").click(function(){
-        $("#create-review").show();
-    })
+    $("#show-create-review").click(function() {
+        $.get('/loggedInStatus', function(data) {
+            if(data.status > 0) { // Assuming status > 0 means logged in
+                $("#create-review").show();
+            } else {
+                alert("You must be logged in to create a review.");
+            }
+        });
+    });
 
     function showLogInView(){
         $(".nav-logged-out").hide();
@@ -67,10 +73,31 @@ function getRating() {
 }
 
 function addReview() {
-        // Get values from form inputs
-        var title = document.getElementById("review-title").value;
-        var content = document.getElementById("review-content").value;
-        var rating = getRating(); 
+    var title = $("#review-title").val();
+    var content = $("#review-content").val();
+    var rating = getRating(); // Assuming you have this function to get the rating
+
+    // Include other form data as needed
+
+    $.ajax({
+        type: "POST",
+        url: "/submit-review",
+        data: {
+            title: title,
+            content: content,
+            rating: rating
+            // include other necessary data
+        },
+        success: function(response) {
+            console.log(response.message); // Or handle the UI response accordingly
+            // Clear the form or close the modal
+        },
+        error: function(response) {
+            alert(response.responseJSON.message); // Show error message
+        }
+    });
+
+    return false;
         
         // Get uploaded image if available
         var imageFileInput = document.getElementById("image-upload");
