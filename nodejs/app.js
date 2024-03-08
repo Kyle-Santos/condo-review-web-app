@@ -20,13 +20,10 @@ server.use(express.static('public'));
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/condodb');
+const userModel = require('./models/User'); 
 
-const loginSchema = new mongoose.Schema({
-    user: { type: String },
-    pass: { type: String }
-  },{ versionKey: false });
-
-const loginModel = mongoose.model('login', loginSchema);
+// can be added to hash the password for confidentiality
+// const bcrypt = require('bcrypt'); 
 
 
 var logStatus = 0; //0 for logged out, 1 for logged in and regular, 2 for owner
@@ -42,14 +39,14 @@ server.get('/', function(req,resp){
     });
 });
 
-
+// create account POST
 server.post('/create-account', function(req, resp){
-    const loginInstance = loginModel({
+    const user = userModel({
       user: req.body.username,
       pass: req.body.password
     });
     
-    loginInstance.save().then(function(login) {
+    user.save().then(function(login) {
         console.log('Account created');
         resp.status(200).send({ success: true, message: 'Account created successfully' });
     }).catch(function(error) {
@@ -57,6 +54,36 @@ server.post('/create-account', function(req, resp){
         resp.status(500).send({ success: false, message: 'Error creating account' });
     });
 });
+
+// Login POST 
+server.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // Find user by username
+        const user = await userModel.findOne({ user: username });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Compare passwords
+        // const passwordMatch = await bcrypt.compare(password, user.pass);
+
+        if (password !== user.pass) {
+            return res.status(401).json({ message: 'Invalid password' });
+        }
+
+        logStatus = 1; //change to include owner
+
+        // Authentication successful
+        res.status(200).json({ message: 'Login successful', user: user });
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 
 
 server.get('/condo/:condoId', function(req, resp){
@@ -69,20 +96,6 @@ server.get('/condo/:condoId', function(req, resp){
     });
 });
 
-
-server.post('/loginAjax', function(req, resp){
-    
-    logUsername = req.body.username;
-    let password = req.body.password;
-
-    //insert check if passwords and username match
-
-    console.log(logUsername + ' ' + password);
-
-    resp.send(logUsername);
-    logStatus = 1; //change to include owner
-});
-
 server.get('/loggedInStatus', function(req, resp){
     resp.send({
         status: logStatus, 
@@ -90,6 +103,18 @@ server.get('/loggedInStatus', function(req, resp){
     });
 });
 
+
+
+//Only at the very end should the database be closed.
+function finalClose(){
+    console.log('Close connection at the end!');
+    mongoose.connection.close();
+    process.exit();
+}
+
+process.on('SIGTERM',finalClose);  //general termination signal
+process.on('SIGINT',finalClose);   //catches when ctrl + c is used
+process.on('SIGQUIT', finalClose); //catches other termination commands
 
 const port = process.env.PORT || 3000;
 server.listen(port, function(){

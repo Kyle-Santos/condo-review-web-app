@@ -55,6 +55,42 @@ $(document).ready(function(){
             });
     });
 
+    // Login form submission
+    $('#login-form').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Validate the form inputs
+        if (!checkLoginForm()) {
+            return;
+        }
+
+        const username = $("#login-form input[name='username']").val();
+        const password = $("#login-form input[name='password']").val();
+
+        // $("#login").hide();
+        // Send login request to server
+        $.post('/login', { username, password })
+            .done(function(response) {
+                // Successful login
+                console.log(response.message);
+
+                // Set the text of the <div> element to the entered username
+                $("#username-display").text(username);
+
+                showLogInView();
+                $("#login").hide();
+                updateDropdownText(username); // changes the dropdown
+
+                alert("Welcome to The Condo Bro, " + username);
+            })
+            .fail(function(xhr, status, error) {
+                // Login failed
+                console.error('Login failed:', error);
+                alert(xhr.responseJSON.message);
+            });
+    });
+
+
 
     $("#create-account").hide();
 
@@ -87,7 +123,7 @@ $(document).ready(function(){
 
     // Login button click event
     $("#login-button").click(function(){
-        if (window.location.pathname.includes("index.html")) {
+        if (window.location.pathname === "/") {
             if ($(this).text() === "View Profile") {
                 window.location.href = "public/profile.html";
             } else {
@@ -107,7 +143,7 @@ $(document).ready(function(){
 
     // Signup button click event
     $("#signup-button").click(function(){
-        if (window.location.pathname.includes("index.html")) {
+        if (window.location.pathname === "/") {
             if ($(this).text() === "Edit Profile") {
                 window.location.href = "public/editprofile.html";
             } else {
@@ -180,31 +216,6 @@ function checkLoginForm(){
         alert("Username and password must not contain white space.");
         return false;
     }
-
-    // Prevent default form submission behavior
-    event.preventDefault();
-
-    $.post(
-        'loginAjax',
-        {username: username, password: password},
-
-        function(data, status){
-            if(status === 'success'){
-                document.getElementById("username-display").innerText = data;
-                showLogInView();
-                $("#login").hide();
-                updateDropdownText(username); // changes the dropdown
-                
-            }
-            else{
-                alert('Error.');
-            }
-        }
-    );
-
-    
-
-    // Set the text of the <div> element to the entered username
     
     return true;
 
