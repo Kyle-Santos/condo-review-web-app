@@ -51,7 +51,7 @@ $(document).ready(function(){
             .fail(function(xhr, status, error) {
                 // Handle failure response
                 console.error('Error creating account:', error);
-                alert("Error creating account. Please try again."); // Display error message
+                alert(xhr.responseJSON.message); // Display error message
             });
     });
 

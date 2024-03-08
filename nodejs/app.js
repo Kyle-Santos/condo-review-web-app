@@ -50,8 +50,15 @@ server.post('/create-account', function(req, resp){
         console.log('Account created');
         resp.status(200).send({ success: true, message: 'Account created successfully' });
     }).catch(function(error) {
-        console.error('Error creating account:', error);
-        resp.status(500).send({ success: false, message: 'Error creating account' });
+        // Check if the error indicates a duplicate key violation
+        if (error.code === 11000 && error.name === 'MongoServerError') {
+            // Handle duplicate key error
+            resp.status(500).send({ success: false, message: 'Username already exists. Error creating account.' });
+            console.error('Duplicate key error:', error.keyPattern);
+        } else {
+            console.error('Error creating account:', error);
+            resp.status(500).send({ success: false, message: 'Error creating account' });
+        }
     });
 });
 
