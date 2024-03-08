@@ -1,26 +1,59 @@
 function goToLoggedOut(){
-    window.location.href="index.html"
+    window.location.href="/";
 }
+
 $(document).ready(function(){
     $.get(
         'loggedInStatus',
-        function(data){
-            $("#login").hide();
-            if(data.status === 0){
-                $(".nav-logged-in").hide();
-                $("#logout-button").hide();
-                
-            }
-            else{
-                $(".nav-logged-out").hide();
-                $(".nav-logged-in").show();
-                document.getElementById("username-display").innerText = data.username;
-                showLogInView();
+        function(data, status){
+            if(status === 'success'){
                 $("#login").hide();
-                updateDropdownText(data.username); // changes the dropdown
+                if(data.status === 0){
+                    $(".nav-logged-in").hide();
+                    $("#logout-button").hide();
+                }
+                else{
+                    $(".nav-logged-out").hide();
+                    $(".nav-logged-in").show();
+                    document.getElementById("username-display").innerText = data.username;
+                    showLogInView();
+                    $("#login").hide();
+                    updateDropdownText(data.username); // changes the dropdown
+                }
             }
         }
     );
+
+    // Account creation form submission
+    $("#create-account-form").submit(function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+        
+        // Validate the form inputs
+        if (!checkCreateAccountForm()) {
+            return;
+        }
+
+        // Get form data
+        const formData = {
+            username: $("#create-account-form input[name='username']").val(),
+            password: $("#create-account-form input[name='password']").val(),
+        };
+
+        $("#create-account").hide();
+
+        // Send POST request to server
+        $.post('/create-account', formData)
+            .done(function(response) {
+                // Handle success response
+                alert(response.message); // Display success message
+            })
+            .fail(function(xhr, status, error) {
+                // Handle failure response
+                console.error('Error creating account:', error);
+                alert("Error creating account. Please try again."); // Display error message
+            });
+    });
 
 
     $("#create-account").hide();
@@ -98,8 +131,8 @@ $(document).ready(function(){
     });
 
     $("#view-condo").click(function(){
-        // Check if the current page is index.html
-        if (window.location.pathname.includes("index.html")) {
+        // Check if the current page is in index page
+        if (window.location.pathname === "/") {
             // Smooth scrolling behavior
             window.scrollBy({
                 top: 650,
@@ -107,8 +140,8 @@ $(document).ready(function(){
                 behavior: 'smooth'
             });
         } else {
-            // Redirect to index.html
-            window.location.href = "../index.html";
+            // Redirect to index page
+            window.location.href = "/";       
         }
     });
 });
@@ -178,9 +211,9 @@ function checkLoginForm(){
 }
 
 function checkCreateAccountForm(){
-    let username = document.forms["create-account-form"]["new-username"].value;
-    let password = document.forms["create-account-form"]["new-password"].value;
-    let confirmPassword = document.forms["create-account-form"]["new-confirm-password"].value;
+    let username = document.forms["create-account-form"]["username"].value;
+    let password = document.forms["create-account-form"]["password"].value;
+    let confirmPassword = document.forms["create-account-form"]["confirm-password"].value;
 
     if(username.length < 1 || password.length < 1 || confirmPassword.length < 1){
         alert("Required fields must not be empty.");
@@ -196,7 +229,6 @@ function checkCreateAccountForm(){
         alert("Passwords do not match. Please try again.");
         return false;
     }
-
 
     return true;
 }
