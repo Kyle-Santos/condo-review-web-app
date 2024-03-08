@@ -39,9 +39,15 @@ $(document).ready(function(){
         $("#create-review").hide();
     })
 
-    $("#show-create-review").click(function(){
-        $("#create-review").show();
-    })
+    $("#show-create-review").click(function() {
+        $.get('/loggedInStatus', function(data) {
+            if(data.status > 0) { // Assuming status > 0 means logged in
+                $("#create-review").show();
+            } else {
+                alert("You must be logged in to create a review.");
+            }
+        });
+    });
 
     function showLogInView(){
         $(".nav-logged-out").hide();
@@ -99,14 +105,14 @@ function getRating() {
 }
 
 function addReview() {
-    // Get values from form inputs
-    var title = document.getElementById("review-title").value;
-    var content = document.getElementById("review-content").value;
-    var rating = getRating(); 
-    
-    // Get uploaded image if available
-    var imageFileInput = document.getElementById("image-upload");
-    var image = imageFileInput != null ? imageFileInput.files[0] : null;
+        // Get values from form inputs
+        var title = document.getElementById("review-title").value;
+        var content = document.getElementById("review-content").value;
+        var rating = getRating(); 
+        
+        // Get uploaded image if available
+        var imageFileInput = document.getElementById("image-upload");
+        var image = imageFileInput != null ? imageFileInput.files[0] : null;
 
     console.log(rating);
     let starIcons = '';

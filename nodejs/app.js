@@ -110,7 +110,16 @@ server.get('/loggedInStatus', function(req, resp){
     });
 });
 
-
+server.post('/submit-review', function(req, resp) {
+    if (logStatus > 0) { // User is logged in
+        // Process the review submission here
+        // Save the review to the database
+        resp.send({ success: true, message: "Review submitted successfully" });
+    } else {
+        // Respond with an error if the user is not logged in
+        resp.status(403).send({ success: false, message: "You must be logged in to submit a review" });
+    }
+});
 
 
 //Only at the very end should the database be closed.
