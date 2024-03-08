@@ -8,7 +8,7 @@
         <div><h1>{{{data.name}}}</h1></div>
         
 
-        <form name="create-review-form" onsubmit="return addReview()">
+        <form id="create-review-form" name="create-review-form" method="post">
             <div>
                 <input type="text" placeholder="Title of Review" id="review-title" name="review-title">
             </div>
@@ -47,7 +47,7 @@
                 <input type="file" id="submit-btn" accept="image/*" name="filename">
             </div>
             <div>
-                <button type="submit" class="submit">Submit</button>
+                <button id="review-submit-button" type="submit" class="submit">Submit</button>
             </div>
         </form> 
     </div>

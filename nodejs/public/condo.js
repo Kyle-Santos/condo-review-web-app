@@ -1,5 +1,37 @@
 var ratingButtons;
 $(document).ready(function(){
+
+    // create review form
+    $("#review-submit-button").on("click", (function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+        
+        // Validate the form inputs
+        if (!checkCreateAccountForm()) {
+            return;
+        }
+
+        // Get form data
+        const formData = {
+            username: $("#create-account-form input[name='username']").val(),
+            password: $("#create-account-form input[name='password']").val(),
+        };
+
+        $("#create-account").hide();
+
+        // Send POST request to server
+        $.post('/create-account', formData)
+            .done(function(response) {
+                // Handle success response
+                alert(response.message); // Display success message
+            })
+            .fail(function(xhr, status, error) {
+                // Handle failure response
+                console.error('Error creating account:', error);
+                alert(xhr.responseJSON.message); // Display error message
+            });
+    }));
+
     $("#create-review").hide();
 
 
@@ -67,63 +99,63 @@ function getRating() {
 }
 
 function addReview() {
-        // Get values from form inputs
-        var title = document.getElementById("review-title").value;
-        var content = document.getElementById("review-content").value;
-        var rating = getRating(); 
-        
-        // Get uploaded image if available
-        var imageFileInput = document.getElementById("image-upload");
-        var image = imageFileInput != null ? imageFileInput.files[0] : null;
+    // Get values from form inputs
+    var title = document.getElementById("review-title").value;
+    var content = document.getElementById("review-content").value;
+    var rating = getRating(); 
+    
+    // Get uploaded image if available
+    var imageFileInput = document.getElementById("image-upload");
+    var image = imageFileInput != null ? imageFileInput.files[0] : null;
 
-        console.log(rating);
-        let starIcons = '';
-        for (let i = 1; i <= rating; i++) {
-            starIcons += '<svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">' +
-                '<path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>' +
-                '</svg>';
-        }
-        for (let i = rating + 1; i <= 5; i++) {
-            starIcons += '<svg xmlns="http://www.w3.org/2000/svg" class="star-off" viewBox="0 0 24 24" fill="currentColor" role="presentation">' +
-                '<path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>' +
-                '</svg>';
-        }
-
-        // Create a new review element
-        var reviewElement = document.createElement("div");
-        reviewElement.classList.add("grid-item");
-        
-        // Construct HTML content for the new review
-        reviewElement.innerHTML = `
-            <div class="review-header">
-                <div>
-                    <h3>${title}</h3>
-                    ${new Date().toLocaleDateString()} <!-- Use current date for review date -->
-                </div>
-                <div class="star-rating" id="rating">
-                    ${starIcons} <!-- Render star icons based on the rating -->
-                </div>
-            </div>
-            <div class="review-body">
-                <p>${content}</p>
-                ${image ? `<img src="${URL.createObjectURL(image)}" alt="Review Image"/>` : ''} <!-- Include uploaded image if available -->
-            </div>
-            <div class="review-footer">
-                <img src="../images/man.png"/>
-                <div>
-                    <b>Unknown</b>
-                    <br/>N/A
-                </div>
-            </div>
-        `;
-        
-        // Append the new review to the reviews container
-        var container = document.getElementsByClassName("reviews-container")[0];
-        container.insertBefore(reviewElement, container.firstChild);
-        
-        // Clear form inputs
-        document.getElementById("review-title").value = "";
-        document.getElementById("review-content").value = "";
-        // document.getElementById("image-upload").value = ""; // Reset file input
-        return false; // Prevent page refresh
+    console.log(rating);
+    let starIcons = '';
+    for (let i = 1; i <= rating; i++) {
+        starIcons += '<svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">' +
+            '<path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>' +
+            '</svg>';
     }
+    for (let i = rating + 1; i <= 5; i++) {
+        starIcons += '<svg xmlns="http://www.w3.org/2000/svg" class="star-off" viewBox="0 0 24 24" fill="currentColor" role="presentation">' +
+            '<path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>' +
+            '</svg>';
+    }
+
+    // Create a new review element
+    var reviewElement = document.createElement("div");
+    reviewElement.classList.add("grid-item");
+    
+    // Construct HTML content for the new review
+    reviewElement.innerHTML = `
+        <div class="review-header">
+            <div>
+                <h3>${title}</h3>
+                ${new Date().toLocaleDateString()} <!-- Use current date for review date -->
+            </div>
+            <div class="star-rating" id="rating">
+                ${starIcons} <!-- Render star icons based on the rating -->
+            </div>
+        </div>
+        <div class="review-body">
+            <p>${content}</p>
+            ${image ? `<img src="${URL.createObjectURL(image)}" alt="Review Image"/>` : ''} <!-- Include uploaded image if available -->
+        </div>
+        <div class="review-footer">
+            <img src="../images/man.png"/>
+            <div>
+                <b>Unknown</b>
+                <br/>N/A
+            </div>
+        </div>
+    `;
+    
+    // Append the new review to the reviews container
+    var container = document.getElementsByClassName("reviews-container")[0];
+    container.insertBefore(reviewElement, container.firstChild);
+    
+    // Clear form inputs
+    document.getElementById("review-title").value = "";
+    document.getElementById("review-content").value = "";
+    // document.getElementById("image-upload").value = ""; // Reset file input
+    return false; // Prevent page refresh
+}
