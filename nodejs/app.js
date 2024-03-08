@@ -82,6 +82,7 @@ server.post('/login', async (req, res) => {
         }
 
         logStatus = 1; //change to include owner
+        logUsername = username;
 
         // Authentication successful
         res.status(200).json({ message: 'Login successful', user: user });
