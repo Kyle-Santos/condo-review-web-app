@@ -13,9 +13,14 @@ $(document).ready(function(){
 
 
         // Get form data
-        var title = $("#review-title").val();
-        var content = $("#review-content").val();
+        var title = $("#review-title").val().trim();
+        var content = $("#review-content").val().trim();
         var rating = getRating();
+
+        if (!title || !content || rating === 0) {
+            alert("Please fill in the title, content, and select a star rating.");
+            return; // Exit the function if validation fails
+        }
 
         // Get uploaded image if available
         var imageFileInput = $("#add-image");
@@ -110,7 +115,7 @@ $(document).ready(function(){
         // Clear form inputs
         $("#review-title").value = "";
         $("#review-content").value = "";
-
+        resetStars();
         // Reattach the mouseenter and mouseleave event listener 
         $('.star-rating-button').on('mouseenter', selectStars);
         $('.star-rating-button').on('mouseleave', resetStars);

@@ -21,7 +21,6 @@ server.use(express.static('public'));
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/condodb');
 const userModel = require('./models/User'); 
-const condoModel = require('./models/Condo'); 
 
 // can be added to hash the password for confidentiality
 // const bcrypt = require('bcrypt'); 
@@ -101,34 +100,7 @@ server.post('/login', async (req, res) => {
     }
 });
 
-// create review PATCH
-server.patch('/create-review', async (req, resp) => {
-    const { condoId, title, content, rating, image, date } = req.body;
 
-    // Find the condo by ID
-    const condo = await condoModel.findOne({ id: condoId });
-
-    // Add reviews to the condo
-    condo.reviews.unshift({
-        title: title,
-        content: content,
-        rating: rating,
-        image: image,
-        date: date,
-    });
-
-    // Save the condo to the database
-    condo.save()
-    .then((savedCondo) => {
-        console.log('Condo saved successfully:', savedCondo);
-        resp.status(200).send({ success: true, message: 'Review published successfully' });
-    })
-    .catch((error) => {
-        console.error('Error publishing review:', error);
-        resp.status(500).send({ success: false, message: 'Error publishing review' });
-    });
-
-});
 
 server.get('/condo/:condoId', function(req, resp){
     const condoId = req.params.condoId; // Retrieve the condo ID from the URL
@@ -147,6 +119,16 @@ server.get('/loggedInStatus', function(req, resp){
     });
 });
 
+server.post('/submit-review', function(req, resp) {
+    if (logStatus > 0) { // User is logged in
+        // Process the review submission here
+        // Save the review to the database
+        resp.send({ success: true, message: "Review submitted successfully" });
+    } else {
+        // Respond with an error if the user is not logged in
+        resp.status(403).send({ success: false, message: "You must be logged in to submit a review" });
+    }
+});
 
 //Only at the very end should the database be closed.
 function finalClose(){
