@@ -3,6 +3,7 @@ function goToLoggedOut(){
 }
 
 $(document).ready(function(){
+
     $.get(
         'loggedInStatus',
         function(data, status){
@@ -23,6 +24,25 @@ $(document).ready(function(){
             }
         }
     );
+
+    $("#logout-button").click(function(){
+        $.post(
+           'logout',
+            {},
+            function(data, status){
+                if(status === 'success'){
+                    
+                    $(".nav-logged-in").hide();
+                    $("#logout-button").hide();
+                    logStatus = 0;
+                }
+                else{
+                    alert('clicked');
+                }
+            }
+        );
+        
+    });
 
     // Account creation form submission
     $("#create-account-form").submit(function(event) {

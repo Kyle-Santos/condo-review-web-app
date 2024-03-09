@@ -1,7 +1,7 @@
 var ratingButtons;
 $(document).ready(function(){
-
     // create review form
+    
     $("#create-review-form").submit(function(event) {
         // Prevent default form submission behavior
         event.preventDefault();
@@ -10,6 +10,7 @@ $(document).ready(function(){
         // if (!checkCreateAccountForm()) {
         //     return;
         // }
+
 
         // Get form data
         var title = $("#review-title").val();
@@ -117,19 +118,18 @@ $(document).ready(function(){
 
     $("#create-review").hide();
 
-
     $("#close-create-review").click(function(){
         $("#create-review").hide();
     })
 
     $("#show-create-review").click(function() {
         $.get('/loggedInStatus', function(data) {
-            // if(data.status > 0) { // Assuming status > 0 means logged in
-            //     $("#create-review").show();
-            // } else {
-            //     alert("You must be logged in to create a review.");
-            // }
-            $("#create-review").show();
+             if(data.status > 0) { // Assuming status > 0 means logged in
+                 $("#create-review").show();
+             } else {
+                 alert("You must be logged in to create a review.");
+             }
+         //   $("#create-review").show();
         });
     });
 
@@ -242,4 +242,6 @@ function addReview() {
     $("#review-content").value = "";
     // document.getElementById("image-upload").value = ""; // Reset file input
     return false; // Prevent page refresh
+
+    
 }

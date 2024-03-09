@@ -63,6 +63,14 @@ server.post('/create-account', function(req, resp){
     });
 });
 
+// Logout POST
+server.post('/logout', function(req, resp){
+    logStatus = 0;
+    logUsername = "";
+
+    resp.send({});
+});
+
 // Login POST 
 server.post('/login', async (req, res) => {
     const { username, password } = req.body;

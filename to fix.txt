@@ -2,4 +2,4 @@ exit button in log in not complete
 
 password/username checking and matching
 
-logout, back to 0 loggedStatus
+logout, back to 0 loggedStatus, check if after logging out, ur not allowed to make a review
