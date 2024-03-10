@@ -19,6 +19,7 @@ $(document).ready(function(){
                     $(".nav-logged-in").show();
                     $("#username-display").text(data.username);
                     $("#profile-link").attr('href', 'profile/' + data.username);
+                    $('#profile-link img').attr('src', data.picture);
                     showLogInView();
                     $("#login").hide();
                     updateDropdownText(data.username); // changes the dropdown
@@ -109,7 +110,7 @@ $(document).ready(function(){
                 $("#login").hide();
                 updateDropdownText(username); // changes the dropdown
 
-                alert("Welcome to The Condo Bro, " + username);
+                // alert("Welcome to The Condo Bro, " + username);
             })
             .fail(function(xhr, status, error) {
                 // Login failed

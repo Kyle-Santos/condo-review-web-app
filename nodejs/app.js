@@ -44,6 +44,7 @@ const condoModel = require('./models/Condo');
 
 var logStatus = 0; //0 for logged out, 1 for logged in and regular, 2 for owner
 var logUsername = "";
+var logIcon = "";
 
 server.get('/', function(req,resp){
     resp.render('home',{
@@ -106,6 +107,7 @@ server.post('/login', async (req, res) => {
 
         logStatus = 1; //change to include owner
         logUsername = username;
+        logIcon = user.picture;
 
         // Authentication successful
         res.status(200).json({ message: 'Login successful', user: user });
@@ -141,7 +143,8 @@ server.get('/condo/:condoId', async (req, resp) => {
 server.get('/loggedInStatus', function(req, resp){
     resp.send({
         status: logStatus, 
-        username: logUsername
+        username: logUsername,
+        picture: logIcon
     });
 });
 
@@ -202,7 +205,7 @@ server.get('/profile/:username', async (req, resp) => {
     try {
         // Query MongoDB to get data
         var data = await userModel.findOne({ user: username });
-        data = {user: data.user, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
+        data = {user: data.user, picture: data.picture, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
 
         resp.render('viewprofile', {
             layout: 'index',
