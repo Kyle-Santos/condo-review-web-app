@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    picture: {type: String},
     bio: {type: String},
     email: {type: String},
     job: {type: String},
