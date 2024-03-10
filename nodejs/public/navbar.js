@@ -56,10 +56,14 @@ $(document).ready(function(){
             return;
         }
 
+        // Get the path of the checked icon
+        var iconPath = $('input[name="avatar"]:checked').closest('.select-avatar').find('img.avatar').attr('src');
+
         // Get form data
         const formData = {
             username: $("#create-account-form input[name='username']").val(),
             password: $("#create-account-form input[name='password']").val(),
+            picture: iconPath,
         };
 
         $("#create-account").hide();
@@ -99,6 +103,7 @@ $(document).ready(function(){
                 // Set the text of the <div> element to the entered username
                 $("#username-display").text(username);
                 $("#profile-link").attr('href', 'profile/' + username);
+                $('#profile-link img').attr('src', response.user.picture);
 
                 showLogInView();
                 $("#login").hide();

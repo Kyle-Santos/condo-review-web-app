@@ -42,12 +42,8 @@ const condoModel = require('./models/Condo');
 // can be added to hash the password for confidentiality
 // const bcrypt = require('bcrypt'); 
 
-
 var logStatus = 0; //0 for logged out, 1 for logged in and regular, 2 for owner
 var logUsername = "";
-
-const dataInfo = require("./DataInfo");
-var dataCondo = dataInfo.getDataCondo();
 
 server.get('/', function(req,resp){
     resp.render('home',{
@@ -61,7 +57,8 @@ server.get('/', function(req,resp){
 server.post('/create-account', function(req, resp){
     const user = userModel({
       user: req.body.username,
-      pass: req.body.password
+      pass: req.body.password,
+      picture: req.body.picture,
     });
     
     user.save().then(function(login) {
