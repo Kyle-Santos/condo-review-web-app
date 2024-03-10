@@ -98,11 +98,12 @@
             <h2>LATEST REVIEWS</h2>
         </div>
         <div class="reviews-container">
+            {{#each reviews}}
             <div class="grid-item">
                 <div class="review-header">
                     <div>
-                        <h3>Nice condo!!</h3>
-                        12 days ago
+                        <h3>{{title}}</h3>
+                        {{date}}
                     </div>
                     <div>
                         <div class="star-rating" id="rating">
@@ -125,20 +126,22 @@
                     </div>
                 </div>
                 <div class="review-body">
-                    <p>Absolutely delighted with my experience at this condominium! The facilities are top-notch, offering a luxurious and comfortable living environment. The location is unbeatable, providing convenient access to shopping, dining, and transportation. The staff are incredibly friendly and accommodating, always ready to assist with any inquiries. The overall ambiance is serene and well-maintained, making it a perfect retreat after a long day. Highly recommended for those seeking upscale living with convenience at its core!</p>
+                    <p>{{content}}</p>
                 </div>
+                {{#if image}}
                 <div class="review-picture">
-                    <img src="../images/condo-room.jpeg"/>
+                    <img src="{{image}}"/>
                 </div>
+                {{/if}}
                 <div class="review-footer">
                     <div class="review-profile">
-                        <img src="../images/man.png"/>
+                        <img src="{{author.picture}}"/>
                         <div>
                             <a href="profile.html">
-                                <b>Kyle Santos</b>
+                                <b>{{author.user}}</b>
                             </a>
                             
-                            <br/>College Student | Social Media Influencer
+                            <br/>{{author.job}}
                         </div>
                     </div>
                     <div class="react-post">
@@ -166,194 +169,7 @@
                     </div>
                 </div> 
             </div>
-            <div class="grid-item">
-                <div class="review-header">
-                    <div>
-                        <h3>Best condo ever!!!!!</h3>
-                        25 days ago
-                    </div>
-                    <div>
-                        <div class="star-rating" id="rating">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" fill="currentColor" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <p>An exemplary living experience awaits at this condominium! From the moment I stepped in, I was captivated by the stunning architecture and impeccable design. The amenities surpass expectations, catering to every need and desire with elegance and sophistication. The location is a gem, nestled in a vibrant neighborhood yet offering a peaceful sanctuary away from the hustle and bustle. The staff goes above and beyond, providing exceptional service with genuine warmth and professionalism. Maintenance is prompt and meticulous, ensuring a seamless living experience. Without a doubt, this condominium sets the standard for luxurious urban living, earning my highest recommendation with five stars!</p>
-                </div>
-                <div class="review-footer">
-                    <div class="review-profile">
-                        <img src="../images/gamer.png"/>
-                        <div>
-                            <a href="profile.html">
-                                <b>Enzo Sitoy</b>
-                            </a>
-                            
-                            <br/>College Student
-                        </div>
-                    </div>
-                    <div class="react-post">
-                        <div class="icon-like">
-                            <button type="button" class="fa fa-thumbs-up"></button>
-                            <button type="button" class="fa fa-thumbs-down"></button>
-                        </div>
-                        23 people liked
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="review-header">
-                    <div>
-                        <h3>FIVE STARRRR</h3>
-                        25 days ago
-                    </div>
-                    <div>
-                        <div class="star-rating" id="rating">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" fill="currentColor" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <p>Five-star living defined! This condominium exceeds all expectations with its flawless blend of luxury, convenience, and comfort. The amenities are unparalleled, offering a resort-like experience right at home. From the state-of-the-art fitness center to the stunning rooftop pool, every detail is thoughtfully crafted to elevate the resident experience. The location is prime, surrounded by trendy shops, delicious dining options, and easy access to transportation. The staff are incredibly attentive and welcoming, making every interaction a pleasure. If you're seeking the pinnacle of urban living, look no further than this exceptional condominium. Five stars without hesitation!</p>
-                </div>
-                <div class="review-footer">
-                    <div class="review-profile">
-                        <img src="../images/gamer.png"/>
-                        <div>
-                            <a href="profile.html"><b>Kailu Baradas</b></a>
-                            
-                            <br/>Web Developer
-                        </div>
-                    </div>
-                    <div class="react-post">
-                        <div class="icon-like">
-                            <button type="button" class="fa fa-thumbs-up"></button>
-                            <button type="button" class="fa fa-thumbs-down"></button>
-                        </div>
-                        20 people liked
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="review-header">
-                    <div>
-                        <h3>W CONDO FRFR</h3>
-                        25 days ago
-                    </div>
-                    <div>
-                        <div class="star-rating" id="rating">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" fill="currentColor" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <p>Exceptional in every aspect, this condominium earns a resounding five stars! From the moment you step into the grand lobby, you're greeted by elegance and sophistication. The amenities are nothing short of extraordinary, providing residents with a lifestyle of luxury and convenience. Whether relaxing by the meticulously landscaped pool or enjoying the panoramic views from the sky lounge, every moment feels like a retreat. The location is unbeatable, offering easy access to entertainment, dining, and transportation options. The staff are friendly, attentive, and always go above and beyond to ensure resident satisfaction. Without a doubt, this condominium sets the standard for upscale urban living. Five stars for an unparalleled experience!</p>
-                    </div>
-                <div class="review-footer">
-                    <div class="review-profile">
-                        <img src="../images/gamer.png"/>
-                        <div>
-                            <a href="profile.html"><b>Karl Ordinario</b></a>
-                            <br/>Web Designer
-                        </div>
-                    </div>
-                    <div class="react-post">
-                        <div class="icon-like">
-                            <button type="button" class="fa fa-thumbs-up"></button>
-                            <button type="button" class="fa fa-thumbs-down"></button>
-                        </div>
-                        12 people liked
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="review-header">
-                    <div>
-                        <h3>great value</h3>
-                        25 days ago
-                    </div>
-                    <div>
-                        <div class="star-rating" id="rating">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="star-off" viewBox="0 0 24 24" fill="currentColor" role="presentation">
-                                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <p>Unbeatable value! This condominium offers a five-star living experience at a remarkably affordable price. Despite its luxurious amenities and prime location, the cost of living here is surprisingly reasonable compared to other options in the area. From the beautifully landscaped grounds to the stylishly appointed interiors, every aspect reflects quality and attention to detail without breaking the bank. Plus, with a range of floor plans available, there's something to suit every budget and lifestyle. Whether you're a first-time buyer or a seasoned investor, this condominium offers exceptional value that's hard to beat. Five stars for delivering luxury living without the hefty price tag!</p>
-                    </div>
-                <div class="review-footer">
-                    <div class="review-profile">
-                        <img src="../images/man.png"/>
-                        <div>
-                            <b>Bob Bobby</b>
-                            <br/>Professor
-                        </div>
-                    </div>
-                    <div class="react-post">
-                        <div class="icon-like">
-                            <button type="button" class="fa fa-thumbs-up"></button>
-                            <button type="button" class="fa fa-thumbs-down"></button>
-                        </div>
-                        8 people liked
-                    </div>
-                </div>
-            </div>
+            {{/each}}
         </div>
     </div>
 </div>

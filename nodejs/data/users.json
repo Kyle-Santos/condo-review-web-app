@@ -1,0 +1,75 @@
+[{
+  "_id": {
+    "$oid": "65edeaf7b754b09640686ab4"
+  },
+  "user": "kyle",
+  "pass": "asd",
+  "picture": "images/man (1).png",
+  "job": "Condo Bro",
+  "createdAt": {
+    "$date": "2024-03-10T17:16:39.430Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-10T17:16:39.430Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65edecf70572307102cdd829"
+  },
+  "user": "karl",
+  "pass": "asd",
+  "picture": "images/gamer.png",
+  "job": "Condo Bro",
+  "createdAt": {
+    "$date": "2024-03-10T17:25:11.476Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-10T17:25:11.476Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65eded310572307102cdd833"
+  },
+  "user": "kailu",
+  "pass": "asd",
+  "picture": "images/man.png",
+  "job": "Condo Bro",
+  "createdAt": {
+    "$date": "2024-03-10T17:26:09.106Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-10T17:26:09.106Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65eded610572307102cdd83f"
+  },
+  "user": "enzo",
+  "pass": "asd",
+  "picture": "images/gamer.png",
+  "job": "Condo Bro",
+  "createdAt": {
+    "$date": "2024-03-10T17:26:57.820Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-10T17:26:57.820Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65eded9d0572307102cdd84d"
+  },
+  "user": "msTaguro",
+  "pass": "asd",
+  "picture": "images/woman (1).png",
+  "job": "Condo Bro",
+  "createdAt": {
+    "$date": "2024-03-10T17:27:57.548Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-10T17:27:57.548Z"
+  }
+}]

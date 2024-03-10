@@ -46,6 +46,7 @@ const condoModel = require('./models/Condo');
 var logStatus = 0; //0 for logged out, 1 for logged in and regular, 2 for owner
 var logUsername = "";
 var logIcon = "";
+var logUserJob = "Condo Bro";
 
 server.get('/', function(req,resp){
     resp.render('home',{
@@ -61,6 +62,7 @@ server.post('/create-account', function(req, resp){
       user: req.body.username,
       pass: req.body.password,
       picture: req.body.picture,
+      job: "Condo Bro",
     });
     
     user.save().then(function(login) {
@@ -109,6 +111,7 @@ server.post('/login', async (req, res) => {
         logStatus = 1; //change to include owner
         logUsername = username;
         logIcon = user.picture;
+        logUserJob = user.job;
 
         // Authentication successful
         res.status(200).json({ message: 'Login successful', user: user });
@@ -125,13 +128,27 @@ server.get('/condo/:condoId', async (req, resp) => {
 
     try {
         // Query MongoDB to get data
-        var data = await condoModel.findOne({ id: condoId });
-        data = {name: data.name, address: data.address, rating: data.rating, img: data.img, description: data.description, reviews: data.reviews};
+        var data = await condoModel.findOne({ id: condoId }).populate('reviews.author').lean();
+        var processedReviews;
+
+        if (data.reviews) {
+            // Preprocess date field
+            processedReviews = data.reviews.map(review => {
+                // Create a new object to avoid mutating the original object
+                const processedReview = { ...review };
+
+                // Format date without time component
+                processedReview.date = review.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
+
+                return processedReview;
+            });
+        }
 
         resp.render('condo', {
             layout: 'index',
             title: formattedCondoId,
             'data': data,
+            'reviews': processedReviews,
             isCondo: true
         });
     } catch (err) {
@@ -156,20 +173,23 @@ server.patch('/create-review', async (req, resp) => {
     // Find the condo by ID
     const condo = await condoModel.findOne({ id: condoId });
 
+    const user = await userModel.findOne( {user: logUsername} );
+
     // Add reviews to the condo
-    condo.reviews.unshift({
+    condo.reviews.push({
         title: title,
         content: content,
         rating: rating,
         image: image,
         date: date,
+        author: user
     });
 
     // Save the condo to the database
     condo.save()
     .then((savedCondo) => {
         console.log('Condo saved successfully:', savedCondo);
-        resp.status(200).send({ success: true, message: 'Review published successfully' });
+        resp.status(200).send({ success: true, message: 'Review published successfully', user: logUsername, job: logUserJob, icon: logIcon});
     })
     .catch((error) => {
         console.error('Error publishing review:', error);

@@ -140,6 +140,7 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
         type: 'PATCH',
         data: formData,
         success: function(response) {
+            $("#create-review").hide();
             // Handle success response
             alert(response.message); // Display success message
 
@@ -179,10 +180,18 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                 </div>
                 <div class="review-footer">
                     <div class="review-profile">
-                    <img src="../images/man.png"/>
-                    <div>
-                        <b>Unknown</b>
-                        <br/>N/A
+                        <img src="${response.icon}"/>
+                        <div>
+                            <b>${response.user}</b>
+                            <br/>${response.job}
+                        </div>
+                    </div>
+                    <div class="react-post">
+                        <div class="icon-like">
+                            <button type="button" class="fa fa-thumbs-up"></button>
+                            <button type="button" class="fa fa-thumbs-down"></button>
+                        </div>
+                        0 people liked
                     </div>
                 </div>
             `;

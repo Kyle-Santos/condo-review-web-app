@@ -12,6 +12,7 @@
 .main-body {
     padding: 40px 0;
     width: 100%;
+    min-height: 1000px;
     display: flex;
     justify-content: space-between;
     background: linear-gradient(rgba(30, 34, 39, 0.48), #3A3535);
@@ -114,6 +115,7 @@ p {
 .reviews-container {
     display: grid;
     width: 80%;
+    min-height: 900px;
     background: #D9D9D9;
     grid-template-columns: auto;
     justify-content: center;

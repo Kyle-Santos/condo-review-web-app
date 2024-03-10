@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+const userModel = require('../models/User'); 
 
 // Define the schema for a comment
 const commentSchema = new mongoose.Schema({
     text: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User' // Reference to the User model for the user who posted the comment
+        ref: userModel // Reference to the User model for the user who posted the comment
     }
 });
 
@@ -16,6 +17,10 @@ const reviewSchema = new mongoose.Schema({
     rating: Number,
     image: String,
     date: Date,
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: userModel
+    },
     // likes: Number,
     comments: [commentSchema] // Array of comments associated with the review
 });
