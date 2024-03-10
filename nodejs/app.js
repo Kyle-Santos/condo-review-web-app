@@ -4,6 +4,7 @@
 
 const express = require('express');
 const server = express();
+const path = require('path');
 
 // saving uploaded image
 const multer = require('multer');
@@ -182,7 +183,7 @@ server.post('/upload-image', upload.single('image'), (req, res) => {
     const tempFilePath = req.file.path;
     console.log(tempFilePath);
     if (fs.existsSync(tempFilePath)) {
-        const destinationPath = path.join('public/images/client-uploaded-files', req.file.originalname);
+        const destinationPath = path.join(__dirname, 'public', 'images', 'client-uploaded-files', req.file.originalname);
         // Move the uploaded file to the destination path
         fs.rename(tempFilePath, destinationPath, err => {
             if (err) {
@@ -190,6 +191,7 @@ server.post('/upload-image', upload.single('image'), (req, res) => {
                 res.status(500).send('Error saving image');
             } else {
                 console.log('Image saved successfully');
+                res.status(200).send('Image uploaded successfully');
             }
         });
     } else {
