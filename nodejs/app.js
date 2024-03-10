@@ -130,14 +130,27 @@ server.patch('/create-review', async (req, resp) => {
 
 });
 
-server.get('/condo/:condoId', function(req, resp){
+
+// get condo from the db GET
+server.get('/condo/:condoId', async (req, resp) => {
     const condoId = req.params.condoId; // Retrieve the condo ID from the URL
     const formattedCondoId = condoId.replace('-', ' ').toUpperCase(); // Format the condo ID
-    resp.render('condo', {
-        layout: 'condo',
-        title: formattedCondoId,
-        'data': dataCondo.find(element => element.id === condoId),
-    });
+
+    try {
+        // Query MongoDB to get data
+        var data = await condoModel.findOne({ id: condoId });
+        data = {name: data.name, address: data.address, rating: data.rating, img: data.img, description: data.description, reviews: data.reviews};
+
+        resp.render('condo', {
+            layout: 'condo',
+            title: formattedCondoId,
+            'data': data
+        });
+    } catch (err) {
+        // Handle errors
+        console.error('Error fetching data from MongoDB', err);
+        resp.status(500).json({ error: 'Failed to fetch data' });
+    }
 });
 
 server.get('/loggedInStatus', function(req, resp){
