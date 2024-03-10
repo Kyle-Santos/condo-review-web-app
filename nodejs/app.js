@@ -21,6 +21,7 @@ server.use(express.static('public'));
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/condodb');
 const userModel = require('./models/User'); 
+const condoModel = require('./models/Condo');
 
 // can be added to hash the password for confidentiality
 // const bcrypt = require('bcrypt'); 

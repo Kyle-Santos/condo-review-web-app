@@ -86,13 +86,18 @@ $(document).ready(function(){
             </div>
             <div class="review-body">
                 <p>${content}</p>
-                ${image ? `<img src="" alt="Review Image"/>` : ``} <!-- Include uploaded image if available -->
+                
+            </div>
+            <div class="review-picture">
+            ${image ? `<img src="${URL.createObjectURL(image)}" alt="Review Image"/>` : ''} <!-- Include uploaded image if available -->
             </div>
             <div class="review-footer">
-                <img src="../images/man.png"/>
-                <div>
-                    <b>Unknown</b>
-                    <br/>N/A
+                <div class="review-profile">
+                    <img src="../images/man.png"/>
+                    <div>
+                        <b>Unknown</b>
+                        <br/>N/A
+                    </div>
                 </div>
             </div>
         `;
@@ -119,6 +124,8 @@ $(document).ready(function(){
         // Reattach the mouseenter and mouseleave event listener 
         $('.star-rating-button').on('mouseenter', selectStars);
         $('.star-rating-button').on('mouseleave', resetStars);
+
+        $("#create-review").hide();
     });
 
     $("#create-review").hide();
@@ -227,6 +234,8 @@ function addReview() {
         </div>
         <div class="review-body">
             <p>${content}</p>
+        </div>
+        <div class="review-picture">
             ${image ? `<img src="${URL.createObjectURL(image)}" alt="Review Image"/>` : ''} <!-- Include uploaded image if available -->
         </div>
         <div class="review-footer">
