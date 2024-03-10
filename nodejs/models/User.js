@@ -9,7 +9,12 @@ const userSchema = new mongoose.Schema({
     pass: { 
         type: String,
         required: true
-    }
+    },
+    bio: {type: String},
+    email: {type: String},
+    job: {type: String},
+    education: {type: String},
+    city: {type: String},
 },{ versionKey: false, timestamps: true });
 
 // Create the User model

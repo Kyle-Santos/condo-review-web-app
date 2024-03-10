@@ -1,0 +1,90 @@
+    <div class="cover-photo"></div>
+
+    <div class="profile-container">
+        <div class="profile-info">
+            <div class="profile-picture"></div>
+            <h1 class="profile-name">{{data.user}}<span class="verified-checkmark">✔️</span></h1>
+            {{!-- <p class="friend-count">2K connections</p> --}}
+            <div class="profile-nav">
+            <ul>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><button class="edit-profile"><a href="editprofile.html" class="hover-element">Edit Profile</a></button></li>
+            </ul>
+            </div>
+            <h2 class="info-title">Intro</h2>
+            {{#if (data.email)}}
+                <p class="info-item">Email: {{data.email}}</p>
+            {{/if}}
+            {{#if (data.job)}}
+                <p class="info-item">Works at {{data.job}}</p>
+            {{/if}}
+            {{#if (data.education)}}
+                <p class="info-item">Studied at {{data.education}}</p>
+            {{/if}}
+            {{#if (data.city)}}
+                <p class="info-item">Lives in {{data.city}}</p>
+            {{/if}}
+        </div>
+        
+        <div class="posts-section">
+            <h2 class="post-title">Posts</h2>
+            <div class="post">
+                <div class="edit-delete-icons">
+                <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
+                <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
+                </div>
+                <h3>Burgandy kinda lit ngl</h3>
+                <p>Posted on January 1, 2024</p>
+                <p>⭐⭐⭐⭐</p>
+                <p>For some people they might not like burgandy because its old, and has no security and the elevator might break, but for me the 44 sq meters you get cant be beaten, and ngl i like that i can have my friends over to code anytime! </p>
+                <div class="icon-like">
+                <button type="button" class="fa fa-thumbs-up"></button>
+                <button type="button" class="fa fa-thumbs-down"></button>
+                </div>
+                <p> 20 people found this helpful</p>
+                <button>💬Comment</button>
+            </div>
+            <!-- Repeat for each post -->
+            <div class="post">
+                <div class="edit-delete-icons">
+                <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
+                <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
+                </div>
+                <h3>2 torre is mid</h3>
+                <p>Posted on January 1, 2024</p>
+                <p>⭐⭐⭐</p>
+                <p>Honestly for me you cant really go wrong with 2 torre but the security might make u think twice ngl</p>
+                <div class="icon-like">
+                <button type="button" class="fa fa-thumbs-up"></button>
+                <button type="button" class="fa fa-thumbs-down"></button>
+                </div>
+                <p> 20 people found this helpful</p>
+                <button>💬Comment</button>
+                </div>
+                <div class="post">
+                    <div class="edit-delete-icons">
+                    <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
+                    <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <h3>HW Taft is so noisy bruhhh</h3>
+                    <p>Posted on January 1, 2024</p>
+                    <p>⭐⭐</p>
+                    <p>im so annoyed with wh people being so loud all the time, naririnig ko sila sumigaw pag may ipis every day bruhhh.</p>
+                    <div class="icon-like">
+                    <button type="button" class="fa fa-thumbs-up"></button>
+                    <button type="button" class="fa fa-thumbs-down"></button>
+                    </div>
+                    <p> 20 people found this helpful</p>
+                    <button>💬Comment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footerbottom">
+        <div class="contactfooter">
+            <h8>Contact Us</h8><br>
+            <h7>thecondobro@someemail.com<br>09123456789</h7>
+        </div>
+    </footer>

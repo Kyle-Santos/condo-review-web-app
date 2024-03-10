@@ -196,6 +196,29 @@ server.post('/upload-image', upload.single('image'), (req, res) => {
 });
 
 
+// get profile GET
+server.get('/profile/:username', async (req, resp) => {
+    const username = req.params.username; // Retrieve the condo ID from the URL
+
+    try {
+        // Query MongoDB to get data
+        var data = await userModel.findOne({ user: username });
+        data = {user: data.user, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
+
+        resp.render('viewprofile', {
+            layout: 'profile',
+            title: data.user,
+            'data': data
+        });
+    } catch (err) {
+        // Handle errors
+        console.error('Error fetching data from MongoDB', err);
+        resp.status(500).json({ error: 'Failed to fetch data' });
+    }
+});
+
+
+
 
 //Only at the very end should the database be closed.
 function finalClose(){
