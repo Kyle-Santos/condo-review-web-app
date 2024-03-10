@@ -8,6 +8,7 @@ $(document).ready(function(){
         'loggedInStatus',
         function(data, status){
             if(status === 'success'){
+                console.log(data.status);
                 $("#login").hide();
                 if(data.status === 0){
                     $(".nav-logged-in").hide();
@@ -143,21 +144,11 @@ $(document).ready(function(){
 
     // Login button click event
     $("#login-button").click(function(){
-        if (window.location.pathname === "/") {
-            if ($(this).text() === "View Profile") {
-                window.location.href = "public/profile.html";
-            } else {
-                $("#login").slideDown();
-                $(".nav-dropdown").hide(); // Hides dropdown after clicks
-            }
-        }
-        else {
-            if ($(this).text() === "View Profile") {
-                window.location.href = "profile.html";
-            } else {
-                $("#login").slideDown();
-                $(".nav-dropdown").hide(); // Hides dropdown after click
-            }
+        if ($(this).text() === "View Profile") {
+            window.location.href = "/profile/" + $("#username-display").text();
+        } else {
+            $("#login").slideDown();
+            $(".nav-dropdown").hide(); // Hides dropdown after clicks
         }
     });
 
