@@ -19,7 +19,6 @@ $(document).ready(function(){
                     $(".nav-logged-in").show();
                     $("#username-display").text(data.username);
                     $("#profile-link").attr('href', 'profile/' + data.username);
-                    $('#profile-link img').attr('src', data.picture);
                     showLogInView();
                     $("#login").hide();
                     updateDropdownText(data.username); // changes the dropdown
@@ -57,14 +56,10 @@ $(document).ready(function(){
             return;
         }
 
-        // Get the path of the checked icon
-        var iconPath = $('input[name="avatar"]:checked').closest('.select-avatar').find('img.avatar').attr('src');
-
         // Get form data
         const formData = {
             username: $("#create-account-form input[name='username']").val(),
             password: $("#create-account-form input[name='password']").val(),
-            picture: iconPath,
         };
 
         $("#create-account").hide();
@@ -104,13 +99,12 @@ $(document).ready(function(){
                 // Set the text of the <div> element to the entered username
                 $("#username-display").text(username);
                 $("#profile-link").attr('href', 'profile/' + username);
-                $('#profile-link img').attr('src', response.user.picture);
 
                 showLogInView();
                 $("#login").hide();
                 updateDropdownText(username); // changes the dropdown
 
-                // alert("Welcome to The Condo Bro, " + username);
+                alert("Welcome to The Condo Bro, " + username);
             })
             .fail(function(xhr, status, error) {
                 // Login failed
