@@ -198,9 +198,19 @@ p {
     margin: 0;
     font-size: 12px;
 }
-.review-body img {
+.review-body > img {
     width: auto;
     height: 180px;
+    border-radius: 10px;
+}
+
+.review-picture{
+    height: auto;
+}
+
+
+.review-picture > img{
+    max-width: 100%;
     border-radius: 10px;
 }
 
