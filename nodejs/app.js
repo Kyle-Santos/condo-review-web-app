@@ -56,20 +56,21 @@ server.get('/', function(req,resp){
         isHome: true
     });
 });
-server.patch('/viewprofile', upload.single('profile-photo'), (req, res) => {
-    const { name, email, bio, job, education, city, hometown } = req.body;
-    const profilePhoto = req.file;
 
-    // Here you would update the user's profile with the provided data
-    // For demonstration, this just logs the data
-    console.log(name, email, bio, job, education, city, hometown);
-    if (profilePhoto) {
-        console.log('Profile photo uploaded:', profilePhoto.path);
-    }
+// server.patch('/viewprofile', upload.single('profile-photo'), (req, res) => {
+//     const { name, email, bio, job, education, city, hometown } = req.body;
+//     const profilePhoto = req.file;
 
-    // Respond to the request
-    res.json({ message: 'Profile updated successfully!' });
-});
+//     // Here you would update the user's profile with the provided data
+//     // For demonstration, this just logs the data
+//     console.log(name, email, bio, job, education, city, hometown);
+//     if (profilePhoto) {
+//         console.log('Profile photo uploaded:', profilePhoto.path);
+//     }
+
+//     // Respond to the request
+//     res.json({ message: 'Profile updated successfully!' });
+// });
 
 // create account POST
 server.post('/create-account', function(req, resp){
@@ -176,7 +177,8 @@ server.get('/condo/:condoId', async (req, resp) => {
 server.get('/loggedInStatus', function(req, resp){
     resp.send({
         status: logStatus, 
-        username: logUsername
+        username: logUsername,
+        picture: logIcon
     });
 });
 
@@ -236,12 +238,12 @@ server.post('/upload-image', upload.single('image'), (req, res) => {
 
 // get profile GET
 server.get('/profile/:username', async (req, resp) => {
-    const username = req.params.username; // Retrieve the condo ID from the URL
+    const username = req.params.username; // Retrieve the username from the URL
 
     try {
         // Query MongoDB to get data
         var data = await userModel.findOne({ user: username });
-        data = {user: data.user, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
+        data = {user: data.user, picture: data.picture, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
 
         resp.render('viewprofile', {
             layout: 'index',
@@ -251,8 +253,8 @@ server.get('/profile/:username', async (req, resp) => {
         });
     } catch (err) {
         // Handle errors
-        console.error('Error fetching data from MongoDB', err);
-        resp.status(500).json({ error: 'Failed to fetch data' });
+        // console.error('Error fetching data from MongoDB', err);
+        // resp.status(500).json({ error: 'Failed to fetch data' });
     }
 });
 
