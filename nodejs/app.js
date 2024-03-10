@@ -43,9 +43,12 @@ const condoModel = require('./models/Condo');
 // can be added to hash the password for confidentiality
 // const bcrypt = require('bcrypt'); 
 
+
 var logStatus = 0; //0 for logged out, 1 for logged in and regular, 2 for owner
 var logUsername = "";
-var logIcon = "";
+
+const dataInfo = require("./DataInfo");
+var dataCondo = dataInfo.getDataCondo();
 
 server.get('/', function(req,resp){
     resp.render('home',{
@@ -54,13 +57,26 @@ server.get('/', function(req,resp){
         isHome: true
     });
 });
+server.patch('/viewprofile', upload.single('profile-photo'), (req, res) => {
+    const { name, email, bio, job, education, city, hometown } = req.body;
+    const profilePhoto = req.file;
+
+    // Here you would update the user's profile with the provided data
+    // For demonstration, this just logs the data
+    console.log(name, email, bio, job, education, city, hometown);
+    if (profilePhoto) {
+        console.log('Profile photo uploaded:', profilePhoto.path);
+    }
+
+    // Respond to the request
+    res.json({ message: 'Profile updated successfully!' });
+});
 
 // create account POST
 server.post('/create-account', function(req, resp){
     const user = userModel({
       user: req.body.username,
-      pass: req.body.password,
-      picture: req.body.picture,
+      pass: req.body.password
     });
     
     user.save().then(function(login) {
@@ -108,7 +124,6 @@ server.post('/login', async (req, res) => {
 
         logStatus = 1; //change to include owner
         logUsername = username;
-        logIcon = user.picture;
 
         // Authentication successful
         res.status(200).json({ message: 'Login successful', user: user });
@@ -144,8 +159,7 @@ server.get('/condo/:condoId', async (req, resp) => {
 server.get('/loggedInStatus', function(req, resp){
     resp.send({
         status: logStatus, 
-        username: logUsername,
-        picture: logIcon
+        username: logUsername
     });
 });
 
@@ -207,7 +221,7 @@ server.get('/profile/:username', async (req, resp) => {
     try {
         // Query MongoDB to get data
         var data = await userModel.findOne({ user: username });
-        data = {user: data.user, picture: data.picture, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
+        data = {user: data.user, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
 
         resp.render('viewprofile', {
             layout: 'index',

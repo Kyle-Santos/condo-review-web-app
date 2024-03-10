@@ -1,3 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{username}}'s Social Media Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <script src="https://kit.fontawesome.com/257dad1955.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/profile.js"></script> <!-- You need to create this JS file based on the script provided in the HTML -->
+</head>
+<body>
+
+<div class="nav-bar">
+    <!-- Navbar content here, potentially dynamic based on login status -->
+</div>
+
+<div class="cover-photo"></div>
+
+<div class="profile-container">
+    <div class="profile-info">
+        <!-- Profile Picture & Info -->
+        <div class="profile-picture"></div>
+        <h1 class="profile-name">{{username}}<span class="verified-checkmark">✔️</span></h1>
+        <p class="friend-count">{{friendCount}} connections</p>
+        <!-- Profile Navigation -->
+        <div class="profile-nav">
+            <ul>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="/editprofile.html" class="edit-profile">Edit Profile</a></li>
+            </ul>
+        </div>
+        <!-- Intro & Bio -->
+        <h2 class="info-title">Intro</h2>
+        <p class="info-item">{{bio}}</p>
+        <!-- Photos Grid -->
+        <h2 class="photos-title">Photos</h2>
+        <div class="photo-grid">
+            <!-- Dynamic photo content here -->
+        </div>
+    </div>
+
+    <div class="posts-section">
+        <h2 class="post-title">Posts</h2>
+        <!-- Dynamically generated posts -->
+    </div>
+</div>
+
+<footer class="footerbottom">
+    <!-- Footer content here -->
+</footer>
+
+</body>
+</html>
     <div class="cover-photo"></div>
 
     <div class="profile-container">
