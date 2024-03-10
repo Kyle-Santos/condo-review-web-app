@@ -2,7 +2,7 @@ var ratingButtons;
 $(document).ready(function(){
     // create review form
 
-    $("#create-review-form").submit(function(event) {
+    $("#create-review-form").submit(function(event) { //this is the most cancerous thing I've done
         // Prevent default form submission behavior
         event.preventDefault();
 
