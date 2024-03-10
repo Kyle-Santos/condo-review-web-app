@@ -3,22 +3,16 @@ body, h1, input, label, textarea, .switch {
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body {
-  padding-top: 60px; /* Adjust based on the height of your nav-bar */
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-#user-icon{
-  height: 40px;
-}
+
 .edit-profile-container {
-  margin-top: 20px; /* Adds space between nav-bar and this container */
   background: #fff;
   border-radius: 10px;
   padding: 40px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   max-width: 768px;
-  margin: 20px auto; /* Centers the container with margin on all sides */
+  margin: 0 auto; /* Centers the container with margin on all sides */
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -40,80 +34,14 @@ input, textarea {
   font-size: 14px;
   margin-bottom: 20px;
 }
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin-left: 10px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-input:checked + .slider {
-  background-color: #2196F3;
-}
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-.slider.round {
-  border-radius: 34px;
-}
-.slider.round:before {
-  border-radius: 50%;
-}
-button {
+#edit-save-button {
   padding: 12px 20px;
   border-radius: 6px;
   font-size: 16px;
+  align-self: center;
 }
-button:hover {
+#edit-save-button:hover {
   background-color: #0094FF;
-}
-.blue-bg{
-  background-color: #0094FF;
-  width: 15%;
-  border-radius: 5px;
-}
-.edit-profile-section form button{
-  background-color: #4CAF50;
-}
-.optional-settings {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.optional-settings p {
-  margin: 0;
 }
 .image-upload-container {
   position: relative;
@@ -128,8 +56,6 @@ button:hover {
 .image-upload-container img {
   width: 40%;
   height: auto;
-  
-
 }
 .image-upload-overlay {
   position: absolute;
@@ -151,56 +77,4 @@ button:hover {
 .image-upload-input {
   display: none;
 }
-.footerbottom {
-  width: 100%;
-  position: relative; /* Change to fixed or absolute if you want it always at the bottom */
-  bottom: 0;
-  background-color: #2B2B2B;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-}
 
-
-.contactfooter {
-  max-height: 80px;
-  display: grid;
-  place-items: center;
-  color: white;
-}
-
-.contactfooter h6, .contactfooter h7 {
-  text-align: center;
-}
-.nav-dropdown {
-  display: none;
-  position: absolute;
-  background-color: #2B2B2B;
-  color: white;
-  max-width: 120px;
-  right: 0;
-  top: 100%;
-  z-index: 1;
-}
-.nav-bar {
-  width: 100%;
-  position: fixed; /* Change this from absolute if needed */
-  top: 0;
-  left: 0;
-  z-index: 1000; /* Ensure nav-bar is above other content */
-  background-color: #fff; /* Or any other color */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for depth */
-}
-
-
-.icon.highlighted .nav-dropdown {
-  display: block;
-}
-
-.nav-dropdown-item {
-  padding: 10px;
-}
-
-.nav-dropdown-item:hover {
-  background-color: gray;
-}

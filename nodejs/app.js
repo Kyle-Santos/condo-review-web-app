@@ -52,7 +52,8 @@ var dataCondo = dataInfo.getDataCondo();
 server.get('/', function(req,resp){
     resp.render('home',{
         layout: 'index',
-        title: 'Home Page'
+        title: 'Home Page',
+        isHome: true
     });
 });
 
@@ -128,9 +129,10 @@ server.get('/condo/:condoId', async (req, resp) => {
         data = {name: data.name, address: data.address, rating: data.rating, img: data.img, description: data.description, reviews: data.reviews};
 
         resp.render('condo', {
-            layout: 'condo',
+            layout: 'index',
             title: formattedCondoId,
-            'data': data
+            'data': data,
+            isCondo: true
         });
     } catch (err) {
         // Handle errors
@@ -206,9 +208,10 @@ server.get('/profile/:username', async (req, resp) => {
         data = {user: data.user, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
 
         resp.render('viewprofile', {
-            layout: 'profile',
+            layout: 'index',
             title: data.user,
-            'data': data
+            'data': data,
+            isProfile: true
         });
     } catch (err) {
         // Handle errors
@@ -217,7 +220,14 @@ server.get('/profile/:username', async (req, resp) => {
     }
 });
 
-
+// get edit profile GET
+server.get('/edit-profile/', function(req, resp) {
+    resp.render('editprofile',{
+        layout: 'index',
+        title: 'Edit Profile',
+        isEditProfile: true
+    });
+});
 
 
 //Only at the very end should the database be closed.

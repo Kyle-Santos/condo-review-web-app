@@ -1,0 +1,34 @@
+<div class="edit-profile-container">
+    <h1><br/>Edit Profile</h1>
+    <div class="profile-photo-section">
+        <div class="image-upload-container" id="profile-photo-container">
+            <img src="https://placehold.co/180x180" alt="Click to change profile photo" id="profile-photo-preview">
+            <div class="image-upload-overlay">
+                <span>Change Profile Photo</span>
+            </div>
+            <input type="file" id="profile-photo" name="profile-photo" class="image-upload-input">
+        </div>
+
+    </div>
+    <form>
+        <label for="name">Username: </label>
+        <input type="text" id="name" name="name" placeholder="imtheone">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="email@example.com">
+        
+        <label for="bio">*Bio:</label>
+        <textarea id="bio" name="bio" rows="4" placeholder="Bio information..."></textarea>
+        
+        <label for="name">Job: </label>
+        <input type="text" id="job" name="job" placeholder="Job title at Company">
+        
+        <label for="name">Education: </label>
+        <input type="text" id="Education" name="Education" placeholder="Education">
+        
+        <label for="name">City: </label>
+        <input type="text" id="City" name="City" placeholder="City">
+    </form>
+
+    <button id="edit-save-button" type="submit">Save Changes</button>
+</div>

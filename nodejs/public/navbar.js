@@ -17,7 +17,8 @@ $(document).ready(function(){
                 else{
                     $(".nav-logged-out").hide();
                     $(".nav-logged-in").show();
-                    document.getElementById("username-display").innerText = data.username;
+                    $("#username-display").text(data.username);
+                    $("#profile-link").attr('href', 'profile/' + data.username);
                     showLogInView();
                     $("#login").hide();
                     updateDropdownText(data.username); // changes the dropdown
@@ -97,6 +98,7 @@ $(document).ready(function(){
 
                 // Set the text of the <div> element to the entered username
                 $("#username-display").text(username);
+                $("#profile-link").attr('href', 'profile/' + username);
 
                 showLogInView();
                 $("#login").hide();
@@ -154,20 +156,11 @@ $(document).ready(function(){
 
     // Signup button click event
     $("#signup-button").click(function(){
-        if (window.location.pathname === "/") {
-            if ($(this).text() === "Edit Profile") {
-                window.location.href = "public/editprofile.html";
-            } else {
-                $("#create-account").show();
-                $(".nav-dropdown").hide(); // Hides dropdown after click
-            }
+        if ($(this).text() === "Edit Profile") {
+            window.location.href = "/edit-profile";
         } else {
-            if ($(this).text() === "Edit Profile") {
-                window.location.href = "editprofile.html";
-            } else {
-                $("#create-account").show();
-                $(".nav-dropdown").hide(); // Hides dropdown after click
-            }
+            $("#create-account").show();
+            $(".nav-dropdown").hide(); // Hides dropdown after click
         }
     });
 
