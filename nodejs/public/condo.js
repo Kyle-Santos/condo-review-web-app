@@ -93,9 +93,12 @@ $(document).ready(function(){
             </div>
             <div class="review-body">
                 <p>${content}</p>
-                ${image ? `<img src="" alt="Review Image"/>` : ``} <!-- Include uploaded image if available -->
+            </div>
+            <div class="review-picture">
+                ${image ? `<img src="${URL.createObjectURL(image)}" alt="Review Image"/>` : ''} <!-- Include uploaded image if available -->
             </div>
             <div class="review-footer">
+                <div class="review-profile">
                 <img src="../images/man.png"/>
                 <div>
                     <b>Unknown</b>
