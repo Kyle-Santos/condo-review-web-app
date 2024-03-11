@@ -10,8 +10,12 @@
     "$date": "2024-03-10T17:16:39.430Z"
   },
   "updatedAt": {
-    "$date": "2024-03-10T17:16:39.430Z"
-  }
+    "$date": "2024-03-11T12:40:29.506Z"
+  },
+  "email": "kyle_adrian_santos@dlsu.edu.ph",
+  "city": "not specified",
+  "school": "not specified",
+  "bio": "I am currently a sophomore enrolled in the Bachelor of Science program in Computer Science at De La Salle University, where I have chosen to specialize in Network and Information Security. I'm currently renting a condo in Vista Taft for about 2 years now."
 },
 {
   "_id": {
@@ -26,7 +30,11 @@
   },
   "updatedAt": {
     "$date": "2024-03-10T17:25:11.476Z"
-  }
+  },
+  "email": "none",
+  "city": "not specified",
+  "school": "not specified",
+  "bio": ""
 },
 {
   "_id": {
@@ -41,7 +49,11 @@
   },
   "updatedAt": {
     "$date": "2024-03-10T17:26:09.106Z"
-  }
+  },
+  "email": "none",
+  "city": "not specified",
+  "school": "not specified",
+  "bio": ""
 },
 {
   "_id": {
@@ -56,7 +68,11 @@
   },
   "updatedAt": {
     "$date": "2024-03-10T17:26:57.820Z"
-  }
+  },
+  "email": "none",
+  "city": "not specified",
+  "school": "not specified",
+  "bio": ""
 },
 {
   "_id": {
@@ -71,5 +87,9 @@
   },
   "updatedAt": {
     "$date": "2024-03-10T17:27:57.548Z"
-  }
+  },
+  "email": "none",
+  "city": "not specified",
+  "school": "not specified",
+  "bio": ""
 }]

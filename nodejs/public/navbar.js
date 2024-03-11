@@ -1,7 +1,3 @@
-function goToLoggedOut(){
-    window.location.href="/";
-}
-
 $(document).ready(function(){
 
     $.get(
@@ -37,6 +33,7 @@ $(document).ready(function(){
                     
                     $(".nav-logged-in").hide();
                     $("#logout-button").hide();
+                    window.location.href="/";
                     logStatus = 0;
                 }
                 else{

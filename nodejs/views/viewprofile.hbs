@@ -13,18 +13,11 @@
             </ul>
             </div>
             <h2 class="info-title"><br/>Intro</h2>
-            {{#if (data.email)}}
-                <p class="info-item">Email: {{data.email}}</p>
-            {{/if}}
-
-            <p class="info-item">Works at {{data.job}}</p>
-            
-            {{#if (data.education)}}
-                <p class="info-item">Studied at {{data.education}}</p>
-            {{/if}}
-            {{#if (data.city)}}
-                <p class="info-item">Lives in {{data.city}}</p>
-            {{/if}}
+            <p class="info-item"><b>Email:</b> {{data.email}}</p>
+            <p class="info-item"><b>Occupation/Role:</b> {{data.job}}</p>
+            <p class="info-item"><b>Studied at</b> {{data.education}}</p>
+            <p class="info-item"><b>Lives in</b> {{data.city}}</p>
+            <p class="info-item"><b>About me:</b><br/>{{data.bio}}</p>
         </div>
         
         <div class="posts-section">

@@ -57,28 +57,16 @@ server.get('/', function(req,resp){
     });
 });
 
-// server.patch('/viewprofile', upload.single('profile-photo'), (req, res) => {
-//     const { name, email, bio, job, education, city, hometown } = req.body;
-//     const profilePhoto = req.file;
-
-//     // Here you would update the user's profile with the provided data
-//     // For demonstration, this just logs the data
-//     console.log(name, email, bio, job, education, city, hometown);
-//     if (profilePhoto) {
-//         console.log('Profile photo uploaded:', profilePhoto.path);
-//     }
-
-//     // Respond to the request
-//     res.json({ message: 'Profile updated successfully!' });
-// });
-
 // create account POST
 server.post('/create-account', function(req, resp){
     const user = userModel({
       user: req.body.username,
       pass: req.body.password,
       picture: req.body.picture,
+      email: "none",
       job: "Condo Bro",
+      school: "not specified",
+      city: "not specified,"
     });
     
     user.save().then(function(login) {
@@ -242,9 +230,8 @@ server.get('/profile/:username', async (req, resp) => {
 
     try {
         // Query MongoDB to get data
-        var data = await userModel.findOne({ user: username });
-        data = {user: data.user, picture: data.picture, bio: data.bio, email: data.email, job: data.job, education: data.education, city: data.city};
-
+        var data = await userModel.findOne({ user: username }).lean();
+        console.log(data);
         resp.render('viewprofile', {
             layout: 'index',
             title: data.user,
@@ -253,8 +240,8 @@ server.get('/profile/:username', async (req, resp) => {
         });
     } catch (err) {
         // Handle errors
-        // console.error('Error fetching data from MongoDB', err);
-        // resp.status(500).json({ error: 'Failed to fetch data' });
+        console.error('Error fetching data from MongoDB', err);
+        resp.status(500).json({ error: 'Failed to fetch data' });
     }
 });
 
@@ -265,6 +252,35 @@ server.get('/edit-profile/', function(req, resp) {
         title: 'Edit Profile',
         isEditProfile: true
     });
+});
+
+server.patch('/edit-profile-submit', async (req, resp) => {
+    const { name, email, bio, job, education, city, imagePath } = req.body;
+
+    // Filter out null values
+    const newData = {};
+    if (name !== "") newData.name = name;
+    if (email !== "") newData.email = email;
+    if (bio !== "") newData.bio = bio;
+    if (job !== "") newData.job = job;
+    if (education !== "") newData.education = education;
+    if (city !== "") newData.city = city;
+    if (imagePath !== null && imagePath !== undefined) newData.picture = imagePath;
+    
+    const user = await userModel.findOne( {user: logUsername} );
+    console.log(newData);
+    // Use updateOne to update specific fields of the user document
+    userModel.updateOne({ "user": logUsername }, { $set: newData })
+        .then(result => {
+            // Handle successful update
+            console.log("Update successful:", result);
+            resp.json({ message: 'Profile updated successfully!' });
+        })
+        .catch(err => {
+            // Handle error
+            console.error("Error updating document:", err);
+        });
+        // Respond to the request
 });
 
 
