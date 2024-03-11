@@ -177,7 +177,18 @@ server.patch('/create-review', async (req, resp) => {
     // Find the condo by ID
     const condo = await condoModel.findOne({ id: condoId });
 
+    // Find the user by username
     const user = await userModel.findOne( {user: logUsername} );
+
+    // Create a new review
+    const newReview = {
+        title: title,
+        content: content,
+        rating: rating,
+        image: image,
+        date: date,
+        author: user._id // Set the author field to the ObjectId of the user
+    };
 
     // Add reviews to the condo
     condo.reviews.push({
@@ -189,16 +200,19 @@ server.patch('/create-review', async (req, resp) => {
         author: user
     });
 
+    // Add the review to the condo
+    condo.reviews.push(newReview);
+
     // Save the condo to the database
-    condo.save()
-    .then((savedCondo) => {
-        console.log('Condo saved successfully:', savedCondo);
-        resp.status(200).send({ success: true, message: 'Review published successfully', user: logUsername, job: logUserJob, icon: logIcon});
-    })
-    .catch((error) => {
-        console.error('Error publishing review:', error);
-        resp.status(500).send({ success: false, message: 'Error publishing review' });
-    });
+    await condo.save();
+
+    // Update the user's reviews array
+    user.reviews.push(newReview._id);
+
+    // Save the user to the database
+    await user.save();
+
+    resp.status(200).send({ success: true, message: 'Review published successfully', user: logUsername, job: logUserJob, icon: logIcon });
 
 });
 
@@ -259,13 +273,22 @@ server.patch('/edit-profile-submit', async (req, resp) => {
 
     // Filter out null values
     const newData = {};
-    if (name !== undefined) newData.name = name;
+    if (name !== undefined) { 
+        newData.name = name;
+        logUsername = name;
+    }
     if (email !== undefined) newData.email = email;
     if (bio !== undefined) newData.bio = bio;
-    if (job !== undefined) newData.job = job;
+    if (job !== undefined) {
+        newData.job = job;
+        logUserJob = job;
+    }
     if (education !== undefined) newData.education = education;
     if (city !== undefined) newData.city = city;
-    if (imagePath !== null && imagePath !== undefined) newData.picture = imagePath;
+    if (imagePath !== null && imagePath !== undefined) {
+        newData.picture = imagePath;
+        logIcon = imagePath;
+    }
 
     console.log(newData);
 

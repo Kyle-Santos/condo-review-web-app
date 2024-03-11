@@ -14,7 +14,14 @@ $(document).ready(function() {
 
         var formData = {};
 
-        if (name !== "") formData.name = name;
+        if (name !== "" ) {
+            if (!name.includes(' ')) 
+                formData.name = name;
+            else {
+                alert("Username can't have any space");
+                return;
+            }
+        }
         if (email !== "") formData.email = email;
         if (bio !== "") formData.bio = bio;
         if (job !== "") formData.job = job;
