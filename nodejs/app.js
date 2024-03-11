@@ -259,16 +259,16 @@ server.patch('/edit-profile-submit', async (req, resp) => {
 
     // Filter out null values
     const newData = {};
-    if (name !== "") newData.name = name;
-    if (email !== "") newData.email = email;
-    if (bio !== "") newData.bio = bio;
-    if (job !== "") newData.job = job;
-    if (education !== "") newData.education = education;
-    if (city !== "") newData.city = city;
+    if (name !== undefined) newData.name = name;
+    if (email !== undefined) newData.email = email;
+    if (bio !== undefined) newData.bio = bio;
+    if (job !== undefined) newData.job = job;
+    if (education !== undefined) newData.education = education;
+    if (city !== undefined) newData.city = city;
     if (imagePath !== null && imagePath !== undefined) newData.picture = imagePath;
-    
-    const user = await userModel.findOne( {user: logUsername} );
+
     console.log(newData);
+
     // Use updateOne to update specific fields of the user document
     userModel.updateOne({ "user": logUsername }, { $set: newData })
         .then(result => {
