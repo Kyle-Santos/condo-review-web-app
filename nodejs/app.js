@@ -39,6 +39,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/condodb');
 const userModel = require('./models/User'); 
 const condoModel = require('./models/Condo');
+const reviewModel = require('./models/Review');
 
 // can be added to hash the password for confidentiality
 // const bcrypt = require('bcrypt'); 
@@ -132,17 +133,22 @@ server.get('/condo/:condoId', async (req, resp) => {
 
     try {
         // Query MongoDB to get data
-        var data = await condoModel.findOne({ id: condoId }).populate('reviews.author').lean();
+        var data = await condoModel.findOne({ id: condoId }).lean();
         var processedReviews;
 
-        if (data.reviews) {
+        // Find all reviews for the specified condo
+        const reviews = await reviewModel.find({ condoId: condoId }).populate('author').lean();
+
+        if (reviews) {
             // Preprocess date field
-            processedReviews = data.reviews.map(review => {
+            processedReviews = reviews.map(review => {
                 // Create a new object to avoid mutating the original object
                 const processedReview = { ...review };
 
                 // Format date without time component
                 processedReview.date = review.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
+                // Transform the integer rating into an array of boolean values representing filled stars
+                processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
 
                 return processedReview;
             });
@@ -152,7 +158,7 @@ server.get('/condo/:condoId', async (req, resp) => {
             layout: 'index',
             title: formattedCondoId,
             'data': data,
-            'reviews': processedReviews,
+            'reviews': processedReviews.reverse(),
             isCondo: true
         });
     } catch (err) {
@@ -174,40 +180,28 @@ server.get('/loggedInStatus', function(req, resp){
 server.patch('/create-review', async (req, resp) => {
     const { condoId, title, content, rating, image, date } = req.body;
 
-    // Find the condo by ID
-    const condo = await condoModel.findOne({ id: condoId });
-
     // Find the user by username
     const user = await userModel.findOne( {user: logUsername} );
 
-    // Create a new review
-    const newReview = {
+    // Create a review
+    const newReview = reviewModel({
         title: title,
         content: content,
         rating: rating,
         image: image,
         date: date,
+        condoId: condoId,
         author: user._id // Set the author field to the ObjectId of the user
-    };
-
-    // Add reviews to the condo
-    condo.reviews.push({
-        title: title,
-        content: content,
-        rating: rating,
-        image: image,
-        date: date,
-        author: user
     });
+    
+    // Save the new review instance to the database
+    const savedReview = await newReview.save();
 
-    // Add the review to the condo
-    condo.reviews.push(newReview);
-
-    // Save the condo to the database
-    await condo.save();
+    // If needed, you can access the _id of the saved review document
+    const savedReviewId = savedReview._id;
 
     // Update the user's reviews array
-    user.reviews.push(newReview._id);
+    user.reviews.push(savedReviewId);
 
     // Save the user to the database
     await user.save();
@@ -241,15 +235,32 @@ server.post('/upload-image', upload.single('image'), (req, res) => {
 // get profile GET
 server.get('/profile/:username', async (req, resp) => {
     const username = req.params.username; // Retrieve the username from the URL
+    var processedReviews;
 
     try {
         // Query MongoDB to get data
-        var data = await userModel.findOne({ user: username }).lean();
-        console.log(data);
+        var data = await userModel.findOne({ user: username }).populate('reviews').lean();
+
+        if (data.reviews) {
+            // Preprocess date field
+            processedReviews = data.reviews.map(review => {
+                // Create a new object to avoid mutating the original object
+                const processedReview = { ...review };
+
+                // Format date without time component
+                processedReview.date = review.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
+                // Transform the integer rating into an array of boolean values representing filled stars
+                processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
+
+                return processedReview;
+            });
+        }
+
         resp.render('viewprofile', {
             layout: 'index',
             title: data.user,
             'data': data,
+            'reviews': processedReviews.reverse(),
             isProfile: true
         });
     } catch (err) {

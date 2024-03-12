@@ -33,6 +33,7 @@ textarea {
 .nav-logged-in > a > img{
     height: 40px;
     margin-right: 10px;
+    border-radius: 50%;
 }
 
 .nav-logged-in > button{

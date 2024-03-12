@@ -4,18 +4,21 @@
   },
   "user": "kyle",
   "pass": "asd",
-  "picture": "images/man (1).png",
-  "job": "Condo Bro",
+  "picture": "images/client-uploaded-files/man (1).png",
+  "job": "Social Media Influencer",
   "createdAt": {
     "$date": "2024-03-10T17:16:39.430Z"
   },
   "updatedAt": {
-    "$date": "2024-03-11T12:40:29.506Z"
+    "$date": "2024-03-12T07:26:44.776Z"
   },
   "email": "kyle_adrian_santos@dlsu.edu.ph",
-  "city": "not specified",
-  "school": "not specified",
-  "bio": "I am currently a sophomore enrolled in the Bachelor of Science program in Computer Science at De La Salle University, where I have chosen to specialize in Network and Information Security. I'm currently renting a condo in Vista Taft for about 2 years now."
+  "city": "Manila",
+  "bio": "I am currently a sophomore enrolled in the Bachelor of Science program in Computer Science at De La Salle University, where I have chosen to specialize in Network and Information Security. I'm currently renting a condo in Vista Taft for about 2 years now.",
+  "education": "De La Salle University Manila",
+  "reviews": [
+
+  ]
 },
 {
   "_id": {
@@ -24,17 +27,17 @@
   "user": "karl",
   "pass": "asd",
   "picture": "images/gamer.png",
-  "job": "Condo Bro",
+  "job": "Web Developer",
   "createdAt": {
     "$date": "2024-03-10T17:25:11.476Z"
   },
   "updatedAt": {
-    "$date": "2024-03-10T17:25:11.476Z"
+    "$date": "2024-03-11T15:32:55.604Z"
   },
   "email": "none",
   "city": "not specified",
-  "school": "not specified",
-  "bio": ""
+  "bio": "",
+  "education": "not specified"
 },
 {
   "_id": {
@@ -52,8 +55,8 @@
   },
   "email": "none",
   "city": "not specified",
-  "school": "not specified",
-  "bio": ""
+  "bio": "",
+  "education": "not specified"
 },
 {
   "_id": {
@@ -71,8 +74,8 @@
   },
   "email": "none",
   "city": "not specified",
-  "school": "not specified",
-  "bio": ""
+  "bio": "",
+  "education": "not specified"
 },
 {
   "_id": {
@@ -90,6 +93,6 @@
   },
   "email": "none",
   "city": "not specified",
-  "school": "not specified",
-  "bio": ""
+  "bio": "",
+  "education": "not specified"
 }]

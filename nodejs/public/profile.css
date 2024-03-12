@@ -1,6 +1,5 @@
 body, h1, h2, p, ul, li, .profile-container div, img {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -98,6 +97,7 @@ body, h1, h2, p, ul, li, .profile-container div, img {
 }
 .profile-nav ul {
   list-style: none;
+  padding: 0;
 }
 .profile-nav ul li {
   display: inline;
@@ -120,6 +120,9 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   padding-left: 20px;
   border-top: 1px solid #ccc;
   padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .info-title, .post-title, .photos-title {
   font-size: 20px;
@@ -147,8 +150,9 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   background: #f0f2f5;
   border-radius: 8px;
   padding: 10px;
-  margin-bottom: 10px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .post h3 {
   font-size: 18px;
@@ -170,21 +174,6 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   border-radius: 8px;
   background: #ccc;
 }
-.icon-like button:hover{
-  background-color: #686565;
-}
-
-.icon-like{
-  border-radius:5px;
-  height: 100%;
-  width: 3%;
-  display: flex;
-}
-.icon-like button{
-border: none;
-  background: none;
-
-}
 
 .edit-profile{
 background: none;
@@ -195,10 +184,8 @@ width: 100%;
 border-radius: 3px;
 }
 .edit-delete-icons {
-position: absolute;
-top: 10px; /* Adjust as needed */
-right: 10px; /* Adjust as needed */
 display: flex;
+justify-content: right;
 gap: 5px; /* Space between buttons */
 }
 .edit-icon-btn, .delete-icon-btn {
@@ -210,3 +197,155 @@ cursor: pointer;
 .edit-icon-btn:hover, .delete-icon-btn:hover {
 color: #000; /* Change color on hover */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.review-header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-header-right {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.establishment-response-container {
+  background-color: rgb(240, 240, 235);
+  border-radius: 25px;
+  font-size: 12px;
+  padding: 20px;
+}
+
+.establishment-response-container > p {
+  padding: 10px;
+}
+
+.establishment-response-container > b {
+  font-size: 15px;
+}
+
+
+.review-header svg {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+.review-header h3 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.star-on {
+  fill: #ffcc00;
+}
+
+.star-off {
+  fill: lightgray;
+}
+
+.grid-item {
+  background-color: #f0f2f5;
+  justify-self: center;
+  height: fit-content;
+  margin: 15px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.review-body {
+  display: flex;
+  gap: 20px;
+}
+.review-body p {
+  margin: 0;
+  font-size: 12px;
+}
+.review-body > img {
+  width: auto;
+  height: 180px;
+  border-radius: 10px;
+}
+
+.review-picture{
+  height: auto;
+}
+
+
+.review-picture > img{
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.review-footer a:hover , .establishment-response-container a:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.review-profile, .owner-profile{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.owner-profile img, .review-profile img {
+  height: 40px;
+  border-radius: 50%;
+}
+
+
+.react-post {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: right;
+}
+.icon-like {
+  display: flex;
+  gap: 2px;
+  justify-content: right;
+}
+.icon-like button {
+  background: none;
+  border: none;
+}
+.fa-thumbs-up:hover {
+  color: #1877F2;
+}
+.fa-thumbs-down:hover {
+  color: rgb(229, 55, 55);
+}
+/*  */

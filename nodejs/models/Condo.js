@@ -1,29 +1,4 @@
 const mongoose = require('mongoose');
-const userModel = require('../models/User'); 
-
-// Define the schema for a comment
-const commentSchema = new mongoose.Schema({
-    text: String,
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: userModel // Reference to the User model for the user who posted the comment
-    }
-});
-
-// Define the schema for a review
-const reviewSchema = new mongoose.Schema({
-    title: String,
-    content: String,
-    rating: Number,
-    image: String,
-    date: Date,
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: userModel
-    },
-    // likes: Number,
-    comments: [commentSchema] // Array of comments associated with the review
-});
 
 // Define the schema for a condo
 const condoSchema = new mongoose.Schema({
@@ -52,10 +27,9 @@ const condoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reviews: [reviewSchema] // Array of reviews associated with the condo
 },{ versionKey: false, timestamps: true });
 
-// Create the User model
+// Create the Condo model
 const condoModel = mongoose.model('condo', condoSchema);
 
 module.exports = condoModel;

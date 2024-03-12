@@ -20,58 +20,64 @@
             <p class="info-item"><b>About me:</b><br/>{{data.bio}}</p>
         </div>
         
+        
         <div class="posts-section">
-            <h2 class="post-title">Posts</h2>
-            <div class="post">
-                <div class="edit-delete-icons">
-                <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
-                <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
-                </div>
-                <h3>Burgandy kinda lit ngl</h3>
-                <p>Posted on January 1, 2024</p>
-                <p>⭐⭐⭐⭐</p>
-                <p>For some people they might not like burgandy because its old, and has no security and the elevator might break, but for me the 44 sq meters you get cant be beaten, and ngl i like that i can have my friends over to code anytime! </p>
-                <div class="icon-like">
-                <button type="button" class="fa fa-thumbs-up"></button>
-                <button type="button" class="fa fa-thumbs-down"></button>
-                </div>
-                <p> 20 people found this helpful</p>
-                <button>💬Comment</button>
-            </div>
-            <!-- Repeat for each post -->
-            <div class="post">
-                <div class="edit-delete-icons">
-                    <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
-                    <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
-                </div>
-                    <h3>2 torre is mid</h3>
-                    <p>Posted on January 1, 2024</p>
-                    <p>⭐⭐⭐</p>
-                    <p>Honestly for me you cant really go wrong with 2 torre but the security might make u think twice ngl</p>
-                <div class="icon-like">
-                <button type="button" class="fa fa-thumbs-up"></button>
-                <button type="button" class="fa fa-thumbs-down"></button>
-                </div>
-                <div></div>
-                    <p> 20 people found this helpful</p>
-                    <button>💬Comment</button>
-                </div>
-                <div class="post">
-                    <div class="edit-delete-icons">
-                        <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
-                        <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
+            <h2 class="post-title">Reviews</h2>
+            {{#each reviews}}
+            <div class="grid-item">
+                <div class="review-header">
+                    <div class="review-header-left">
+                        <h3>{{title}}</h3>
+                        Posted on {{date}}
                     </div>
-                    <h3>HW Taft is so noisy bruhhh</h3>
-                    <p>Posted on January 1, 2024</p>
-                    <p>⭐⭐</p>
-                    <p>im so annoyed with wh people being so loud all the time, naririnig ko sila sumigaw pag may ipis every day bruhhh.</p>
-                    <div class="icon-like">
-                        <button type="button" class="fa fa-thumbs-up"></button>
-                        <button type="button" class="fa fa-thumbs-down"></button>
+                    <div class="review-header-right">
+                        <div class="edit-delete-icons">
+                            <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
+                            <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="star-rating" id="rating">
+                            {{#each rating}}
+                                {{#if this}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="star-on" viewBox="0 0 24 24" role="presentation">
+                                        <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                                    </svg>
+                                {{else}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="star-off" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                                        <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                                    </svg>
+                                {{/if}}
+                            {{/each}}
+                        </div>
                     </div>
-                    <p> 20 people found this helpful</p>
-                    <button>💬Comment</button>
+                </div>
+                <div class="review-body">
+                    <p>{{content}}</p>
+                </div>
+                {{#if image}}
+                <div class="review-picture">
+                    <img src="{{image}}"/>
+                </div>
+                {{/if}}
+                <div class="review-footer">
+                    <div class="review-profile">
+                        <img src="{{../data.picture}}"/>
+                        <div>
+                            <a href="profile.html">
+                                <b>{{../data.user}}</b>
+                            </a>
+                            
+                            <br/>{{../data.job}}
+                        </div>
+                    </div>
+                    <div class="react-post">
+                        <div class="icon-like">
+                            <button type="button" class="fa fa-thumbs-up"></button>
+                            <button type="button" class="fa fa-thumbs-down"></button>
+                        </div>
+                        999 people liked
+                    </div>
                 </div>
             </div>
+            {{/each}}
         </div>
     </div>

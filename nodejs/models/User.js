@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     city: {type: String},
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Review' // Reference to the Review model for the reviews authored by the user
+        ref: 'review' // Reference to the Review model for the reviews authored by the user
     }]
 },{ versionKey: false, timestamps: true });
 
