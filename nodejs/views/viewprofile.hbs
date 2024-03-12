@@ -27,8 +27,8 @@
             <div class="grid-item">
                 <div class="review-header">
                     <div class="review-header-left">
-                        <h3>{{title}}</h3>
-                        Posted on {{date}}
+                        <a href="condo/{{condoId}}"><h3>{{title}}</h3></a>
+                        <p>Posted on {{date}} | <a href="condo/{{condoId}}"><i>View Condo</i></a></p>
                     </div>
                     <div class="review-header-right">
                         <div class="edit-delete-icons">
@@ -62,9 +62,7 @@
                     <div class="review-profile">
                         <img src="{{../data.picture}}"/>
                         <div>
-                            <a href="profile.html">
-                                <b>{{../data.user}}</b>
-                            </a>
+                            <b>{{../data.user}}</b>
                             
                             <br/>{{../data.job}}
                         </div>

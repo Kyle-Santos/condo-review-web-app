@@ -131,9 +131,11 @@
                 {{/if}}
                 <div class="review-footer">
                     <div class="review-profile">
-                        <img src="{{author.picture}}"/>
+                        <a href="/profile/{{author.user}}">
+                            <img src="{{author.picture}}"/>
+                        </a>
                         <div>
-                            <a href="profile.html">
+                            <a href="/profile/{{author.user}}">
                                 <b>{{author.user}}</b>
                             </a>
                             
@@ -148,7 +150,14 @@
                         999 people liked
                     </div>
                 </div>
-                <div><hr/></div>
+
+                <div><hr/><h4>Comments:</h4></div>
+
+                <div class="comment-container">
+                    <textarea class="comment-textarea" placeholder="Write your comment here..."></textarea>
+                    <button class="submit-button">Comment</button>
+                </div>
+
                 <div class="establishment-response-container">
                     <b>Establishment Response</b> <br/>
                     10 days ago

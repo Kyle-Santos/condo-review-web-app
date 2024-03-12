@@ -147,7 +147,7 @@ p {
 }
 
 .establishment-response-container {
-    background-color: rgb(240, 240, 235);
+    background-color: #f0f2f5;
     border-radius: 25px;
     font-size: 12px;
     padding: 20px;
@@ -173,6 +173,10 @@ p {
     margin: 0;
 }
 
+h4 {
+    margin: 0;
+}
+
 .star-on {
     fill: #ffcc00;
 }
@@ -184,7 +188,6 @@ p {
 .grid-item {
     background-color: white;
     width: 80%;
-    justify-self: center;
     height: fit-content;
     margin: 15px;
     border-radius: 30px;
@@ -398,3 +401,37 @@ form > .star-rating svg {
     background-color: gray;
 }
 /* create review end */
+
+
+
+
+/* comment reviews */
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.comment-textarea {
+    width: 90%;
+    height: 15px; 
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical; 
+}
+
+.submit-button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
