@@ -10,14 +10,22 @@
     "$date": "2024-03-10T17:16:39.430Z"
   },
   "updatedAt": {
-    "$date": "2024-03-12T07:26:44.776Z"
+    "$date": "2024-03-12T11:55:26.632Z"
   },
   "email": "kyle_adrian_santos@dlsu.edu.ph",
   "city": "Manila",
   "bio": "I am currently a sophomore enrolled in the Bachelor of Science program in Computer Science at De La Salle University, where I have chosen to specialize in Network and Information Security. I'm currently renting a condo in Vista Taft for about 2 years now.",
   "education": "De La Salle University Manila",
   "reviews": [
-
+    {
+      "$oid": "65f02a95457221883bab999d"
+    },
+    {
+      "$oid": "65f031ede78e8879e367ca44"
+    },
+    {
+      "$oid": "65f042aebca5ef84561f228c"
+    }
   ]
 },
 {
@@ -37,7 +45,12 @@
   "email": "none",
   "city": "not specified",
   "bio": "",
-  "education": "not specified"
+  "education": "not specified",
+  "reviews": [
+    {
+      "$oid": "65f02a95457221883bab999c"
+    }
+  ]
 },
 {
   "_id": {
@@ -51,12 +64,20 @@
     "$date": "2024-03-10T17:26:09.106Z"
   },
   "updatedAt": {
-    "$date": "2024-03-10T17:26:09.106Z"
+    "$date": "2024-03-12T11:54:08.616Z"
   },
   "email": "none",
   "city": "not specified",
   "bio": "",
-  "education": "not specified"
+  "education": "not specified",
+  "reviews": [
+    {
+      "$oid": "65f02a95457221883bab999b"
+    },
+    {
+      "$oid": "65f04260bca5ef84561f227f"
+    }
+  ]
 },
 {
   "_id": {
@@ -75,7 +96,12 @@
   "email": "none",
   "city": "not specified",
   "bio": "",
-  "education": "not specified"
+  "education": "not specified",
+  "reviews": [
+    {
+      "$oid": "65f02a95457221883bab999a"
+    }
+  ]
 },
 {
   "_id": {
@@ -94,5 +120,10 @@
   "email": "none",
   "city": "not specified",
   "bio": "",
-  "education": "not specified"
+  "education": "not specified",
+  "reviews": [
+    {
+      "$oid": "65f02a95457221883bab9999"
+    }
+  ]
 }]
