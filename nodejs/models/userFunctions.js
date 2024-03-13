@@ -69,42 +69,19 @@ function createAccount(username, password, picture){
         });
 }
 
-function editProfile(name, email, bio, job, education, city, imagePath, logUsername){
+function filterEditData(userData){
+    const { name, email, bio, job, education, city, imagePath } = userData;
     // Filter out null values
     const newData = {};
-    if (name !== undefined) { 
-        newData.name = name;
-        logUsername = name;
-    }
+    if (name !== undefined) newData.name = name;
     if (email !== undefined) newData.email = email;
     if (bio !== undefined) newData.bio = bio;
-    if (job !== undefined) {
-        newData.job = job;
-        logUserJob = job;
-    }
+    if (job !== undefined) newData.job = job;
     if (education !== undefined) newData.education = education;
     if (city !== undefined) newData.city = city;
-    if (imagePath !== null && imagePath !== undefined) {
-        newData.picture = imagePath;
-        logIcon = imagePath;
-    }
+    if (imagePath !== null && imagePath !== undefined) newData.picture = imagePath;
 
-    console.log(newData);
-
-    // Use updateOne to update specific fields of the user document
-    userModel.updateOne({ "user": logUsername }, { $set: newData })
-        .then(result => {
-            // Handle successful update
-            console.log("Update successful:", result);
-            return true;
-           // resp.json({ message: 'Profile updated successfully!' });
-        })
-        .catch(err => {
-            // Handle error
-            console.error("Error updating document:", err);
-            return false;
-        });
-        // Respond to the request
+    return newData;
 }
 
 async function createReview(condoId, title, content, rating, image, date, logUsername){
@@ -140,5 +117,5 @@ async function createReview(condoId, title, content, rating, image, date, logUse
 
 module.exports.findUser = findUser;
 module.exports.createAccount = createAccount;
-module.exports.editProfile = editProfile;
+module.exports.filterEditData = filterEditData;
 module.exports.createReview = createReview;

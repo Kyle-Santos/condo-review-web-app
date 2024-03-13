@@ -82,12 +82,11 @@ function editprofile(formData) {
         type: 'PATCH',
         data: formData,
         success: function(response) {
-            alert('Profile updated successfully!');
+            alert(response.message);
         },
         error: function(xhr, status, error) {
             alert('An error occurred: ' + error);
         }
     });
-
     window.location.href = "/profile/" + $("#username-display").text();
 }

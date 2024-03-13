@@ -108,14 +108,25 @@ function add(server){
     });
 
     server.patch('/edit-profile-submit', async (req, resp) => {
-        const { name, email, bio, job, education, city, imagePath } = req.body;
+        const newData = userFunctions.filterEditData(req.body);
 
-        if(editProfile(name, email, bio, job, education, city, imagePath, logUsername)){
-            logUsername = name;
-            logPicture = imagePath;
-            logUserJob = job;
-            resp.json({message: 'Profile updated successfully!'});
-        }
+        // Use updateOne to update specific fields of the user document
+        userModel.updateOne({ "user": logUsername }, { $set: newData })
+            .then(result => {
+                // Handle successful update
+                console.log("Update successful:", result);
+
+                if (newData.name !== undefined) logUsername = newData.name;
+                if (newData.picture !== undefined) logIcon = newData.picture.replace('public/', '');
+                if (newData.job !== undefined) logUserJob = newData.job;
+
+                resp.json({message: 'Profile updated successfully!'});
+            })
+            .catch(err => {
+                // Handle error
+                console.error("Error updating document:", err);
+                return false;
+            });
 
     });
 

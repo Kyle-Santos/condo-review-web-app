@@ -51,7 +51,7 @@ for(i = 0; i < controllers.length; i++){
 server.post('/upload-image', upload.single('image'), (req, res) => {
     // Get the temporary file path of the uploaded image
     const tempFilePath = req.file.path;
-    console.log(tempFilePath);
+    
     if (fs.existsSync(tempFilePath)) {
         const destinationPath = path.join(__dirname, 'public', 'images', 'client-uploaded-files', req.file.originalname);
         // Move the uploaded file to the destination path
