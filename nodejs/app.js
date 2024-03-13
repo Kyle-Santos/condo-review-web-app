@@ -42,17 +42,11 @@ const controllers = ['routeUser', 'routeCondo', 'routeReview'];
 
 for(i = 0; i < controllers.length; i++){
     const ctrl = require('./controllers/' + controllers[i]); 
-    console.log(controllers[i]);
     ctrl.add(server);
 }
 
 // can be added to hash the password for confidentiality
 // const bcrypt = require('bcrypt'); 
-
-var logStatus = 1; //0 for logged out, 1 for logged in and regular, 2 for owner
-var logUsername = "kyle";
-var logIcon = "images/client-uploaded-files/man (1).png";
-var logUserJob = "Condo Bro";
 
 server.post('/upload-image', upload.single('image'), (req, res) => {
     // Get the temporary file path of the uploaded image

@@ -27,8 +27,17 @@ function add(server){
     });
     
     // create account POST
-    server.post('/create-account', function(req, resp){
-        const user = userModel({
+    server.post('/create-account', async (req, resp) => {
+        let createSuccess, createStatus, createMessage;
+
+       [createSuccess, createStatus, createMessage] = await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture);
+       // console.log(await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture));
+
+
+        resp.status(createStatus).send({success: createSuccess, message: createMessage});
+
+
+        /* const user = userModel({
         user: req.body.username,
         pass: req.body.password,
         picture: req.body.picture,
@@ -51,7 +60,7 @@ function add(server){
                 console.error('Error creating account:', error);
                 resp.status(500).send({ success: false, message: 'Error creating account' });
             }
-        });
+        }); */
     });
 
     // Logout POST

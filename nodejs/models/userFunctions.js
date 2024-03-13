@@ -4,8 +4,8 @@ async function findUser(username, password){
     
     try {
         // Find user by username
-        const user = await userModel.findOne({ user: username });
         
+        const user = await userModel.findOne({ user: username });
         if (!user) {
             return [404, 'User not found', 0, "", "", "Condo Bro"];
 
@@ -35,4 +35,38 @@ async function findUser(username, password){
     }
 }
 
+function createAccount(username, password, picture){
+    const user = userModel({
+        user: username,
+        pass: password,
+        picture: picture,
+        email: "none",
+        job: "Condo Bro",
+        school: "not specified",
+        city: "not specified,"
+        });
+        
+        return user.save().then(function(login) {
+            console.log('Account created');
+
+            return [true, 200, 'Account created successfully'];
+           // resp.status(200).send({ success: true, message: 'Account created successfully' });
+        }).catch(function(error) {
+            // Check if the error indicates a duplicate key violation
+            if (error.code === 11000 && error.name === 'MongoServerError') {
+                console.error('Duplicate key error:', error.keyPattern);
+                // Handle duplicate key error
+                return [false, 500, 'Username already exists. Error creating account.'];
+                //resp.status(500).send({ success: false, message: 'Username already exists. Error creating account.' });
+                
+            } else {
+                console.error('Error creating account:', error);
+
+                return [false, 500, 'Error creating account'];
+                //resp.status(500).send({ success: false, message: 'Error creating account' });
+            }
+        });
+}
+
 module.exports.findUser = findUser;
+module.exports.createAccount = createAccount;
