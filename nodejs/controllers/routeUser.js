@@ -31,36 +31,8 @@ function add(server){
         let createSuccess, createStatus, createMessage;
 
        [createSuccess, createStatus, createMessage] = await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture);
-       // console.log(await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture));
-
 
         resp.status(createStatus).send({success: createSuccess, message: createMessage});
-
-
-        /* const user = userModel({
-        user: req.body.username,
-        pass: req.body.password,
-        picture: req.body.picture,
-        email: "none",
-        job: "Condo Bro",
-        school: "not specified",
-        city: "not specified,"
-        });
-        
-        user.save().then(function(login) {
-            console.log('Account created');
-            resp.status(200).send({ success: true, message: 'Account created successfully' });
-        }).catch(function(error) {
-            // Check if the error indicates a duplicate key violation
-            if (error.code === 11000 && error.name === 'MongoServerError') {
-                // Handle duplicate key error
-                resp.status(500).send({ success: false, message: 'Username already exists. Error creating account.' });
-                console.error('Duplicate key error:', error.keyPattern);
-            } else {
-                console.error('Error creating account:', error);
-                resp.status(500).send({ success: false, message: 'Error creating account' });
-            }
-        }); */
     });
 
     // Logout POST
@@ -82,7 +54,8 @@ function add(server){
         let findStatus, findMessage;
 
        [findStatus, findMessage, logStatus, logUsername, logIcon, logUserJob] = await userFunctions.findUser(username, password);
-        routeReview.editLoginStatus(logStatus, logUsername, logIcon, logUserJob);
+        
+       routeReview.editLoginStatus(logStatus, logUsername, logIcon, logUserJob);
         res.status(findStatus).json({message: findMessage, picture: logIcon});
     });
 
@@ -136,40 +109,14 @@ function add(server){
 
     server.patch('/edit-profile-submit', async (req, resp) => {
         const { name, email, bio, job, education, city, imagePath } = req.body;
-    
-        // Filter out null values
-        const newData = {};
-        if (name !== undefined) { 
-            newData.name = name;
+
+        if(editProfile(name, email, bio, job, education, city, imagePath, logUsername)){
             logUsername = name;
-        }
-        if (email !== undefined) newData.email = email;
-        if (bio !== undefined) newData.bio = bio;
-        if (job !== undefined) {
-            newData.job = job;
+            logPicture = imagePath;
             logUserJob = job;
+            resp.json({message: 'Profile updated successfully!'});
         }
-        if (education !== undefined) newData.education = education;
-        if (city !== undefined) newData.city = city;
-        if (imagePath !== null && imagePath !== undefined) {
-            newData.picture = imagePath;
-            logIcon = imagePath;
-        }
-    
-        console.log(newData);
-    
-        // Use updateOne to update specific fields of the user document
-        userModel.updateOne({ "user": logUsername }, { $set: newData })
-            .then(result => {
-                // Handle successful update
-                console.log("Update successful:", result);
-                resp.json({ message: 'Profile updated successfully!' });
-            })
-            .catch(err => {
-                // Handle error
-                console.error("Error updating document:", err);
-            });
-            // Respond to the request
+
     });
 
 }
