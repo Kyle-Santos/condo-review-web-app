@@ -75,7 +75,6 @@ server.post('/upload-image', upload.single('image'), (req, res) => {
     }
 });
 
-
 //Only at the very end should the database be closed.
 function finalClose(){
     console.log('Close connection at the end!');
