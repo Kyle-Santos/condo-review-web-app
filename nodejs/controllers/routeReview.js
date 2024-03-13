@@ -1,6 +1,18 @@
 const reviewModel = require('../models/Review');
 const userModel = require('../models/User');
 
+var logStatus = 0;
+var logUsername = "";
+var logIcon = "";
+var logUserJob = "Condo Bro";
+
+function editLoginStatus(newStatus, newUsername, newIcon, newJob){
+    logStatus = newStatus;
+    logUsername = newUsername;
+    logIcon = newIcon;
+    logUserJob = newJob;
+}
+
 function add(server){
     server.patch('/create-review', async (req, resp) => {
         const { condoId, title, content, rating, image, date } = req.body;
@@ -44,3 +56,4 @@ function add(server){
 }
 
 module.exports.add = add;
+module.exports.editLoginStatus = editLoginStatus;

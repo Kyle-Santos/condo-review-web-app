@@ -100,7 +100,7 @@ $(document).ready(function(){
                 // Set the text of the <div> element to the entered username
                 $("#username-display").text(username);
                 $("#profile-link").attr('href', 'profile/' + username);
-                $('#profile-link img').attr('src', response.user.picture);
+                $('#profile-link img').attr('src', response.picture);
 
                 showLogInView();
                 $("#login").hide();

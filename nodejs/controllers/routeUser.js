@@ -1,16 +1,20 @@
 const userModel = require('../models/User');
+const userFunctions = require('../models/userFunctions');
+const routeReview = require('../controllers/routeReview');
+
+var logStatus = 0;
+var logUsername = "";
+var logIcon = "";
+var logUserJob = "Condo Bro";
+
 
 function add(server){
 
     server.get('/loggedInStatus', function(req, resp){
         resp.send({
-            //status: logStatus, 
-            //username: logUsername,
-            //picture: logIcon
-
-            status: 1,
-            username: "kyle",
-            picture: "images/client-uploaded-files/man (1).png",
+            status: logStatus, 
+            username: logUsername,
+            picture: logIcon
         });
     });
 
@@ -54,40 +58,23 @@ function add(server){
     server.post('/logout', function(req, resp){
         logStatus = 0;
         logUsername = "";
+        logIcon = "";
+        logUserJob = "Condo Bro";
+
+        routeReview.editLoginStatus(logStatus, logUsername, logIcon, logUserJob);
 
         resp.send({});
     });
 
     // Login POST 
     server.post('/login', async (req, res) => {
-        const { username, password } = req.body;
+        const { username, password } = req.body;   
 
-        try {
-            // Find user by username
-            const user = await userModel.findOne({ user: username });
+        let findStatus, findMessage;
 
-            if (!user) {
-                return res.status(404).json({ message: 'User not found' });
-            }
-
-            // Compare passwords
-            // const passwordMatch = await bcrypt.compare(password, user.pass);
-
-            if (password !== user.pass) {
-                return res.status(401).json({ message: 'Invalid password' });
-            }
-
-            logStatus = 1; //change to include owner
-            logUsername = username;
-            logIcon = user.picture;
-            logUserJob = user.job;
-
-            // Authentication successful
-            res.status(200).json({ message: 'Login successful', user: user });
-        } catch (error) {
-            console.error('Error during login:', error);
-            res.status(500).json({ message: 'Internal server error' });
-        }
+       [findStatus, findMessage, logStatus, logUsername, logIcon, logUserJob] = await userFunctions.findUser(username, password);
+        routeReview.editLoginStatus(logStatus, logUsername, logIcon, logUserJob);
+        res.status(findStatus).json({message: findMessage, picture: logIcon});
     });
 
 
