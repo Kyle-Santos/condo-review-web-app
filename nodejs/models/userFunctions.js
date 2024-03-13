@@ -114,7 +114,28 @@ async function createReview(condoId, title, content, rating, image, date, logUse
     await user.save();
 }
 
+function processReviews(reviews){
+    
+    if (reviews) {
+        // Preprocess date field
+        processedReviews = reviews.map(review => {
+            // Create a new object to avoid mutating the original object
+            const processedReview = { ...review };
 
+            // Format date without time component
+            processedReview.date = review.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
+            // Transform the integer rating into an array of boolean values representing filled stars
+            processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
+            return processedReview;
+        });
+
+        return processedReviews;
+    }
+
+    return reviews;
+}
+
+module.exports.processReviews = processReviews;
 module.exports.findUser = findUser;
 module.exports.createAccount = createAccount;
 module.exports.filterEditData = filterEditData;

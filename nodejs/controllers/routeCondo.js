@@ -1,5 +1,6 @@
 const condoModel = require('../models/Condo');
 const reviewModel = require('../models/Review');
+const userFunctions = require('../models/userFunctions');
 
 function add(server){
   
@@ -16,20 +17,7 @@ function add(server){
             // Find all reviews for the specified condo
             const reviews = await reviewModel.find({ condoId: condoId }).populate('author').lean();
 
-            if (reviews) {
-                // Preprocess date field
-                processedReviews = reviews.map(review => {
-                    // Create a new object to avoid mutating the original object
-                    const processedReview = { ...review };
-
-                    // Format date without time component
-                    processedReview.date = review.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
-                    // Transform the integer rating into an array of boolean values representing filled stars
-                    processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
-
-                    return processedReview;
-                });
-            }
+            processedReviews = userFunctions.processReviews(reviews);
 
             resp.render('condo', {
                 layout: 'index',

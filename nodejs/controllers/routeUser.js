@@ -69,20 +69,7 @@ function add(server){
             // Query MongoDB to get data
             var data = await userModel.findOne({ user: username }).populate('reviews').lean();
 
-            if (data.reviews) {
-                // Preprocess date field
-                processedReviews = data.reviews.map(review => {
-                    // Create a new object to avoid mutating the original object
-                    const processedReview = { ...review };
-
-                    // Format date without time component
-                    processedReview.date = review.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
-                    // Transform the integer rating into an array of boolean values representing filled stars
-                    processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
-
-                    return processedReview;
-                });
-            }
+           processedReviews = data.reviews ? userFunctions.processReviews(data.reviews) : [];
 
             resp.render('viewprofile', {
                 layout: 'index',
