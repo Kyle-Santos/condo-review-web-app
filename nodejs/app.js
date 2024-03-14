@@ -30,6 +30,16 @@ const handlebars = require('express-handlebars');
 server.set('view engine', 'hbs');
 server.engine('hbs', handlebars.engine({
     extname: 'hbs',
+    helpers: {
+        // Define your custom helper functions here
+        if_eq: function(a, b, opts) {
+            if (a === b) {
+                return opts.fn(this);
+            } else {
+                return opts.inverse(this);
+            }
+        }
+    }
 }));
 
 server.use(express.static('public'));
@@ -51,7 +61,7 @@ for(i = 0; i < controllers.length; i++){
 server.post('/upload-image', upload.single('image'), (req, res) => {
     // Get the temporary file path of the uploaded image
     const tempFilePath = req.file.path;
-    
+
     if (fs.existsSync(tempFilePath)) {
         const destinationPath = path.join(__dirname, 'public', 'images', 'client-uploaded-files', req.file.originalname);
         // Move the uploaded file to the destination path

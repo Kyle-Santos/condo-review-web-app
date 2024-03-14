@@ -124,6 +124,14 @@ function processReviews(reviews){
 
             // Format date without time component
             processedReview.date = review.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
+
+            // Format dates of comments
+            processedReview.comments = review.comments.map(comment => {
+                const processedComment = { ...comment };
+                processedComment.date = comment.date.toLocaleDateString();
+                return processedComment;
+            });
+
             // Transform the integer rating into an array of boolean values representing filled stars
             processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
             return processedReview;

@@ -10,7 +10,7 @@
     "$date": "2024-03-10T17:16:39.430Z"
   },
   "updatedAt": {
-    "$date": "2024-03-12T11:55:26.632Z"
+    "$date": "2024-03-13T16:57:18.885Z"
   },
   "email": "kyle_adrian_santos@dlsu.edu.ph",
   "city": "Manila",
@@ -126,4 +126,24 @@
       "$oid": "65f02a95457221883bab9999"
     }
   ]
+},
+{
+  "_id": {
+    "$oid": "65f30c88e0199de136f395ea"
+  },
+  "user": "Bob",
+  "pass": "asd",
+  "picture": "images/man.png",
+  "email": "none",
+  "job": "Owner",
+  "city": "Makati",
+  "reviews": [],
+  "createdAt": {
+    "$date": "2024-03-14T14:41:12.800Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-14T14:42:56.663Z"
+  },
+  "bio": "Owner of W.H. Taft, 2 Torre, Burgundy, and Green Residences.\n\n",
+  "education": "University of the Philippines Diliman"
 }]

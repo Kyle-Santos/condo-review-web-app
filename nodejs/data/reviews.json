@@ -77,7 +77,26 @@
     "$oid": "65edeaf7b754b09640686ab4"
   },
   "condoId": "wh-taft",
-  "comments": []
+  "comments": [
+    {
+      "content": "Thank you for your input!",
+      "date": {
+        "$date": "2024-03-12T16:00:00.000Z"
+      },
+      "user": {
+        "$oid": "65f30c88e0199de136f395ea"
+      }
+    },
+    {
+      "date": {
+        "$date": "2024-03-11T16:00:00.000Z"
+      },
+      "user": {
+        "$oid": "65eded9d0572307102cdd84d"
+      },
+      "content": "Totally agree with you there!"
+    }
+  ]
 },
 {
   "_id": {

@@ -14,7 +14,7 @@ $(document).ready(function() {
 
         var formData = {};
 
-        if (name !== "" ) {
+        if (name !== "") {
             if (!name.includes(' ')) 
                 formData.name = name;
             else {

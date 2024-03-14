@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const userModel = require('../models/User'); 
 
 // Define the schema for a comment
 const commentSchema = new mongoose.Schema({
-    text: String,
+    content: String,
+    date: Date,
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: userModel // Reference to the User model for the user who posted the comment
+        ref: 'user' // Reference to the User model for the user who posted the comment
     }
 });
 

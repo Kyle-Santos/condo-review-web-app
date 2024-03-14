@@ -146,19 +146,31 @@ p {
     gap: 8px;
 }
 
-.establishment-response-container {
+.comment {
     background-color: #f0f2f5;
     border-radius: 25px;
     font-size: 12px;
     padding: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
-.establishment-response-container > p {
-    padding: 10px;
+.comment-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
-.establishment-response-container > b {
+.comment p {
+    margin: 0;
+}
+
+.comment > b {
     font-size: 15px;
+}
+.verified-checkmark {
+    margin-right: 5px;
 }
 
 
@@ -227,18 +239,18 @@ h4 {
     font-size: 12px;
 }
 
-.review-footer a:hover , .establishment-response-container a:hover{
+.review-footer a:hover , .comment a:hover{
     cursor: pointer;
     text-decoration: underline;
 }
 
-.review-profile, .owner-profile{
+.review-profile {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.owner-profile img, .review-profile img {
+.comment img, .review-profile img {
     height: 40px;
     border-radius: 50%;
 }

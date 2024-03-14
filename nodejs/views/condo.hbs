@@ -158,21 +158,24 @@
                     <button class="submit-button">Comment</button>
                 </div>
 
-                <div class="establishment-response-container">
-                    <b>Establishment Response</b> <br/>
-                    10 days ago
-                    <p>Thank you for your input!</p>
-                    <div class="owner-profile">
-                        <img src="../images/man.png"/>
+                {{#each comments}}
+                <div class="comment">
+                    <div>
+                        <a href="/profile/{{user.user}}"><img src="{{user.picture}}"/></a>
+                    </div>
+                    <div class="comment-right">
                         <div>
-                            <a href="profile.html">
-                                <b>Bob Bob</b>
-                            </a>
-                            
-                            <br/>Owner
+                            <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a> 
+                            <span class="verified-checkmark">{{#if_eq user.job 'Owner'}}✔️{{/if_eq}}</span>
+                            {{date}}
+                        </div>
+                        <div>
+                            <p>{{content}}</p>
                         </div>
                     </div>
+                    
                 </div> 
+                {{/each}}
             </div>
             {{/each}}
         </div>
