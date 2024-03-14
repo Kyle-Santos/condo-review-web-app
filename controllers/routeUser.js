@@ -103,11 +103,11 @@ function add(server){
                 // Handle successful update
                 console.log("Update successful:", result);
 
-                if (newData.name !== undefined) logUsername = newData.name;
+                if (newData.user !== undefined) logUsername = newData.user;
                 if (newData.picture !== undefined) logIcon = newData.picture.replace('public/', '');
                 if (newData.job !== undefined) logUserJob = newData.job;
 
-                resp.json({message: 'Profile updated successfully!'});
+                resp.json({message: 'Profile updated successfully!', user: logUsername });
             })
             .catch(err => {
                 // Handle error

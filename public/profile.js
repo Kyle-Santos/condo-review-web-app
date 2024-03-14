@@ -83,10 +83,11 @@ function editprofile(formData) {
         data: formData,
         success: function(response) {
             alert(response.message);
+            window.location.href = "/profile/" + response.user;
         },
         error: function(xhr, status, error) {
             alert('An error occurred: ' + error);
+            window.location.href = "/profile/" + $("#username-display").text();
         }
     });
-    window.location.href = "/profile/" + $("#username-display").text();
 }

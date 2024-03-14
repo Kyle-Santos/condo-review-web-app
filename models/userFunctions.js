@@ -73,7 +73,7 @@ function filterEditData(userData){
     const { name, email, bio, job, education, city, imagePath } = userData;
     // Filter out null values
     const newData = {};
-    if (name !== undefined) newData.name = name;
+    if (name !== undefined) newData.user = name;
     if (email !== undefined) newData.email = email;
     if (bio !== undefined) newData.bio = bio;
     if (job !== undefined) newData.job = job;
