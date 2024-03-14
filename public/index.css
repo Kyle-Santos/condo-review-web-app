@@ -52,7 +52,7 @@
 }
 
 .main-image{
-    background-image: url('../images/home-bg.png');
+    background-image: url('images/home-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 704px;
@@ -76,7 +76,7 @@
 }
 .search-bar > form > input{
     width: 600px;
-    height: 70px;
+    height: 30px;
     border-radius: 20px 0 0 20px;
     padding: 20px;
 }

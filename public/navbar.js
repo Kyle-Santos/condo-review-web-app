@@ -1,10 +1,122 @@
-function goToLoggedOut(){
-    window.location.href="index.html"
-}
 $(document).ready(function(){
-    $(".nav-logged-in").hide();
-    $("#logout-button").hide();
-    $("#login").hide();
+
+    $.get(
+        'loggedInStatus',
+        function(data, status){
+            if(status === 'success'){
+                console.log(data.status);
+                $("#login").hide();
+                if(data.status === 0){
+                    $(".nav-logged-in").hide();
+                    $("#logout-button").hide();
+                }
+                else{
+                    $(".nav-logged-out").hide();
+                    $(".nav-logged-in").show();
+                    $("#username-display").text(data.username);
+                    $("#profile-link").attr('href', 'profile/' + data.username);
+                    $('#profile-link img').attr('src', data.picture);
+                    showLogInView();
+                    $("#login").hide();
+                    updateDropdownText(data.username); // changes the dropdown
+                }
+            }
+        }
+    );
+
+    $("#logout-button").click(function(){
+        $.post(
+           'logout',
+            {},
+            function(data, status){
+                if(status === 'success'){
+                    
+                    $(".nav-logged-in").hide();
+                    $("#logout-button").hide();
+                    window.location.href="/";
+                    logStatus = 0;
+                }
+                else{
+                    alert('clicked');
+                }
+            }
+        );
+        
+    });
+
+    // Account creation form submission
+    $("#create-account-form").submit(function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+        
+        // Validate the form inputs
+        if (!checkCreateAccountForm()) {
+            return;
+        }
+
+        var iconPath = $('input[name="avatar"]:checked').closest('.select-avatar').find('img.avatar').attr('src');
+
+        // Get form data
+        const formData = {
+            username: $("#create-account-form input[name='username']").val(),
+            password: $("#create-account-form input[name='password']").val(),
+            picture: iconPath,
+        };
+
+        $("#create-account").hide();
+
+        // Send POST request to server
+        $.post('/create-account', formData)
+            .done(function(response) {
+                // Handle success response
+                alert(response.message); // Display success message
+            })
+            .fail(function(xhr, status, error) {
+                // Handle failure response
+                console.error('Error creating account:', error);
+                alert(xhr.responseJSON.message); // Display error message
+            });
+    });
+
+    // Login form submission
+    $('#login-form').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Validate the form inputs
+        if (!checkLoginForm()) {
+            return;
+        }
+
+        const username = $("#login-form input[name='username']").val();
+        const password = $("#login-form input[name='password']").val();
+
+        // $("#login").hide();
+        // Send login request to server
+        $.post('/login', { username, password })
+            .done(function(response) {
+                // Successful login
+                console.log(response.message);
+
+                // Set the text of the <div> element to the entered username
+                $("#username-display").text(username);
+                $("#profile-link").attr('href', 'profile/' + username);
+                $('#profile-link img').attr('src', response.picture);
+
+                showLogInView();
+                $("#login").hide();
+                updateDropdownText(username); // changes the dropdown
+
+                // alert("Welcome to The Condo Bro, " + username);
+            })
+            .fail(function(xhr, status, error) {
+                // Login failed
+                console.error('Login failed:', error);
+                alert(xhr.responseJSON.message);
+            });
+    });
+
+
+
     $("#create-account").hide();
 
     // Dropdown magic
@@ -20,9 +132,11 @@ $(document).ready(function(){
         $("#login").slideDown();
         $(".nav-dropdown").hide(); // Hides dropdown after click
     });
+
     $("#close").click(function(){
         $("#login").hide();
     });
+    
 
     $("#close-create").click(function(){
         $("#create-account").hide();
@@ -34,40 +148,21 @@ $(document).ready(function(){
 
     // Login button click event
     $("#login-button").click(function(){
-        if (window.location.pathname.includes("index.html")) {
-            if ($(this).text() === "View Profile") {
-                window.location.href = "public/profile.html";
-            } else {
-                $("#login").slideDown();
-                $(".nav-dropdown").hide(); // Hides dropdown after clicks
-            }
-        }
-        else {
-            if ($(this).text() === "View Profile") {
-                window.location.href = "profile.html";
-            } else {
-                $("#login").slideDown();
-                $(".nav-dropdown").hide(); // Hides dropdown after click
-            }
+        if ($(this).text() === "View Profile") {
+            window.location.href = "/profile/" + $("#username-display").text();
+        } else {
+            $("#login").slideDown();
+            $(".nav-dropdown").hide(); // Hides dropdown after clicks
         }
     });
 
     // Signup button click event
     $("#signup-button").click(function(){
-        if (window.location.pathname.includes("index.html")) {
-            if ($(this).text() === "Edit Profile") {
-                window.location.href = "public/editprofile.html";
-            } else {
-                $("#create-account").show();
-                $(".nav-dropdown").hide(); // Hides dropdown after click
-            }
+        if ($(this).text() === "Edit Profile") {
+            window.location.href = "/edit-profile";
         } else {
-            if ($(this).text() === "Edit Profile") {
-                window.location.href = "editprofile.html";
-            } else {
-                $("#create-account").show();
-                $(".nav-dropdown").hide(); // Hides dropdown after click
-            }
+            $("#create-account").show();
+            $(".nav-dropdown").hide(); // Hides dropdown after click
         }
     });
 
@@ -78,8 +173,8 @@ $(document).ready(function(){
     });
 
     $("#view-condo").click(function(){
-        // Check if the current page is index.html
-        if (window.location.pathname.includes("index.html")) {
+        // Check if the current page is in index page
+        if (window.location.pathname === "/") {
             // Smooth scrolling behavior
             window.scrollBy({
                 top: 650,
@@ -87,8 +182,8 @@ $(document).ready(function(){
                 behavior: 'smooth'
             });
         } else {
-            // Redirect to index.html
-            window.location.href = "../index.html";
+            // Redirect to index page
+            window.location.href = "/";       
         }
     });
 });
@@ -102,7 +197,6 @@ function updateDropdownText(username) {
 
 
 function showLogInView(){
-    console.log("hello");
     $(".nav-logged-out").hide();
     $(".nav-logged-in").show();
 }
@@ -128,25 +222,15 @@ function checkLoginForm(){
         alert("Username and password must not contain white space.");
         return false;
     }
-
-    // Prevent default form submission behavior
-    event.preventDefault();
-
-    // Set the text of the <div> element to the entered username
-    document.getElementById("username-display").innerText = username;
-
-
-    showLogInView();
-    $("#login").hide();
-    updateDropdownText(username); // changes the dropdown
+    
     return true;
 
 }
 
 function checkCreateAccountForm(){
-    let username = document.forms["create-account-form"]["new-username"].value;
-    let password = document.forms["create-account-form"]["new-password"].value;
-    let confirmPassword = document.forms["create-account-form"]["new-confirm-password"].value;
+    let username = document.forms["create-account-form"]["username"].value;
+    let password = document.forms["create-account-form"]["password"].value;
+    let confirmPassword = document.forms["create-account-form"]["confirm-password"].value;
 
     if(username.length < 1 || password.length < 1 || confirmPassword.length < 1){
         alert("Required fields must not be empty.");
@@ -162,7 +246,6 @@ function checkCreateAccountForm(){
         alert("Passwords do not match. Please try again.");
         return false;
     }
-
 
     return true;
 }
@@ -204,5 +287,7 @@ function updateFilterInput() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    updateFilterInput(); // DO NOT DELETE(For Filter)
+    if (window.location.pathname === "/")
+        updateFilterInput(); // DO NOT DELETE(For Filter)
+
 });
