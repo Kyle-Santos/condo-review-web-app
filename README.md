@@ -15,10 +15,11 @@ A step by step series of examples that tell you how to get a development environ
 
 1. Clone the repository to your local machine
 2. Navigate into the project directory
-3. Install the necessary packages with npm i express express-handlebars body-parser mongoose multer
+3. Install the necessary packages with "npm i express express-handlebars body-parser mongoose multer"
 4. Set up a MongoDB database and ensure it's running (connect to mongodb://localhost:27017)
 5. Start the server (node app.js)
-6. You should now have the server running on http://localhost:3000
+6. Import condos.json, reviews.json, and users.json to the condos, reviews, and users collections respectively under condodb in the database.
+7. You should now have the server running on http://localhost:3000
 ### Prerequisites
 
 What things you need to install the software and how to install them:
