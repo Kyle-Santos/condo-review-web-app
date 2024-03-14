@@ -1,6 +1,6 @@
 //Install Command:
 //npm init
-//npm i express express-handlebars body-parser mongoose
+//npm i express express-handlebars body-parser mongoose multer
 
 const express = require('express');
 const server = express();
