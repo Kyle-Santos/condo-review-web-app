@@ -33,6 +33,7 @@ textarea {
 .nav-logged-in > a > img{
     height: 40px;
     margin-right: 10px;
+    border-radius: 50%;
 }
 
 .nav-logged-in > button{
@@ -148,9 +149,9 @@ div.login-font {
 }
 
 .login-popup{
-    width:350px;
-    height:150px;
-    background-color: 2D2D2D;
+    width:330px;
+    height:140px;
+    background-color: #2D2D2D;
     color: white;
     align-content: center;
     top: 65px;
@@ -158,6 +159,7 @@ div.login-font {
     position: fixed;
     justify-content: center;
     border-radius: 0 0 10px 10px;
+    z-index: 9999;
 }
 
 .pop-up {
@@ -181,6 +183,14 @@ div.login-font {
     justify-content: center;
     height: 100%;
     text-align: center;
+}
+
+#close:hover{
+    cursor:pointer;
+}
+
+#close{
+    z-index: 9999;
 }
 
 .close-button{
@@ -219,7 +229,7 @@ div.login-font {
 }
 
 .pop-up-body > form > div{
-    padding: 10px;
+    padding: 5px;
     display: flex;
     justify-content: center;
 }
@@ -227,7 +237,6 @@ div.login-font {
 
 .pop-up-body > form > div > input{
     border-radius: 5px;
-    height: 30px;
     padding: 10px;
     width: 300px;
     display: flex;
@@ -235,7 +244,6 @@ div.login-font {
 
 .pop-up-body > form > div > textarea{
     width: 300px;
-
 }
 
 .pop-up-body > form > div > .submit{
@@ -273,7 +281,6 @@ div.login-font {
     align-items: center;
     max-height: 80px;
     padding: 10px;
-    margin-top: 20px;
     font-size: 13px;
 }
 
