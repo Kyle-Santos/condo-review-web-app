@@ -1,6 +1,6 @@
 //Install Command:
 //npm init
-//npm i express express-handlebars body-parser mongoose multer
+//npm i express express-handlebars body-parser mongoose multer bcrypt express-session connect-mongodb-session
 
 const express = require('express');
 const server = express();
@@ -25,6 +25,23 @@ const upload = multer({ storage: storage }); // Store uploaded files in the 'upl
 const bodyParser = require('body-parser');
 server.use(express.json()); 
 server.use(express.urlencoded({ extended: true }));
+
+
+// SESSION HANDLER
+const session = require('express-session');
+const mongoStore = require('connect-mongodb-session')(session);
+
+server.use(session({
+    secret: 'penguin-banana-jazz-1234',
+    saveUninitialized: false, 
+    resave: false,
+    store: new mongoStore({
+        uri: 'mongodb://localhost:27017/condodb', // MongoDB connection URI
+        collection: 'mySession', // Collection where sessions are stored
+        expires: 24 * 60 * 60 * 1000 // Default session expiration: 1 day in milliseconds
+    })
+}));
+
 
 const handlebars = require('express-handlebars');
 server.set('view engine', 'hbs');

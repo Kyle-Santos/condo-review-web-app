@@ -19,20 +19,15 @@ async function findUser(username, password){
         const passwordMatch = await bcrypt.compare(password, user.pass);
 
         if (!passwordMatch) {
-            return [401, 'Invalid password', 0, "", "", "Condo Bro"];
+            return [401, 'Invalid password', user];
         }
 
-        /* logStatus = 1; //change to include owner
-        logUsername = username;
-        logIcon = user.picture;
-        logUserJob = user.job; */
-
         // Authentication successful
-        return [200, 'Login successful', 1, username, user.picture, user.job];
+        return [200, 'Login successful', user];
         //res.status(200).json({ message: 'Login successful', user: user });
     } catch (error) {
         console.error('Error during login:', error);
-        return [500, 'Internal Server Error', 0, "", "", "Condo Bro"];
+        return [500, 'Internal Server Error', null];
         //res.status(500).json({ message: 'Internal server error' });
     }
 }

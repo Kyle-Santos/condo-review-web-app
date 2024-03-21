@@ -4,13 +4,8 @@ $(document).ready(function(){
         'loggedInStatus',
         function(data, status){
             if(status === 'success'){
-                console.log(data.status);
                 $("#login").hide();
-                if(data.status === 0){
-                    $(".nav-logged-in").hide();
-                    $("#logout-button").hide();
-                }
-                else{
+                if(data.isAuthenticated){
                     $(".nav-logged-out").hide();
                     $(".nav-logged-in").show();
                     $("#username-display").text(data.username);
@@ -19,6 +14,10 @@ $(document).ready(function(){
                     showLogInView();
                     $("#login").hide();
                     updateDropdownText(data.username); // changes the dropdown
+                }
+                else{
+                    $(".nav-logged-in").hide();
+                    $("#logout-button").hide();
                 }
             }
         }
@@ -29,12 +28,10 @@ $(document).ready(function(){
            'logout',
             {},
             function(data, status){
-                if(status === 'success'){
-                    
+                if(status === 'success') {
                     $(".nav-logged-in").hide();
                     $("#logout-button").hide();
                     window.location.href="/";
-                    logStatus = 0;
                 }
                 else{
                     alert('clicked');
@@ -89,10 +86,12 @@ $(document).ready(function(){
 
         const username = $("#login-form input[name='username']").val();
         const password = $("#login-form input[name='password']").val();
+        const rememberMe = $("#login-form input[type='checkbox']").prop('checked'); // Get the state of the checkbox
 
-        // $("#login").hide();
+        $("#login").hide();
+
         // Send login request to server
-        $.post('/login', { username, password })
+        $.post('/login', { username, password, rememberMe })
             .done(function(response) {
                 // Successful login
                 console.log(response.message);

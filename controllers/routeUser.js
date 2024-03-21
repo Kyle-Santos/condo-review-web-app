@@ -1,21 +1,20 @@
 const userModel = require('../models/User');
 const userFunctions = require('../models/userFunctions');
-const routeReview = require('../controllers/routeReview');
-
-var logStatus = 0;
-var logUsername = "";
-var logIcon = "";
-var logUserJob = "Condo Bro";
-
 
 function add(server){
-
     server.get('/loggedInStatus', function(req, resp){
-        resp.send({
-            status: logStatus, 
-            username: logUsername,
-            picture: logIcon
-        });
+        // Check if user is authenticated by verifying the presence of user details in session
+        if (req.session && req.session.isAuthenticated) {
+            resp.send({
+                isAuthenticated: req.session.isAuthenticated,
+                username: req.session.username,
+                picture: req.session.picture
+            });
+        } else {
+            resp.send({
+                isAuthenticated: false // Set isAuthenticated to false
+            });
+        }
     });
 
     server.get('/', function(req,resp){
@@ -37,26 +36,30 @@ function add(server){
 
     // Logout POST
     server.post('/logout', function(req, resp){
-        logStatus = 0;
-        logUsername = "";
-        logIcon = "";
-        logUserJob = "Condo Bro";
-
-        routeReview.editLoginStatus(logStatus, logUsername, logIcon, logUserJob);
-
-        resp.send({});
+        req.session.destroy(function(err) {
+            resp.send({});
+        });
     });
 
     // Login POST 
     server.post('/login', async (req, res) => {
-        const { username, password } = req.body;   
+        const { username, password, rememberMe } = req.body;   
 
         let findStatus, findMessage;
 
-       [findStatus, findMessage, logStatus, logUsername, logIcon, logUserJob] = await userFunctions.findUser(username, password);
+        [findStatus, findMessage, user] = await userFunctions.findUser(username, password);
         
-       routeReview.editLoginStatus(logStatus, logUsername, logIcon, logUserJob);
-        res.status(findStatus).json({message: findMessage, picture: logIcon});
+        if (findStatus === 200) {
+            if (rememberMe === 'true') 
+                req.session.cookie.expires = new Date(Date.now() + 21 * 24 * 60 * 60 * 1000); // 21 days 
+
+            req.session.username = user.user;
+            req.session.picture = user.picture;
+            req.session.job = user.job;
+            req.session.isAuthenticated = true;
+        }
+
+        res.status(findStatus).json({message: findMessage, picture: user.picture});
     });
 
 
@@ -98,16 +101,16 @@ function add(server){
         const newData = userFunctions.filterEditData(req.body);
 
         // Use updateOne to update specific fields of the user document
-        userModel.updateOne({ "user": logUsername }, { $set: newData })
+        userModel.updateOne({ "user": req.session.username }, { $set: newData })
             .then(result => {
                 // Handle successful update
                 console.log("Update successful:", result);
 
-                if (newData.user !== undefined) logUsername = newData.user;
-                if (newData.picture !== undefined) logIcon = newData.picture.replace('public/', '');
-                if (newData.job !== undefined) logUserJob = newData.job;
+                if (newData.user !== undefined) req.session.username = newData.user;
+                if (newData.picture !== undefined) req.session.picture = newData.picture.replace('public/', '');
+                if (newData.job !== undefined) req.session.job = newData.job;
 
-                resp.json({message: 'Profile updated successfully!', user: logUsername });
+                resp.json({message: 'Profile updated successfully!', user: req.session.username });
             })
             .catch(err => {
                 // Handle error

@@ -64,7 +64,7 @@ $(document).ready(function(){
 
     $("#show-create-review").click(function() {
         $.get('/loggedInStatus', function(data) {
-             if(data.status > 0) { // Assuming status > 0 means logged in
+             if(data.isAuthenticated) { 
                  $("#create-review").show();
              } else {
                  alert("You must be logged in to create a review.");
