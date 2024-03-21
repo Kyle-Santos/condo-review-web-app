@@ -1,6 +1,10 @@
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 
+// can be added to hash the password for confidentiality
+const bcrypt = require('bcrypt'); 
+const saltRounds = 10;
+
 async function findUser(username, password){
     
     try {
@@ -9,16 +13,13 @@ async function findUser(username, password){
         const user = await userModel.findOne({ user: username });
         if (!user) {
             return [404, 'User not found', 0, "", "", "Condo Bro"];
-
-           // res.status(404).json({ message: 'User not found' });
         }
 
         // Compare passwords
-        // const passwordMatch = await bcrypt.compare(password, user.pass);
+        const passwordMatch = await bcrypt.compare(password, user.pass);
 
-        if (password !== user.pass) {
+        if (!passwordMatch) {
             return [401, 'Invalid password', 0, "", "", "Condo Bro"];
-            //res.status(401).json({ message: 'Invalid password' });
         }
 
         /* logStatus = 1; //change to include owner
@@ -36,10 +37,20 @@ async function findUser(username, password){
     }
 }
 
-function createAccount(username, password, picture){
+async function createAccount(username, password, picture) {
+    // encrypt password
+    let encryptedPass = "";
+
+    await new Promise((resolve, reject) => {
+        bcrypt.hash(password, saltRounds, function(err, hash) { 
+            encryptedPass = hash;
+            resolve(); // Resolve the promise when hashing is complete
+        });
+    });
+
     const user = userModel({
         user: username,
-        pass: password,
+        pass: encryptedPass,
         picture: picture,
         email: "none",
         job: "Condo Bro",

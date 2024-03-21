@@ -55,9 +55,6 @@ for(i = 0; i < controllers.length; i++){
     ctrl.add(server);
 }
 
-// can be added to hash the password for confidentiality
-// const bcrypt = require('bcrypt'); 
-
 server.post('/upload-image', upload.single('image'), (req, res) => {
     // Get the temporary file path of the uploaded image
     const tempFilePath = req.file.path;
