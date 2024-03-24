@@ -14,7 +14,7 @@ function add(server){
 
        [createSuccess, createStatus, createMessage] = await userFunctions.createComment(req.session._id, req.body.content, req.body.date, req.body.reviewId);
 
-        resp.status(createStatus).send({success: createSuccess, message: createMessage, user: req.session});
+        resp.status(createStatus).send({ success: createSuccess, message: createMessage, user: req.session });
     });
 }
 

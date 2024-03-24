@@ -8,7 +8,8 @@ function add(server){
             resp.send({
                 isAuthenticated: req.session.isAuthenticated,
                 username: req.session.username,
-                picture: req.session.picture
+                picture: req.session.picture,
+                job: req.session.job
             });
         } else {
             resp.send({

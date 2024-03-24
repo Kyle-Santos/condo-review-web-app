@@ -440,7 +440,7 @@ form > .star-rating svg {
     resize: vertical; 
 }
 
-.submit-button {
+.comment-button {
     padding: 5px 10px;
     background-color: #4CAF50;
     color: white;
@@ -449,6 +449,6 @@ form > .star-rating svg {
     cursor: pointer;
 }
 
-.submit-button:hover {
+.comment-button:hover {
     background-color: #45a049;
 }
