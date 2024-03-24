@@ -75,6 +75,23 @@ async function createAccount(username, password, picture) {
         });
 }
 
+async function createComment(userId, content, date, reviewId) {
+    try {
+        // Find the review by ID
+        const review = await reviewModel.findById(reviewId);
+        // Add the new comment at the beginning of the comments array
+        review.comments.unshift({ content, date, user: userId });
+
+        // Save the updated review
+        await review.save();
+
+        return [true, 200, 'Comment was published!'];
+    } catch (error) {
+        console.error("Error creating comment:", error);
+        throw error; // Throw the error for handling elsewhere
+    }
+}
+
 function filterEditData(userData){
     const { name, email, bio, job, education, city, imagePath } = userData;
     // Filter out null values
@@ -154,3 +171,4 @@ module.exports.findUser = findUser;
 module.exports.createAccount = createAccount;
 module.exports.filterEditData = filterEditData;
 module.exports.createReview = createReview;
+module.exports.createComment = createComment;

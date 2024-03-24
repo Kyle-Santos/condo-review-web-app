@@ -57,6 +57,7 @@ function add(server){
             req.session.picture = user.picture;
             req.session.job = user.job;
             req.session.isAuthenticated = true;
+            req.session._id = user._id;
         }
 
         res.status(findStatus).json({message: findMessage, picture: user.picture});

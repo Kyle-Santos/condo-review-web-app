@@ -1,8 +1,7 @@
 var ratingButtons;
 $(document).ready(function(){
     // create review form
-
-    $("#create-review-form").submit(function(event) { //this is the most cancerous thing I've done
+    $("#create-review-form").submit(function(event) { 
         // Prevent default form submission behavior
         event.preventDefault();
 
@@ -55,6 +54,70 @@ $(document).ready(function(){
             submitReview(title, content, rating, imagePath, date, condoId);
         }
     });
+
+
+    // create comment form
+    $("#create-comment-form").submit(function(event) { 
+        // Prevent default form submission behavior
+        event.preventDefault();
+
+        // Get form data
+        var content = $("#comment-content").val().trim();
+        var reviewId = $(this).closest('.grid-item').attr('id');
+        var date = new Date().toLocaleDateString();
+        
+        // Validate the form inputs
+        if (!content) {
+            alert("Please put a comment first.");
+            return; // Exit the function if validation fails
+        }
+
+        // Get form data
+        const formData = {
+            content: content,
+            date: date,
+            reviewId: reviewId,
+        };
+
+        // Send POST request to server
+        $.post('/create-comment', formData)
+            .done(function(response) {
+                // Handle success response
+                alert(response.message); // Display success message
+                $("#comment-content").val("");
+
+                // Create a new review element
+                var reviewElement = document.createElement("div");
+                reviewElement.classList.add("comment");
+                console.log(response.user);
+
+                // Construct HTML content for the new review
+                reviewElement.innerHTML = `
+                <div>
+                    <a href="/profile/${response.user.username}"><img src="${response.user.picture}"/></a>
+                </div>
+                <div class="comment-right">
+                    <div>
+                        <a href="/profile/${response.user.username}"><b>${response.user.username}</b></a> 
+                        <span class="verified-checkmark">${response.user.job === 'Owner' ? '✔️' : ''}</span>
+                        ${date}
+                    </div>
+                    <div>
+                        <p>${content}</p>
+                    </div>
+                </div>
+                `;
+
+                // Prepend the new review to the reviews container
+                $("#" + reviewId + " .comments").prepend(reviewElement);
+            })
+            .fail(function(xhr, status, error) {
+                // Handle failure response
+                console.error('Error creating account:', error);
+                alert(xhr.responseJSON.message); // Display error message
+            });
+    });
+
 
     $("#create-review").hide();
 
@@ -180,9 +243,13 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                 </div>
                 <div class="review-footer">
                     <div class="review-profile">
-                        <img src="${response.icon}"/>
+                        <a href="/profile/${response.user}">
+                            <img src="${response.icon}"/>
+                        </a>
                         <div>
-                            <b>${response.user}</b>
+                            <a href="/profile/${response.user}">
+                                <b>${response.user}</b>
+                            </a>
                             <br/>${response.job}
                         </div>
                     </div>
@@ -194,6 +261,14 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                         0 people liked
                     </div>
                 </div>
+                <div><hr/><h4>Comments:</h4></div>
+                
+                <form id="create-comment-form" method="post">
+                    <div class="comment-container">
+                        <textarea class="comment-textarea" placeholder="Write your comment here..."></textarea>
+                        <button class="submit-button">Comment</button>
+                    </div>
+                </form>
             `;
 
             // Prepend the new review to the reviews container
