@@ -234,7 +234,7 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                 <div class="review-header">
                     <div>
                         <h3>${title}</h3>
-                        ${date} <!-- Use current date for review date -->
+                        Posted on ${date} <!-- Use current date for review date -->
                     </div>
                     <div class="star-rating" id="rating">
                         ${starIcons} <!-- Render star icons based on the rating -->
