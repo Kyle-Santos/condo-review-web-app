@@ -1,0 +1,29 @@
+# Condo Review Application
+
+## This is our MCO2 Functioning Project that uses Nodejs, mongodb, and express
+
+This project is a comprehensive condominum review application designed to enhance user engagement and personalization. At its core, the application allows users to edit and update their profiles and reviews, including personal information, bio, job details, and educational background. With support for photo uploads, the platform enables users to keep their profile and reviews up-to-date, fostering a more vibrant and connected user experience.
+## Getting Started
+
+### Built With
+Express - The web framework used
+MongoDB - Database
+Node.js - JavaScript runtime
+
+### Installing
+A step by step series of examples that tell you how to get a development environment running.
+
+1. Clone the repository to your local machine
+2. Navigate into the project directory
+3. Install the necessary packages
+4. Set up a MongoDB database and ensure it's running
+5. Start the server 
+6. You should now have the server running on http://localhost:3000
+### Prerequisites
+
+What things you need to install the software and how to install them:
+
+```bash
+node.js
+npm
+MongoDB

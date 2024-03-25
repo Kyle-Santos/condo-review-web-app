@@ -32,8 +32,8 @@
                     </div>
                     <div class="review-header-right">
                         <div class="edit-delete-icons">
-                            <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
-                            <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
+                            <button class="edit-icon-btn" data-review-id="{{this._id}}"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="delete-icon-btn" data-review-id="{{this._id}}"><i class="fas fa-trash"></i> Delete</button>
                         </div>
                         <div class="star-rating" id="rating">
                             {{#each rating}}
@@ -79,3 +79,15 @@
             {{/each}}
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.edit-icon-btn');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const reviewId = this.getAttribute('data-review-id');
+                    window.location.href = `/edit-review/${reviewId}`; // Redirect user to the edit review page
+                });
+            });
+        });
+    </script>

@@ -77,6 +77,26 @@ function add(server){
             return res.status(400).send('Uploaded file not found');
         }
     });
+    server.get('/edit-review/:id', async (req, resp) => {
+        try {
+            const reviewId = req.params.id;
+            const review = await reviewModel.findById(reviewId).lean();
+            resp.render('editReview', { review }); // Render your edit review template
+        } catch(error) {
+            resp.status(500).send('Error fetching review');
+        }
+    });
+
+// And a route to handle the form submission
+    server.post('/update-review/:id', async (req, resp) => {
+        try {
+            const reviewId = req.params.id;
+            await reviewModel.findByIdAndUpdate(reviewId, req.body);
+            resp.redirect('/viewprofile'); // Redirect to the updated review or another page
+        } catch(error) {
+            resp.status(500).send('Error updating review');
+        }
+    });
 }
 
 module.exports.add = add;
