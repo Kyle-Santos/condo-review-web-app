@@ -21,7 +21,7 @@ $(document).ready(function(){
                         const imgContainer = $('<div>').addClass('condo-image-container');
                         const image = $('<img>').addClass('condo-list-img').attr('src', item.img);
                         const nameContainer = $('<div>').addClass('condo-name-container');
-                        const name = $('<h2>').text(item.name);
+                        const name = $('<h2>').html(item.name);
                         const descContainer = $('<div>').addClass('condo-description-container');
                         const desc = $('<p>').text(item.description);
                         const ratingContainer = $('<div>').addClass('condo-rating-container');

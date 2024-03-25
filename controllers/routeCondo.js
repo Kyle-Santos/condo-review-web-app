@@ -2,6 +2,7 @@ const condoModel = require('../models/Condo');
 const reviewModel = require('../models/Review');
 const userFunctions = require('../models/userFunctions');
 
+
 function add(server){
     server.post('/search-condo', function(req, resp){
         var text = req.body.text;
@@ -16,6 +17,7 @@ function add(server){
                 condoText = item.description.toUpperCase();
 
                 if(condoName.includes(text) || condoText.includes(text)){
+                    item.description = item.description.slice(0, 150) + "...";
                     listOfCondos.push(item);
                 }
                 
