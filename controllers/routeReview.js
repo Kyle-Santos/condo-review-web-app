@@ -17,6 +17,23 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }); // Store uploaded files in the 'uploads' directory
 
 function add(server){
+    server.post('/search-review', function(req, resp){
+        var text = req.body.text;
+        var condoId = req.body.condoId;
+        var listOfReviews = new Array();
+
+        var searchQuery = {condoId: condoId};
+
+        reviewModel.find(searchQuery).then(function(reviews){
+            for(const item of reviews){
+                if(item.content.includes(text) || item.title.includes(text)){
+                    listOfReviews.push(item);
+                }
+            }
+        });
+        
+    });
+
     server.patch('/create-review', async (req, resp) => {
         const { condoId, title, content, rating, image, date } = req.body;
     
