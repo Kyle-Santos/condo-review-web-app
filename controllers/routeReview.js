@@ -1,3 +1,4 @@
+const reviewModel = require('../models/Review');
 const userFunctions = require('../models/userFunctions');
 
 // saving uploaded image
@@ -24,14 +25,20 @@ function add(server){
 
         var searchQuery = {condoId: condoId};
 
-        reviewModel.find(searchQuery).then(function(reviews){
+        reviewModel.find(searchQuery).populate('author comments.user').lean().then(function(reviews){
+            let content;
+            let title;
             for(const item of reviews){
-                if(item.content.includes(text) || item.title.includes(text)){
+                content = item.content.toUpperCase();
+                title = item.title.toUpperCase();
+
+                if(content.includes(text) || title.includes(text)){
                     listOfReviews.push(item);
                 }
             }
+
+            resp.send({reviews: userFunctions.processReviews(listOfReviews)});
         });
-        
     });
 
     server.patch('/create-review', async (req, resp) => {

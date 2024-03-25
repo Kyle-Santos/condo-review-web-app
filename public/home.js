@@ -12,10 +12,7 @@ $(document).ready(function(){
                 if(status === 'success'){
                     $("#condo-container").empty();
 
-                    let containerHTML;
-
                     data.condos.forEach(function(item){
-                        console.log(item.name);
                         const anchor = $('<a>').attr('href', `/condo/${item.id}`);
                         const div = $('<div>');
                         const imgContainer = $('<div>').addClass('condo-image-container');
