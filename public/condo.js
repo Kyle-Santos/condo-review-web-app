@@ -23,7 +23,7 @@ $(document).ready(function(){
 
     })
 
-    $("#create-review-form").submit(function(event) { //this is the most cancerous thing I've done
+    $("#create-review-form").submit(function(event) { 
         // Prevent default form submission behavior
         event.preventDefault();
 
@@ -77,61 +77,130 @@ $(document).ready(function(){
         }
     });
 
-    $("#create-review").hide();
 
-    $("#close-create-review").click(function(){
-        $("#create-review").hide();
-    })
+    // create comment form
+    $(".create-comment-form").submit(function(event) { 
+        // Prevent default form submission behavior
+        event.preventDefault();
 
-    $("#show-create-review").click(function() {
         $.get('/loggedInStatus', function(data) {
-             if(data.status > 0) { // Assuming status > 0 means logged in
-                 $("#create-review").show();
-             } else {
-                 alert("You must be logged in to create a review.");
-             }
-        //    $("#create-review").show();
-        });
-    });
+            if(!data.isAuthenticated) {
+                alert("You must be logged in to create a comment.");
+                return;
+            } 
 
-    function showLogInView(){
-        $(".nav-logged-out").hide();
-        $(".nav-logged-in").show();
-    }
-
-    // 
-    $('.star-rating-button').on('mouseenter', selectStars);
-
-    $('.star-rating-button').on('mouseleave', resetStars);
-
-    $('.star-rating-button').on('click', function() {
-        const ratingValue = $(this).data('rating');
-        highlightStars(ratingValue);
-
-        // Remove the mouseenter and mouseleave event listeners from all buttons
-        $('.star-rating-button').off('mouseenter mouseleave');
-    });
-
-    function selectStars() {
-        const ratingValue = $(this).data('rating');
-        highlightStars(ratingValue);
-    }
-
-    function highlightStars(rating) {
-        $('.star-rating-button').each(function() {
-            const buttonRating = $(this).data('rating');
-            if (buttonRating <= rating) {
-                $(this).addClass('active');
-            } else {
-                $(this).removeClass('active');
+            // Get form data
+            var reviewId = $(this).closest('.grid-item').attr('id');
+            var content = $("#" + reviewId + " .comment-textarea").val();
+            var date = new Date().toLocaleDateString();
+            
+            // Validate the form inputs
+            if (!content) {
+                alert("Please put a comment first.");
+                return; // Exit the function if validation fails
             }
-        });
-    }
 
-    function resetStars() {
-        $('.star-rating-button').removeClass('active');
-    }
+            // Get form data
+            const formData = {
+                content: content,
+                date: date,
+                reviewId: reviewId,
+            };
+
+            // Send POST request to server
+            $.post('/create-comment', formData)
+                .done(function(response) {
+                    // Handle success response
+                    alert(response.message); // Display success message
+                    $(".comment-textarea").val("");
+                    
+                    // Create a new review element
+                    var reviewElement = document.createElement("div");
+                    reviewElement.classList.add("comment");
+
+                    // Construct HTML content for the new review
+                    reviewElement.innerHTML = `
+                    <div>
+                        <a href="/profile/${response.user.username}"><img src="${response.user.picture}"/></a>
+                    </div>
+                    <div class="comment-right">
+                        <div>
+                            <a href="/profile/${response.user.username}"><b>${response.user.username}</b></a> 
+                            <span class="verified-checkmark">${response.user.job === 'Owner' ? '✔️' : ''}</span>
+                            ${date}
+                        </div>
+                        <div>
+                            <p>${content}</p>
+                        </div>
+                    </div>
+                    `;
+
+                    // Prepend the new review to the reviews container
+                    $("#" + reviewId + " .comments").prepend(reviewElement);
+                })
+                .fail(function(xhr, status, error) {
+                    // Handle failure response
+                    console.error('Error creating account:', error);
+                    alert(xhr.responseJSON.message); // Display error message
+                });
+        });
+    });
+
+$("#create-review").hide();
+
+$("#close-create-review").click(function(){
+    $("#create-review").hide();
+})
+
+$("#show-create-review").click(function() {
+    $.get('/loggedInStatus', function(data) {
+            if(data.isAuthenticated) { 
+                $("#create-review").show();
+            } else {
+                alert("You must be logged in to create a review.");
+            }
+    //    $("#create-review").show();
+    });
 });
+
+function showLogInView(){
+    $(".nav-logged-out").hide();
+    $(".nav-logged-in").show();
+}
+
+// 
+$('.star-rating-button').on('mouseenter', selectStars);
+
+$('.star-rating-button').on('mouseleave', resetStars);
+
+$('.star-rating-button').on('click', function() {
+    const ratingValue = $(this).data('rating');
+    highlightStars(ratingValue);
+
+    // Remove the mouseenter and mouseleave event listeners from all buttons
+    $('.star-rating-button').off('mouseenter mouseleave');
+});
+
+function selectStars() {
+    const ratingValue = $(this).data('rating');
+    highlightStars(ratingValue);
+}
+
+function highlightStars(rating) {
+    $('.star-rating-button').each(function() {
+        const buttonRating = $(this).data('rating');
+        if (buttonRating <= rating) {
+            $(this).addClass('active');
+        } else {
+            $(this).removeClass('active');
+        }
+    });
+}
+
+function resetStars() {
+    $('.star-rating-button').removeClass('active');
+}
+    });
 
 function getRating() {
     let maxRating = 0;
@@ -187,7 +256,7 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                 <div class="review-header">
                     <div>
                         <h3>${title}</h3>
-                        ${date} <!-- Use current date for review date -->
+                        Posted on ${date} <!-- Use current date for review date -->
                     </div>
                     <div class="star-rating" id="rating">
                         ${starIcons} <!-- Render star icons based on the rating -->
@@ -201,9 +270,13 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                 </div>
                 <div class="review-footer">
                     <div class="review-profile">
-                        <img src="${response.icon}"/>
+                        <a href="/profile/${response.user}">
+                            <img src="${response.icon}"/>
+                        </a>
                         <div>
-                            <b>${response.user}</b>
+                            <a href="/profile/${response.user}">
+                                <b>${response.user}</b>
+                            </a>
                             <br/>${response.job}
                         </div>
                     </div>
@@ -215,6 +288,14 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                         0 people liked
                     </div>
                 </div>
+                <div><hr/><h4>Comments:</h4></div>
+                
+                <form id="create-comment-form" method="post">
+                    <div class="comment-container">
+                        <textarea class="comment-textarea" placeholder="Write your comment here..."></textarea>
+                        <button class="submit-button">Comment</button>
+                    </div>
+                </form>
             `;
 
             // Prepend the new review to the reviews container

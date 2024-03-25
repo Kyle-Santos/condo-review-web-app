@@ -107,7 +107,7 @@
         
         <div class="reviews-container">
             {{#each reviews}}
-            <div class="grid-item">
+            <div id="{{_id}}" class="grid-item">
                 <div class="review-header">
                     <div class="review-header-left">
                         <h3>{{title}}</h3>
@@ -160,30 +160,34 @@
                 </div>
 
                 <div><hr/><h4>Comments:</h4></div>
+                
+                <form class="create-comment-form" method="post">
+                    <div class="comment-container">
+                        <textarea class="comment-textarea" placeholder="Write your comment here..."></textarea>
+                        <button class="comment-button">Comment</button>
+                    </div>
+                </form>
 
-                <div class="comment-container">
-                    <textarea class="comment-textarea" placeholder="Write your comment here..."></textarea>
-                    <button class="submit-button">Comment</button>
-                </div>
-
+                <div class="comments">
                 {{#each comments}}
-                <div class="comment">
-                    <div>
-                        <a href="/profile/{{user.user}}"><img src="{{user.picture}}"/></a>
-                    </div>
-                    <div class="comment-right">
+                    <div class="comment">
                         <div>
-                            <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a> 
-                            <span class="verified-checkmark">{{#if_eq user.job 'Owner'}}✔️{{/if_eq}}</span>
-                            {{date}}
+                            <a href="/profile/{{user.user}}"><img src="{{user.picture}}"/></a>
                         </div>
-                        <div>
-                            <p>{{content}}</p>
+                        <div class="comment-right">
+                            <div>
+                                <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a> 
+                                <span class="verified-checkmark">{{#if_eq user.job 'Owner'}}✔️{{/if_eq}}</span>
+                                {{date}}
+                            </div>
+                            <div>
+                                <p>{{content}}</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                </div> 
+                        
+                    </div> 
                 {{/each}}
+                </div>
             </div>
             {{/each}}
         </div>

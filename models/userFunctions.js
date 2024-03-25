@@ -1,6 +1,10 @@
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 
+// can be added to hash the password for confidentiality
+const bcrypt = require('bcrypt'); 
+const saltRounds = 10;
+
 async function findUser(username, password){
     
     try {
@@ -9,37 +13,39 @@ async function findUser(username, password){
         const user = await userModel.findOne({ user: username });
         if (!user) {
             return [404, 'User not found', 0, "", "", "Condo Bro"];
-
-           // res.status(404).json({ message: 'User not found' });
         }
 
         // Compare passwords
-        // const passwordMatch = await bcrypt.compare(password, user.pass);
+        const passwordMatch = await bcrypt.compare(password, user.pass);
 
-        if (password !== user.pass) {
-            return [401, 'Invalid password', 0, "", "", "Condo Bro"];
-            //res.status(401).json({ message: 'Invalid password' });
+        if (!passwordMatch) {
+            return [401, 'Invalid password', user];
         }
 
-        /* logStatus = 1; //change to include owner
-        logUsername = username;
-        logIcon = user.picture;
-        logUserJob = user.job; */
-
         // Authentication successful
-        return [200, 'Login successful', 1, username, user.picture, user.job];
+        return [200, 'Login successful', user];
         //res.status(200).json({ message: 'Login successful', user: user });
     } catch (error) {
         console.error('Error during login:', error);
-        return [500, 'Internal Server Error', 0, "", "", "Condo Bro"];
+        return [500, 'Internal Server Error', null];
         //res.status(500).json({ message: 'Internal server error' });
     }
 }
 
-function createAccount(username, password, picture){
+async function createAccount(username, password, picture) {
+    // encrypt password
+    let encryptedPass = "";
+
+    await new Promise((resolve, reject) => {
+        bcrypt.hash(password, saltRounds, function(err, hash) { 
+            encryptedPass = hash;
+            resolve(); // Resolve the promise when hashing is complete
+        });
+    });
+
     const user = userModel({
         user: username,
-        pass: password,
+        pass: encryptedPass,
         picture: picture,
         email: "none",
         job: "Condo Bro",
@@ -67,6 +73,23 @@ function createAccount(username, password, picture){
                 //resp.status(500).send({ success: false, message: 'Error creating account' });
             }
         });
+}
+
+async function createComment(userId, content, date, reviewId) {
+    try {
+        // Find the review by ID
+        const review = await reviewModel.findById(reviewId);
+        // Add the new comment at the beginning of the comments array
+        review.comments.unshift({ content, date, user: userId });
+
+        // Save the updated review
+        await review.save();
+
+        return [true, 200, 'Comment was published!'];
+    } catch (error) {
+        console.error("Error creating comment:", error);
+        throw error; // Throw the error for handling elsewhere
+    }
 }
 
 function filterEditData(userData){
@@ -148,3 +171,4 @@ module.exports.findUser = findUser;
 module.exports.createAccount = createAccount;
 module.exports.filterEditData = filterEditData;
 module.exports.createReview = createReview;
+module.exports.createComment = createComment;
