@@ -3,7 +3,7 @@
     "$oid": "65f02a80457221883bab9990"
   },
   "id": "wh-taft",
-  "name": "W.H. Taft Residences",
+  "name": "W.H. Taft<br/>Residences",
   "address": "Taft Ave, Malate, Manila, 1004 Metro Manila",
   "rating": 4.3,
   "img": "images/wh taft.jpg",
@@ -28,7 +28,7 @@
   "name": "Burgundy Transpacific Taft",
   "address": "Taft Ave, Malate, Manila, 1004 Metro Manila",
   "rating": 4.3,
-  "img": "images/burg.jpg",
+  "img": "images/burgs.png",
   "description": "Burgundy Transpacific Place in Taft seamlessly integrates commercial and residential spaces, creating a dynamic urban complex in Manila's heart. Its sleek design distinguishes it in the bustling cityscape, serving as a vibrant hub for work and leisure. Within its commercial precincts, trendy cafes, boutique shops, and professional services cater to diverse needs, drawing visitors from afar. The residential aspect offers upscale apartments, from cozy studios to spacious penthouses, each equipped with contemporary amenities for comfort. With a commitment to sustainability, Burgundy Transpacific Place not only fosters a vibrant urban lifestyle but also promotes eco-friendly living in Manila's dynamic landscape."
 },
 {
@@ -36,7 +36,7 @@
     "$oid": "65f02a80457221883bab9993"
   },
   "id": "green-residence",
-  "name": "Green Residences",
+  "name": "Green<br/>Residences",
   "address": "Taft Ave, Malate, Manila, 1004 Metro Manila",
   "rating": 4.3,
   "img": "images/Green-Model.png",
