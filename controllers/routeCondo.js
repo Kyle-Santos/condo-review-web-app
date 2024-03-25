@@ -3,9 +3,33 @@ const reviewModel = require('../models/Review');
 const userFunctions = require('../models/userFunctions');
 
 function add(server){
+    server.post('/search-condo', function(req, resp){
+        var text = req.body.text;
+        var listOfCondos = new Array();
+        
+
+        condoModel.find().then(function(condos){
+            let condoName;
+            let condoText;
+            for(const item of condos){
+                condoName = item.name.toUpperCase();
+                condoText = item.description.toUpperCase();
+
+                if(condoName.includes(text) || condoText.includes(text)){
+                    listOfCondos.push(item);
+                }
+                
+            }
+
+            resp.send({condos: listOfCondos});
+        });
+
+        
+    });
   
     // get condo from the db GET
     server.get('/condo/:condoId', async (req, resp) => {
+        console.log('fniwof');
         const condoId = req.params.condoId; // Retrieve the condo ID from the URL
         const formattedCondoId = condoId.replace('-', ' ').toUpperCase(); // Format the condo ID
 
