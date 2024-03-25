@@ -29,7 +29,6 @@ function add(server){
   
     // get condo from the db GET
     server.get('/condo/:condoId', async (req, resp) => {
-        console.log('fniwof');
         const condoId = req.params.condoId; // Retrieve the condo ID from the URL
         const formattedCondoId = condoId.replace('-', ' ').toUpperCase(); // Format the condo ID
 

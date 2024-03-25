@@ -83,6 +83,9 @@ $(document).ready(function(){
         // Prevent default form submission behavior
         event.preventDefault();
 
+        // Store a reference to $(this) in a variable
+        var $form = $(this);
+
         $.get('/loggedInStatus', function(data) {
             if(!data.isAuthenticated) {
                 alert("You must be logged in to create a comment.");
@@ -90,7 +93,7 @@ $(document).ready(function(){
             } 
 
             // Get form data
-            var reviewId = $(this).closest('.grid-item').attr('id');
+            var reviewId = $form.closest('.grid-item').attr('id');
             var content = $("#" + reviewId + " .comment-textarea").val();
             var date = new Date().toLocaleDateString();
             
