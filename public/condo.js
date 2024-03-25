@@ -1,6 +1,27 @@
 var ratingButtons;
 $(document).ready(function(){
     // create review form
+    $("#search-review").submit(function(event){
+        event.preventDefault();
+        var text = $("#search-review-input").val();
+        var condoId = window.location.pathname.split('/condo/')[1];
+
+        
+        $.post(
+            'search-review',
+            {text: text, condoId: condoId},
+            function(data, status){
+                if(status === 'success'){
+                    alert('hello');
+                }
+                else{
+                    alert('error');
+                }
+            }
+        );
+
+
+    })
 
     $("#create-review-form").submit(function(event) { //this is the most cancerous thing I've done
         // Prevent default form submission behavior

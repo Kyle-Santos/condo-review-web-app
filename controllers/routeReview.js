@@ -15,6 +15,22 @@ function editLoginStatus(newStatus, newUsername, newIcon, newJob){
 }
 
 function add(server){
+    server.post('/search-review', function(req, resp){
+        var text = req.body.text;
+        var condoId = req.body.condoId;
+        var listOfReviews = new Array();
+
+        var searchQuery = {condoId: condoId};
+
+        reviewModel.find(searchQuery).then(function(reviews){
+            for(const item of reviews){
+                if(item.content.includes(text))
+                console.log(item.title);
+            }
+        });
+        
+    });
+
     server.patch('/create-review', async (req, resp) => {
         const { condoId, title, content, rating, image, date } = req.body;
     
