@@ -18,6 +18,7 @@ function add(server){
 
                 if(condoName.includes(text) || condoText.includes(text)){
                     item.description = item.description.slice(0, 150) + "...";
+                    item.rating = Math.floor(item.rating);
                     listOfCondos.push(item);
                 }
                 

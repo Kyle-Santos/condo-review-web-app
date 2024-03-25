@@ -1,4 +1,5 @@
 const userModel = require('../models/User');
+const condoModel = require('../models/Condo');
 const userFunctions = require('../models/userFunctions');
 
 function add(server){
@@ -19,10 +20,18 @@ function add(server){
     });
 
     server.get('/', function(req,resp){
-        resp.render('home',{
-            layout: 'index',
-            title: 'Home Page',
-            isHome: true
+        condoModel.find().lean().then(function(condos){
+            for(const condo of condos) {
+                condo.description = condo.description.slice(0, 150) + "...";
+                condo.rating = Math.floor(condo.rating);
+            }
+            
+            resp.render('home',{
+                layout: 'index',
+                title: 'Home Page',
+                isHome: true,
+                condos: condos
+            });
         });
     });
     
@@ -30,7 +39,7 @@ function add(server){
     server.post('/create-account', async (req, resp) => {
         let createSuccess, createStatus, createMessage;
 
-       [createSuccess, createStatus, createMessage] = await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture);
+       [createSuccess, createStatus, createMessage] = await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture, req.body.bio);
 
         resp.status(createStatus).send({success: createSuccess, message: createMessage});
     });

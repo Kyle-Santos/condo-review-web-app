@@ -58,6 +58,7 @@ $(document).ready(function(){
             username: $("#create-account-form input[name='username']").val(),
             password: $("#create-account-form input[name='password']").val(),
             picture: iconPath,
+            bio: $("#create-account-form textarea[name='description']").val(),
         };
 
         $("#create-account").hide();

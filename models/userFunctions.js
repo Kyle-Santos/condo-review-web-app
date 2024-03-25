@@ -32,7 +32,7 @@ async function findUser(username, password){
     }
 }
 
-async function createAccount(username, password, picture) {
+async function createAccount(username, password, picture, bio) {
     // encrypt password
     let encryptedPass = "";
 
@@ -50,7 +50,8 @@ async function createAccount(username, password, picture) {
         email: "none",
         job: "Condo Bro",
         school: "not specified",
-        city: "not specified,"
+        city: "not specified,",
+        bio: bio
         });
         
         return user.save().then(function(login) {
@@ -109,8 +110,6 @@ function filterEditData(userData){
 
 async function createReview(condoId, title, content, rating, image, date, logUsername){
     // Find the user by username
-
-
     const user = await userModel.findOne( {user: logUsername} );
 
     // Create a review
