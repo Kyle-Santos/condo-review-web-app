@@ -24,8 +24,9 @@ function add(server){
 
         reviewModel.find(searchQuery).then(function(reviews){
             for(const item of reviews){
-                if(item.content.includes(text))
-                console.log(item.title);
+                if(item.content.includes(text) || item.title.includes(text)){
+                    listOfReviews.push(item);
+                }
             }
         });
         

@@ -12,7 +12,7 @@ $(document).ready(function(){
             {text: text, condoId: condoId},
             function(data, status){
                 if(status === 'success'){
-                    alert('hello');
+                    
                 }
                 else{
                     alert('error');
