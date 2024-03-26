@@ -39,6 +39,34 @@ server.engine('hbs', handlebars.engine({
             } else {
                 return opts.inverse(this);
             }
+        },
+        star2: function(num, options) {
+            if (num >= 2) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        },
+        star3: function(num, options) {
+            if (num >= 3) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        },
+        star4: function(num, options) {
+            if (num >= 4) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        },
+        star5: function(num, options) {
+            if (num >= 5) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
         }
     }
 }));
