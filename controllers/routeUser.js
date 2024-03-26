@@ -83,7 +83,7 @@ function add(server){
             // Query MongoDB to get data
             var data = await userModel.findOne({ user: username }).populate('reviews').lean();
 
-           processedReviews = data.reviews ? userFunctions.processReviews(data.reviews) : [];
+            processedReviews = data.reviews ? await userFunctions.processReviews(data.reviews, req.session._id) : [];
 
             resp.render('viewprofile', {
                 layout: 'index',

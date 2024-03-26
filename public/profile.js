@@ -74,6 +74,15 @@ $(document).ready(function() {
             reader.readAsDataURL(file);
         }
     });
+
+    const editButtons = $('.edit-icon-btn');
+
+    editButtons.forEach(button => {
+        button.on('click', function() {
+            const reviewId = this.getAttribute('data-review-id');
+            window.location.href = `/edit-review/${reviewId}`; // Redirect user to the edit review page
+        });
+    });
 });
 
 function editprofile(formData) {

@@ -1,5 +1,6 @@
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
+const likeModel = require('../models/Like');
 
 // can be added to hash the password for confidentiality
 const bcrypt = require('bcrypt'); 
@@ -120,6 +121,8 @@ async function createReview(condoId, title, content, rating, image, date, logUse
         image: image,
         date: date,
         condoId: condoId,
+        likes: 0,
+        dislikes: 0,
         author: user._id // Set the author field to the ObjectId of the user
     });
     
@@ -136,11 +139,10 @@ async function createReview(condoId, title, content, rating, image, date, logUse
     await user.save();
 }
 
-function processReviews(reviews){
-    
+async function processReviews(reviews, userId){
     if (reviews) {
         // Preprocess date field
-        processedReviews = reviews.map(review => {
+        processedReviews = await Promise.all(reviews.map(async review => {
             // Create a new object to avoid mutating the original object
             const processedReview = { ...review };
 
@@ -156,8 +158,16 @@ function processReviews(reviews){
 
             // Transform the integer rating into an array of boolean values representing filled stars
             processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
+
+            processedReview.totalLikes = processedReview.likes - processedReview.dislikes;
+
+            const like = await likeModel.findOne({ reviewId: review._id, userId: userId }).lean();
+            
+            if (like) 
+                processedReview.userLike = like;
+
             return processedReview;
-        });
+        }));
 
         return processedReviews;
     }

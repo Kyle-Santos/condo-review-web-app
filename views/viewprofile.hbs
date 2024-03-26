@@ -24,7 +24,7 @@
         <div class="posts-section">
             <h2 class="post-title">Reviews</h2>
             {{#each reviews}}
-            <div class="grid-item">
+            <div id="{{_id}}" class="grid-item">
                 <div class="review-header">
                     <div class="review-header-left">
                         <a href="condo/{{condoId}}"><h3>{{title}}</h3></a>
@@ -69,25 +69,13 @@
                     </div>
                     <div class="react-post">
                         <div class="icon-like">
-                            <button type="button" class="fa fa-thumbs-up"></button>
-                            <button type="button" class="fa fa-thumbs-down"></button>
+                            <button type="button" class="fa fa-thumbs-up {{#if userLike.isLike}}clicked{{/if}}"></button>
+                            <button type="button" class="fa fa-thumbs-down {{#if_eq userLike.isLike '0'}}clicked{{/if_eq}}"></button>
                         </div>
-                        999 people liked
+                        <span class="total-likes">{{totalLikes}} people liked</span> 
                     </div>
                 </div>
             </div>
             {{/each}}
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const editButtons = document.querySelectorAll('.edit-icon-btn');
-
-            editButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const reviewId = this.getAttribute('data-review-id');
-                    window.location.href = `/edit-review/${reviewId}`; // Redirect user to the edit review page
-                });
-            });
-        });
-    </script>

@@ -34,12 +34,8 @@ server.engine('hbs', handlebars.engine({
     helpers: {
         // Define your custom helper functions here
         if_eq: function(a, b, opts) {
-            if (a === b) {
-                return opts.fn(this);
-            } else {
-                return opts.inverse(this);
-            }
-        }
+            return a == b ? opts.fn(this) : opts.inverse(this);
+        },
     }
 }));
 

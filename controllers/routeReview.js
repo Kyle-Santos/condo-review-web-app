@@ -1,4 +1,5 @@
 const reviewModel = require('../models/Review');
+const likeModel = require('../models/Like');
 const userFunctions = require('../models/userFunctions');
 
 // saving uploaded image
@@ -77,6 +78,7 @@ function add(server){
             return res.status(400).send('Uploaded file not found');
         }
     });
+
     server.get('/edit-review/:id', async (req, resp) => {
         try {
             const reviewId = req.params.id;
@@ -87,7 +89,7 @@ function add(server){
         }
     });
 
-// And a route to handle the form submission
+    // And a route to handle the form submission
     server.post('/update-review/:id', async (req, resp) => {
         try {
             const reviewId = req.params.id;
@@ -95,6 +97,44 @@ function add(server){
             resp.redirect('/viewprofile'); // Redirect to the updated review or another page
         } catch(error) {
             resp.status(500).send('Error updating review');
+        }
+    });
+
+    server.post('/like', async (req, resp) => {
+        var { reviewId, isClicked, isLike } = req.body;
+        const userId = req.session._id;
+
+        try {
+            // Find the review by ID
+            const review = await reviewModel.findById(reviewId);
+
+            isLike = (isLike === "true");
+
+            if (isClicked === "true") {
+                await likeModel.findOneAndDelete({ userId: userId, reviewId: reviewId })
+
+                isLike ? review.likes-- : review.dislikes--;
+            }
+            else {
+                const like = likeModel ({
+                    reviewId: reviewId,
+                    userId: userId,
+                    isLike: isLike
+                });
+
+                await like.save();
+
+                isLike ? review.likes++ : review.dislikes++;
+            }
+
+            // Save the updated review
+            await review.save();
+    
+            resp.status(200).send({ success: true, totalLikes: review.likes - review.dislikes});
+
+        } catch (error) {
+            console.error("Error creating liking:", error);
+            throw error; // Throw the error for handling elsewhere
         }
     });
 }

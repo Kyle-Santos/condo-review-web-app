@@ -231,6 +231,7 @@ $(document).ready(function(){
         });
     });
 
+
 $("#create-review").hide();
 
 $("#close-create-review").click(function(){

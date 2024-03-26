@@ -43,8 +43,8 @@ function add(server){
             // Find all reviews for the specified condo
             const reviews = await reviewModel.find({ condoId: condoId }).populate('author comments.user').lean();
 
-            processedReviews = userFunctions.processReviews(reviews);
-
+            processedReviews = await userFunctions.processReviews(reviews, req.session._id);
+            
             resp.render('condo', {
                 layout: 'index',
                 title: formattedCondoId,

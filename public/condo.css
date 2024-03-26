@@ -275,6 +275,9 @@ h4 {
 .fa-thumbs-down:hover {
     color: rgb(229, 55, 55);
 }
+.clicked {
+    color: #1877F2; 
+}
 /*  */
 
 /* create review */
