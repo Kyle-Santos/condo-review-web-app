@@ -4,6 +4,21 @@ const userFunctions = require('../models/userFunctions');
 
 
 function add(server){
+    server.post('/filter-condo', function(req, resp){
+        var rating = req.body.rating;
+        var searchQuery = {rating: {$gte: rating}};
+        var listOfCondos = new Array();
+
+        condoModel.find(searchQuery).then(function(condos){
+            for(const item of condos){
+                item.description = item.description.slice(0, 150) + "...";
+                listOfCondos.push(item);
+            }
+
+            resp.send({condos: listOfCondos});
+        });
+    });
+
     server.post('/search-condo', function(req, resp){
         var text = req.body.text;
         var listOfCondos = new Array();
@@ -12,13 +27,14 @@ function add(server){
         condoModel.find().then(function(condos){
             let condoName;
             let condoText;
+            let condoAddress;
             for(const item of condos){
                 condoName = item.name.toUpperCase();
                 condoText = item.description.toUpperCase();
+                condoAddress = item.address.toUpperCase();
 
-                if(condoName.includes(text) || condoText.includes(text)){
+                if(condoName.includes(text) || condoText.includes(text) || condoAddress.includes(text)){
                     item.description = item.description.slice(0, 150) + "...";
-                    item.rating = Math.floor(item.rating);
                     listOfCondos.push(item);
                 }
                 
@@ -34,6 +50,9 @@ function add(server){
     server.get('/condo/:condoId', async (req, resp) => {
         const condoId = req.params.condoId; // Retrieve the condo ID from the URL
         const formattedCondoId = condoId.replace('-', ' ').toUpperCase(); // Format the condo ID
+
+        
+
 
         try {
             // Query MongoDB to get data

@@ -22,18 +22,23 @@
             <h1 >List of Condominiums</h1>
         </div>
 
+        <form id="filter-rating">
         <div class="filterclass">
-            <select name="filter" id="filter" onchange="updateFilterInput()">
-                <option value="rating">Rating</option>
-                <option value="price">Rent Price</option>
-                <option value="location">Location</option>
+            <label>Minimum Rating:</label>           
+            <select name="filter" id="filter">
+                <option value="0">None</option>
+                <option value="5">5 star</option>
+                <option value="4">4 star</option>
+                <option value="3">3 star</option>
+                <option value="2">2 star</option>
+                <option value="1">1 star</option>
             </select>
             <div class="filterinput">
-                <select name="Type" id="filterinput">
-                    <!-- Automatic fillup in javascript -->
-                </select>
+                <button type="submit">Filter</button>
             </div>
-        </div>
+        </div>    
+        </form>
+        
 
         <div class="condo-list" id="condo-container">
             {{#each condos}}

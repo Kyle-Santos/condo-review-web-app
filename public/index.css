@@ -148,7 +148,7 @@
     margin-bottom: 20px;
 } 
   
-.filterinput select, .filterclass select {
+.filterclass select {
     width: 130px; 
     padding: 6px;
     font-size: 14px;
@@ -160,5 +160,23 @@
     -webkit-appearance: none; 
     cursor: pointer;
     background-color: #434141;
+}
+
+.filterinput button {
+    width: 65px; 
+    padding: 6px;
+    font-size: 14px;
+    font-family: 'Libre Franklin', sans-serif;
+    border: 1px solid #ccc;
+    color: black;
+    border-radius: 5px;
+    appearance: none; 
+    -webkit-appearance: none; 
+    cursor: pointer;
+    background-color: white;
+}
+
+.filterclass label{
+    color: white;
 }
   

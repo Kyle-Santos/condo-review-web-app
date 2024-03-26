@@ -23,7 +23,6 @@ function add(server){
         condoModel.find().lean().then(function(condos){
             for(const condo of condos) {
                 condo.description = condo.description.slice(0, 150) + "...";
-                condo.rating = Math.floor(condo.rating);
             }
             
             resp.render('home',{
