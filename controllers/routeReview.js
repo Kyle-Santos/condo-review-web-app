@@ -26,7 +26,7 @@ function add(server){
 
         var searchQuery = {condoId: condoId};
 
-        reviewModel.find(searchQuery).populate('author comments.user').lean().then(function(reviews){
+        reviewModel.find(searchQuery).populate('author comments.user').lean().then(async function(reviews){
             let content;
             let title;
             for(const item of reviews){
@@ -38,7 +38,8 @@ function add(server){
                 }
             }
 
-            resp.send({reviews: userFunctions.processReviews(listOfReviews)});
+            reviews = await userFunctions.processReviews(listOfReviews, req.session._id);
+            resp.send({reviews: reviews});
         });
     });
 

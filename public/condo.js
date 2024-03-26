@@ -61,7 +61,7 @@ $(document).ready(function(){
                         $reviewFooter.append($reviewProfile);
                         var $reactPost = $('<div>').addClass('react-post');
                         $reactPost.append($('<div>').addClass('icon-like').append('<button type="button" class="fa fa-thumbs-up"></button><button type="button" class="fa fa-thumbs-down"></button>'));
-                        $reactPost.append('999 people liked');
+                        $reactPost.append(review.totalLikes + ' people liked');
                         $reviewFooter.append($reactPost);
                         $review.append($reviewFooter);
 
