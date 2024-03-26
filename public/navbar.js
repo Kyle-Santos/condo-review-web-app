@@ -105,7 +105,7 @@ $(document).ready(function(){
                 showLogInView();
                 $("#login").hide();
                 updateDropdownText(username); // changes the dropdown
-
+                window.location.href="/";
                 // alert("Welcome to The Condo Bro, " + username);
             })
             .fail(function(xhr, status, error) {
