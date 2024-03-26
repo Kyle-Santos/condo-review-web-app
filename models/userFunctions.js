@@ -3,7 +3,25 @@ const reviewModel = require('../models/Review');
 
 // can be added to hash the password for confidentiality
 const bcrypt = require('bcrypt'); 
+const condoModel = require('./Condo');
 const saltRounds = 10;
+
+async function updateAverageRating(condoId){
+    let total = 0;
+    let averageRating;
+    reviewModel.find({condoId: condoId}).then(function(condos){
+        for(const item of condos){
+            total += item.rating;
+        }
+
+        averageRating = parseFloat(total/condos.length).toFixed(1);
+
+        condoModel.findOne({id: condoId}).then(function(condo){
+            condo.rating = averageRating;
+            condo.save();
+        });
+    });
+}
 
 async function findUser(username, password){
     
@@ -171,3 +189,4 @@ module.exports.createAccount = createAccount;
 module.exports.filterEditData = filterEditData;
 module.exports.createReview = createReview;
 module.exports.createComment = createComment;
+module.exports.updateAverageRating = updateAverageRating;

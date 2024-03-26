@@ -51,6 +51,9 @@ function add(server){
         const condoId = req.params.condoId; // Retrieve the condo ID from the URL
         const formattedCondoId = condoId.replace('-', ' ').toUpperCase(); // Format the condo ID
 
+        
+
+
         try {
             // Query MongoDB to get data
             var data = await condoModel.findOne({ id: condoId }).lean();
@@ -60,6 +63,8 @@ function add(server){
             const reviews = await reviewModel.find({ condoId: condoId }).populate('author comments.user').lean();
 
             processedReviews = userFunctions.processReviews(reviews);
+            
+            
 
             resp.render('condo', {
                 layout: 'index',
