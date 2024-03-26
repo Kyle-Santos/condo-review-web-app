@@ -96,11 +96,22 @@ function add(server){
         try {
             const reviewId = req.params.id;
             await reviewModel.findByIdAndUpdate(reviewId, req.body);
-            resp.redirect('/viewprofile'); // Redirect to the updated review or another page
+            resp.redirect('/viewprofile');
         } catch(error) {
             resp.status(500).send('Error updating review');
         }
     });
+    server.post('/delete-review', async (req, resp) => {
+        try {
+            const reviewId = req.body.id;
+            await reviewModel.findByIdAndDelete(reviewId);
+            resp.redirect('/viewprofile');
+        } catch (error) {
+            console.error("Error deleting review:", error);
+            resp.status(500).send('Error deleting review');
+        }
+    });
+
 
     server.post('/like', async (req, resp) => {
         var { reviewId, isClicked, isLike } = req.body;

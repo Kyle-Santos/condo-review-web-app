@@ -32,8 +32,8 @@
                     </div>
                     <div class="review-header-right">
                         <div class="edit-delete-icons">
-                            <button class="edit-icon-btn" data-review-id="{{this._id}}"><i class="fas fa-edit"></i> Edit</button>
-                            <button class="delete-icon-btn" data-review-id="{{this._id}}"><i class="fas fa-trash"></i> Delete</button>
+                            <button class="edit-icon-btn" onclick="window.location='/edit-review/{{this._id}}';">Edit</button>
+                            <button class="delete-review-btn" data-review-id="{{review._id}}">Delete</button>
                         </div>
                         <div class="star-rating" id="rating">
                             {{#each rating}}

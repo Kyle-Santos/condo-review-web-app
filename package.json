@@ -2,7 +2,7 @@
   "name": "condo-review-web-app",
   "version": "1.0.0",
   "description": "## This is our MCO2 Functioning Project that uses Nodejs, mongodb, and express",
-  "main": "app.js",
+  "main": "node_modules/array-flatten/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -105,3 +105,33 @@ function editprofile(formData) {
         }
     });
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.edit-icon-btn');
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const reviewId = this.getAttribute('data-review-id');
+            window.location.href = `/edit-review/${reviewId}`;
+        });
+    });
+});
+document.querySelectorAll('.delete-review-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const reviewId = this.getAttribute('data-review-id');
+
+        fetch(`/delete-review/${reviewId}`, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(data.message);
+                } else {
+                    console.error('Failed to delete review');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+});
