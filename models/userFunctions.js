@@ -13,7 +13,7 @@ async function updateAverageRating(condoId){
         for(const item of condos){
             total += item.rating;
         }
-
+        
         averageRating = parseFloat(total/condos.length).toFixed(1);
 
         condoModel.findOne({id: condoId}).then(function(condo){
