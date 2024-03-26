@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $.get(
         'loggedInStatus',
         function(data, status){
@@ -14,10 +13,22 @@ $(document).ready(function(){
                     showLogInView();
                     $("#login").hide();
                     updateDropdownText(data.username); // changes the dropdown
+
+                    if(typeof checkUser === 'function'){
+                        checkUser();
+                    } else {
+                        console.log('Not view profile page');
+                    }
                 }
                 else{
                     $(".nav-logged-in").hide();
                     $("#logout-button").hide();
+
+                    if(typeof checkUser === 'function'){
+                        checkUser();
+                    } else {
+                        console.log('Not view profile page');
+                    }
                 }
             }
         }

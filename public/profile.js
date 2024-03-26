@@ -1,4 +1,7 @@
+
 $(document).ready(function() {
+    
+
     $('#editProfileForm').on('submit', function(e) {
         e.preventDefault(); // Prevent the default form submission
 
@@ -84,6 +87,8 @@ $(document).ready(function() {
         });
     });
 });
+
+
 
 function editprofile(formData) {
     $.ajax({
