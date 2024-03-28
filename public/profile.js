@@ -11,7 +11,6 @@ $(document).ready(function() {
         const name = $("#editProfileForm #name").val();
         const email = $("#editProfileForm #email").val();
         const bio = $("#editProfileForm #bio").val();
-        const job = $("#editProfileForm #job").val();
         const education = $("#editProfileForm #education").val();
         const city = $("#editProfileForm #city").val();
 
@@ -27,7 +26,6 @@ $(document).ready(function() {
         }
         if (email !== "") formData.email = email;
         if (bio !== "") formData.bio = bio;
-        if (job !== "") formData.job = job;
         if (education !== "") formData.education = education;
         if (city !== "") formData.city = city;
 

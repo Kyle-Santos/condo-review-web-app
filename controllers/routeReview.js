@@ -48,7 +48,7 @@ function add(server){
     
         await userFunctions.createReview(condoId, title, content, rating, image, date, req.session.username);
         await userFunctions.updateAverageRating(condoId);
-        resp.status(200).send({ success: true, message: 'Review published successfully', user: req.session.username, job: req.session.job, icon: req.session.picture });
+        resp.status(200).send({ success: true, message: 'Review published successfully', user: req.session.username, role: req.session.role, icon: req.session.picture });
     });
 
     // create comment POST

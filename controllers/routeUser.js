@@ -10,7 +10,7 @@ function add(server){
                 isAuthenticated: req.session.isAuthenticated,
                 username: req.session.username,
                 picture: req.session.picture,
-                job: req.session.job
+                role: req.session.role
             });
         } else {
             resp.send({
@@ -64,7 +64,7 @@ function add(server){
 
             req.session.username = user.user;
             req.session.picture = user.picture;
-            req.session.job = user.job;
+            req.session.role = user.role;
             req.session.isAuthenticated = true;
             req.session._id = user._id;
         }
@@ -118,7 +118,6 @@ function add(server){
 
                 if (newData.user !== undefined) req.session.username = newData.user;
                 if (newData.picture !== undefined) req.session.picture = newData.picture.replace('public/', '');
-                if (newData.job !== undefined) req.session.job = newData.job;
 
                 resp.json({message: 'Profile updated successfully!', user: req.session.username });
             })

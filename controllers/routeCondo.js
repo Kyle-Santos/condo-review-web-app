@@ -51,9 +51,6 @@ function add(server){
         const condoId = req.params.condoId; // Retrieve the condo ID from the URL
         const formattedCondoId = condoId.replace('-', ' ').toUpperCase(); // Format the condo ID
 
-        
-
-
         try {
             // Query MongoDB to get data
             var data = await condoModel.findOne({ id: condoId }).lean();

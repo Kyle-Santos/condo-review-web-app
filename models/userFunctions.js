@@ -67,7 +67,7 @@ async function createAccount(username, password, picture, bio) {
         pass: encryptedPass,
         picture: picture,
         email: "none",
-        job: "Condo Bro",
+        role: "Condo Bro",
         school: "not specified",
         city: "not specified,",
         bio: bio
@@ -113,13 +113,12 @@ async function createComment(userId, content, date, reviewId) {
 }
 
 function filterEditData(userData){
-    const { name, email, bio, job, education, city, imagePath } = userData;
+    const { name, email, bio, education, city, imagePath } = userData;
     // Filter out null values
     const newData = {};
     if (name !== undefined) newData.user = name;
     if (email !== undefined) newData.email = email;
     if (bio !== undefined) newData.bio = bio;
-    if (job !== undefined) newData.job = job;
     if (education !== undefined) newData.education = education;
     if (city !== undefined) newData.city = city;
     if (imagePath !== null && imagePath !== undefined) newData.picture = imagePath;

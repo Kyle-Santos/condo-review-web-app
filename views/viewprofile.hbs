@@ -3,7 +3,7 @@
     <div class="profile-container">
         <div class="profile-info">
             <img class="profile-picture" src="{{data.picture}}"/>
-            <h1 class="profile-name">{{data.user}}<span class="verified-checkmark">✔️</span></h1>
+            <h1 class="profile-name">{{data.user}}<span class="verified-checkmark">{{#if_eq data.role 'Owner'}}✔️{{/if_eq}}</span></h1>
             {{!-- <p class="friend-count">2K connections</p> --}}
             <div class="profile-nav">
             <ul>
@@ -14,7 +14,7 @@
             </div>
             <h2 class="info-title"><br/>Intro</h2>
             <p class="info-item"><b>Email:</b> {{data.email}}</p>
-            <p class="info-item"><b>Occupation/Role:</b> {{data.job}}</p>
+            <p class="info-item"><b>Occupation/Role:</b> {{data.role}}</p>
             <p class="info-item"><b>Studied at</b> {{data.education}}</p>
             <p class="info-item"><b>Lives in</b> {{data.city}}</p>
             <p class="info-item"><b>About me:</b><br/>{{data.bio}}</p>
@@ -64,7 +64,7 @@
                         <div>
                             <b>{{../data.user}}</b>
                             
-                            <br/>{{../data.job}}
+                            <br/>{{../data.role}}
                         </div>
                     </div>
                     <div class="react-post">

@@ -245,7 +245,6 @@ $("#show-create-review").click(function() {
             } else {
                 alert("You must be logged in to create a review.");
             }
-    //    $("#create-review").show();
     });
 });
 
@@ -337,6 +336,9 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
             var reviewElement = document.createElement("div");
             reviewElement.classList.add("grid-item");
 
+            // Check if the user is an owner and set the checkmark accordingly
+            var checkmark = (response.role === 'Owner') ? '✔️' : '';
+
             // Construct HTML content for the new review
             reviewElement.innerHTML = `
                 <div class="review-header">
@@ -361,9 +363,9 @@ function submitReview(title, content, rating, imagePath, date, condoId) {
                         </a>
                         <div>
                             <a href="/profile/${response.user}">
-                                <b>${response.user}</b>
+                                <b>${response.user}</b>  <span class="verified-checkmark">${checkmark}</span>
                             </a>
-                            <br/>${response.job}
+                            <br/>${response.role}
                         </div>
                     </div>
                     <div class="react-post">

@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     picture: {type: String},
     bio: {type: String},
     email: {type: String},
-    job: {type: String},
+    role: {type: String},
     education: {type: String},
     city: {type: String},
     reviews: [{

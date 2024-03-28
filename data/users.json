@@ -5,12 +5,12 @@
   "user": "kyle",
   "pass": "$2b$10$kPzXrHs34SxvlXV.OPy7FOgXOj/i4bdS9DR13k1.NubaQN91tU8Mu",
   "picture": "images/client-uploaded-files/man (1).png",
-  "job": "Social Media Influencer",
+  "role": "Condo Bro",
   "createdAt": {
     "$date": "2024-03-10T17:16:39.430Z"
   },
   "updatedAt": {
-    "$date": "2024-03-14T17:11:15.053Z"
+    "$date": "2024-03-28T07:05:08.121Z"
   },
   "email": "kyle_adrian_santos@dlsu.edu.ph",
   "city": "Manila",
@@ -25,6 +25,15 @@
     },
     {
       "$oid": "65f042aebca5ef84561f228c"
+    },
+    {
+      "$oid": "65fbed6497831678af333d7b"
+    },
+    {
+      "$oid": "6600365fce3617e7f1355085"
+    },
+    {
+      "$oid": "660516a478ac59a1a66a059e"
     }
   ]
 },
@@ -35,7 +44,7 @@
   "user": "karl",
   "pass": "$2b$10$kPzXrHs34SxvlXV.OPy7FOgXOj/i4bdS9DR13k1.NubaQN91tU8Mu",
   "picture": "images/gamer.png",
-  "job": "Web Developer",
+  "role": "Condo Bro",
   "createdAt": {
     "$date": "2024-03-10T17:25:11.476Z"
   },
@@ -59,7 +68,7 @@
   "user": "kailu",
   "pass": "$2b$10$kPzXrHs34SxvlXV.OPy7FOgXOj/i4bdS9DR13k1.NubaQN91tU8Mu",
   "picture": "images/man.png",
-  "job": "Condo Bro",
+  "role": "Condo Bro",
   "createdAt": {
     "$date": "2024-03-10T17:26:09.106Z"
   },
@@ -86,7 +95,7 @@
   "user": "enzo",
   "pass": "$2b$10$kPzXrHs34SxvlXV.OPy7FOgXOj/i4bdS9DR13k1.NubaQN91tU8Mu",
   "picture": "images/gamer.png",
-  "job": "Condo Bro",
+  "role": "Condo Bro",
   "createdAt": {
     "$date": "2024-03-10T17:26:57.820Z"
   },
@@ -110,7 +119,7 @@
   "user": "msTaguro",
   "pass": "$2b$10$kPzXrHs34SxvlXV.OPy7FOgXOj/i4bdS9DR13k1.NubaQN91tU8Mu",
   "picture": "images/woman (1).png",
-  "job": "Condo Bro",
+  "role": "Condo Bro",
   "createdAt": {
     "$date": "2024-03-10T17:27:57.548Z"
   },
@@ -135,7 +144,7 @@
   "pass": "$2b$10$kPzXrHs34SxvlXV.OPy7FOgXOj/i4bdS9DR13k1.NubaQN91tU8Mu",
   "picture": "images/man.png",
   "email": "none",
-  "job": "Owner",
+  "role": "Owner",
   "city": "Makati",
   "reviews": [],
   "createdAt": {

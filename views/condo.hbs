@@ -179,10 +179,10 @@ return options.inverse(this);
                         </a>
                         <div>
                             <a href="/profile/{{author.user}}">
-                                <b>{{author.user}}</b>
+                                <b>{{author.user}}</b>  <span class="verified-checkmark">{{#if_eq author.role 'Owner'}}✔️{{/if_eq}}</span>
                             </a>
                             
-                            <br/>{{author.job}}
+                            <br/>{{author.role}}
                         </div>
                     </div>
                     <div class="react-post">
@@ -212,7 +212,7 @@ return options.inverse(this);
                         <div class="comment-right">
                             <div>
                                 <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a> 
-                                <span class="verified-checkmark">{{#if_eq user.job 'Owner'}}✔️{{/if_eq}}</span>
+                                <span class="verified-checkmark">{{#if_eq user.role 'Owner'}}✔️{{/if_eq}}</span>
                                 {{date}}
                             </div>
                             <div>
