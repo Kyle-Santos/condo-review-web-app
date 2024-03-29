@@ -59,9 +59,9 @@ function add(server){
                     likeModel.deleteMany({reviewId: reviewId}).then(function(like){
                         reviewModel.deleteMany({_id: reviewId}).then(function(deletedReview){
                             console.log('deleted');
-                           // userFunctions.updateAverageRating(condoId);
-
-                            resp.send({deleted: 1});
+                            userFunctions.updateAverageRating(condoId).then(function(){
+                                resp.send({deleted: 1});
+                            });                
                         });
                     });
                 });
