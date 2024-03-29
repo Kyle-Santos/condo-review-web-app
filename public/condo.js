@@ -248,11 +248,6 @@ $("#show-create-review").click(function() {
     });
 });
 
-function showLogInView(){
-    $(".nav-logged-out").hide();
-    $(".nav-logged-in").show();
-}
-
 // 
 $('.star-rating-button').on('mouseenter', selectStars);
 
@@ -299,7 +294,6 @@ function getRating() {
 }
 
 function submitReview(title, content, rating, imagePath, date, condoId) {
-    // Get form data
     const formData = {
         condoId: condoId,
         title: title,

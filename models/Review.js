@@ -17,6 +17,7 @@ const reviewSchema = new mongoose.Schema({
     rating: Number,
     image: String,
     date: Date,
+    isEdited: Boolean,
     likes: Number,
     dislikes: Number,
     author: {

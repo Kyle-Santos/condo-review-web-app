@@ -145,7 +145,7 @@ return options.inverse(this);
             <div id="{{_id}}" class="grid-item">
                 <div class="review-header">
                     <div class="review-header-left">
-                        <h3>{{title}}</h3>
+                        <h3>{{title}}</h3>{{#if isEdited}}<i>Edited</i>{{/if}}
                         Posted on {{date}}
                     </div>
                     <div>

@@ -84,23 +84,23 @@ function add(server){
     server.get('/edit-review/:id', async (req, resp) => {
         try {
             const reviewId = req.params.id;
-            const review = await reviewModel.findById(reviewId).lean();
-            resp.render('editReview', { review }); // Render your edit review template
+            const review = await reviewModel.findOne({ _id: reviewId }).lean();
+            resp.send({ review: review }); 
         } catch(error) {
             resp.status(500).send('Error fetching review');
         }
     });
 
-    // And a route to handle the form submission
-    server.post('/update-review/:id', async (req, resp) => {
+    server.patch('/update-review/:id', async (req, resp) => {
         try {
             const reviewId = req.params.id;
             await reviewModel.findByIdAndUpdate(reviewId, req.body);
-            resp.redirect('/viewprofile');
+            resp.status(200).send({username: req.session.username});
         } catch(error) {
             resp.status(500).send('Error updating review');
         }
     });
+
     server.post('/delete-review', async (req, resp) => {
         try {
             const reviewId = req.body.id;

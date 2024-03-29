@@ -1,7 +1,0 @@
-<form action="/update-review/{{review._id}}" method="post">
-    <input type="text" name="title" value="{{review.title}}" required>
-    <textarea name="content" required>{{review.content}}</textarea>
-    <input type="number" name="rating" value="{{review.rating}}" required>
-    <!-- Include any other fields you want to be editable -->
-    <button type="submit">Update Review</button>
-</form>
