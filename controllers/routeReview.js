@@ -1,6 +1,8 @@
+const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 const likeModel = require('../models/Like');
 const userFunctions = require('../models/userFunctions');
+const { ObjectId } = require('mongodb');
 
 // saving uploaded image
 const multer = require('multer');
@@ -19,6 +21,54 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }); // Store uploaded files in the 'uploads' directory
 
 function add(server){
+    server.post('/delete-review', function(req, resp){
+        var condoId = req.body.condoId;
+        var reviewId = req.body.reviewId;
+        console.log(reviewId);
+        console.log(condoId);
+        
+        console.log('Review to be Deleted: ' + reviewId);
+
+        reviewModel.findById(reviewId).then(function(review){
+            let reviewTitle = review.title;
+            let reviewAuthor = review.author;
+            console.log('Title of deleted review: ' + reviewTitle);
+            console.log('ID of author: ' + reviewAuthor);
+
+            userModel.findById(reviewAuthor).then(function(author){
+                let compareId = new ObjectId(reviewId);
+                let authorName = author.user;
+                let listOfReviews = new Array();
+                console.log('Name of author: ' + authorName);
+
+                console.log('Old list');
+                for(const item of author.reviews){
+                    console.log(item);
+                    if(!compareId.equals(item)){
+                        listOfReviews.push(item);
+                    }
+                }
+
+                console.log('new list');
+                for(const newItem of listOfReviews){
+                    console.log(newItem);
+                }
+
+                author.reviews = listOfReviews;
+                author.save().then(function(result){
+                    likeModel.deleteMany({reviewId: reviewId}).then(function(like){
+                        reviewModel.deleteMany({_id: reviewId}).then(function(deletedReview){
+                            console.log('deleted');
+                           // userFunctions.updateAverageRating(condoId);
+
+                            resp.send({deleted: 1});
+                        });
+                    });
+                });
+            });
+        });
+    });
+
     server.post('/search-review', function(req, resp){
         var text = req.body.text;
         var condoId = req.body.condoId;

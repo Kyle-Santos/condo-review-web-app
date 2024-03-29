@@ -220,7 +220,7 @@ function editReview(editedTitle, editedContent, rating, imagePath, date, reviewI
     });
 }
 
-document.querySelectorAll('.delete-review-btn').forEach(button => {
+/* document.querySelectorAll('.delete-review-btn').forEach(button => {
     button.addEventListener('click', function() {
         const reviewId = this.getAttribute('data-review-id');
 
@@ -239,4 +239,4 @@ document.querySelectorAll('.delete-review-btn').forEach(button => {
                 console.error('Error:', error);
             });
     });
-});
+}); */
