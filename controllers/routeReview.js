@@ -94,7 +94,8 @@ function add(server){
     server.patch('/update-review/:id', async (req, resp) => {
         try {
             const reviewId = req.params.id;
-            await reviewModel.findByIdAndUpdate(reviewId, req.body);
+            const result = await reviewModel.findByIdAndUpdate(reviewId, req.body);
+            await userFunctions.updateAverageRating(result.condoId);
             resp.status(200).send({username: req.session.username});
         } catch(error) {
             resp.status(500).send('Error updating review');
