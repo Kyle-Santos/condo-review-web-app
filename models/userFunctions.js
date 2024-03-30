@@ -10,17 +10,29 @@ const saltRounds = 10;
 async function updateAverageRating(condoId){
     let total = 0;
     let averageRating;
+    console.log('condoId: ' + condoId);
     reviewModel.find({condoId: condoId}).then(function(condos){
-        for(const item of condos){
-            total += item.rating;
-        }
-        
-        averageRating = parseFloat(total/condos.length).toFixed(1);
+        if(condos.length !== 0){
+            console.log('defined');
+            console.log('length of reviews: ' + condos.length);
+            for(const item of condos){
+                total += item.rating;
+                console.log('Total: ' + total);
+            }
+
+            averageRating = parseFloat(total/condos.length).toFixed(1);
+            console.log('Average rating: ' + averageRating);
+            console.log('Type of average: ' + typeof averageRating);          
+        } else {
+            console.log('no reviews found');
+            averageRating = 0;
+        } 
 
         condoModel.findOne({id: condoId}).then(function(condo){
             condo.rating = averageRating;
             condo.save();
-        });
+        });  
+
     });
 }
 
