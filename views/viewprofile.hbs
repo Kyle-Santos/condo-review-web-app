@@ -56,16 +56,19 @@
             <div class="profile-nav">
             <ul>
                 <li><a href="#">Posts</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#about-section">About</a></li>
                 <li><button class="edit-profile"><a id="edit-profile-link" href="edit-profile" class="hover-element">Edit Profile</a></button></li>
             </ul>
             </div>
-            <h2 class="info-title"><br/>Intro</h2>
-            <p class="info-item"><b>Email:</b> {{data.email}}</p>
-            <p class="info-item"><b>Occupation/Role:</b> {{data.role}}</p>
-            <p class="info-item"><b>Studied at</b> {{data.education}}</p>
-            <p class="info-item"><b>Lives in</b> {{data.city}}</p>
-            <p class="info-item"><b>About me:</b><br/>{{data.bio}}</p>
+
+                <h2 class="info-title"><br/>Intro</h2>
+                <p class="info-item"><b>Email:</b> {{data.email}}</p>
+                <p class="info-item"><b>Occupation/Role:</b> {{data.role}}</p>
+                <p class="info-item"><b>Studied at</b> {{data.education}}</p>
+                <p class="info-item"><b>Lives in</b> {{data.city}}</p>
+                <div id="about-section">
+                 <p class="info-item"><b>About me:</b><br/>{{data.bio}}</p>
+                </div>
         </div>
         
         
