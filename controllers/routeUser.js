@@ -124,6 +124,7 @@ function add(server){
             .catch(err => {
                 // Handle error
                 console.error("Error updating document:", err);
+                resp.json({message: 'Error. That username is already taken.', user: req.session.username });
                 return false;
             });
 
