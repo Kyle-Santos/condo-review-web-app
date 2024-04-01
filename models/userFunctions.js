@@ -1,9 +1,40 @@
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
+const likeModel = require('../models/Like');
 
 // can be added to hash the password for confidentiality
 const bcrypt = require('bcrypt'); 
+const condoModel = require('./Condo');
 const saltRounds = 10;
+
+async function updateAverageRating(condoId){
+    let total = 0;
+    let averageRating;
+    console.log('condoId: ' + condoId);
+    reviewModel.find({condoId: condoId}).then(function(condos){
+        if(condos.length !== 0){
+            console.log('defined');
+            console.log('length of reviews: ' + condos.length);
+            for(const item of condos){
+                total += item.rating;
+                console.log('Total: ' + total);
+            }
+
+            averageRating = parseFloat(total/condos.length).toFixed(1);
+            console.log('Average rating: ' + averageRating);
+            console.log('Type of average: ' + typeof averageRating);          
+        } else {
+            console.log('no reviews found');
+            averageRating = 0;
+        } 
+
+        condoModel.findOne({id: condoId}).then(function(condo){
+            condo.rating = averageRating;
+            condo.save();
+        });  
+
+    });
+}
 
 async function findUser(username, password){
     
@@ -32,7 +63,7 @@ async function findUser(username, password){
     }
 }
 
-async function createAccount(username, password, picture) {
+async function createAccount(username, password, picture, bio) {
     // encrypt password
     let encryptedPass = "";
 
@@ -48,9 +79,10 @@ async function createAccount(username, password, picture) {
         pass: encryptedPass,
         picture: picture,
         email: "none",
-        job: "Condo Bro",
+        role: "Condo Bro",
         school: "not specified",
-        city: "not specified,"
+        city: "not specified,",
+        bio: bio
         });
         
         return user.save().then(function(login) {
@@ -93,13 +125,12 @@ async function createComment(userId, content, date, reviewId) {
 }
 
 function filterEditData(userData){
-    const { name, email, bio, job, education, city, imagePath } = userData;
+    const { name, email, bio, education, city, imagePath } = userData;
     // Filter out null values
     const newData = {};
     if (name !== undefined) newData.user = name;
     if (email !== undefined) newData.email = email;
     if (bio !== undefined) newData.bio = bio;
-    if (job !== undefined) newData.job = job;
     if (education !== undefined) newData.education = education;
     if (city !== undefined) newData.city = city;
     if (imagePath !== null && imagePath !== undefined) newData.picture = imagePath;
@@ -109,8 +140,6 @@ function filterEditData(userData){
 
 async function createReview(condoId, title, content, rating, image, date, logUsername){
     // Find the user by username
-
-
     const user = await userModel.findOne( {user: logUsername} );
 
     // Create a review
@@ -121,6 +150,8 @@ async function createReview(condoId, title, content, rating, image, date, logUse
         image: image,
         date: date,
         condoId: condoId,
+        likes: 0,
+        dislikes: 0,
         author: user._id // Set the author field to the ObjectId of the user
     });
     
@@ -137,11 +168,10 @@ async function createReview(condoId, title, content, rating, image, date, logUse
     await user.save();
 }
 
-function processReviews(reviews){
-    
+async function processReviews(reviews, userId){
     if (reviews) {
         // Preprocess date field
-        processedReviews = reviews.map(review => {
+        processedReviews = await Promise.all(reviews.map(async review => {
             // Create a new object to avoid mutating the original object
             const processedReview = { ...review };
 
@@ -157,8 +187,16 @@ function processReviews(reviews){
 
             // Transform the integer rating into an array of boolean values representing filled stars
             processedReview.rating = Array.from({ length: 5 }, (_, index) => index < review.rating);
+
+            processedReview.totalLikes = processedReview.likes - processedReview.dislikes;
+
+            const like = await likeModel.findOne({ reviewId: review._id, userId: userId }).lean();
+            
+            if (like) 
+                processedReview.userLike = like;
+
             return processedReview;
-        });
+        }));
 
         return processedReviews;
     }
@@ -172,3 +210,4 @@ module.exports.createAccount = createAccount;
 module.exports.filterEditData = filterEditData;
 module.exports.createReview = createReview;
 module.exports.createComment = createComment;
+module.exports.updateAverageRating = updateAverageRating;

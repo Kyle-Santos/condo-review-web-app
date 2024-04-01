@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $.get(
         'loggedInStatus',
         function(data, status){
@@ -14,10 +13,22 @@ $(document).ready(function(){
                     showLogInView();
                     $("#login").hide();
                     updateDropdownText(data.username); // changes the dropdown
+
+                    if(typeof checkUser === 'function'){
+                        checkUser();
+                    } else {
+                        console.log('Not view profile page');
+                    }
                 }
                 else{
                     $(".nav-logged-in").hide();
                     $("#logout-button").hide();
+
+                    if(typeof checkUser === 'function'){
+                        checkUser();
+                    } else {
+                        console.log('Not view profile page');
+                    }
                 }
             }
         }
@@ -58,6 +69,7 @@ $(document).ready(function(){
             username: $("#create-account-form input[name='username']").val(),
             password: $("#create-account-form input[name='password']").val(),
             picture: iconPath,
+            bio: $("#create-account-form textarea[name='description']").val(),
         };
 
         $("#create-account").hide();
@@ -104,7 +116,7 @@ $(document).ready(function(){
                 showLogInView();
                 $("#login").hide();
                 updateDropdownText(username); // changes the dropdown
-
+                window.location.href="/";
                 // alert("Welcome to The Condo Bro, " + username);
             })
             .fail(function(xhr, status, error) {
@@ -248,45 +260,3 @@ function checkCreateAccountForm(){
 
     return true;
 }
-
-function updateFilterInput() {
-    var filterSelect = document.getElementById("filter");
-    var filterInputSelect = document.getElementById("filterinput");
-    var selectedOption = filterSelect.value;
-    filterInputSelect.innerHTML = ""; // Clear prev options
-
-    if (selectedOption === "rating") {
-        // Pfor rating
-        var options = ["4 Star +", "3 Star", "2 Star", "1 Star -"];
-        options.forEach(function(option) {
-            var optionElement = document.createElement("option");
-            optionElement.value = option;
-            optionElement.textContent = option;
-            filterInputSelect.appendChild(optionElement);
-        });
-    } else if (selectedOption === "price") {
-        // for rent price
-        var options = ["P10000 Below", "P15000 - P20000", "P20001 - P25000", "Above P25000"];
-        options.forEach(function(option) {
-            var optionElement = document.createElement("option");
-            optionElement.value = option;
-            optionElement.textContent = option;
-            filterInputSelect.appendChild(optionElement);
-        });
-    } else if (selectedOption === "location") {
-        // for locations
-        var options = ["Taft", "Espana", "Katipunan", "Other"];
-        options.forEach(function(option) {
-            var optionElement = document.createElement("option");
-            optionElement.value = option;
-            optionElement.textContent = option;
-            filterInputSelect.appendChild(optionElement);
-        });
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname === "/")
-        updateFilterInput(); // DO NOT DELETE(For Filter)
-
-});

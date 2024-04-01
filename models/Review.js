@@ -17,6 +17,9 @@ const reviewSchema = new mongoose.Schema({
     rating: Number,
     image: String,
     date: Date,
+    isEdited: Boolean,
+    likes: Number,
+    dislikes: Number,
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
@@ -28,8 +31,5 @@ const reviewSchema = new mongoose.Schema({
 
 // Create the Review model
 const reviewModel = mongoose.model('review', reviewSchema);
-
-
-
 
 module.exports = reviewModel;

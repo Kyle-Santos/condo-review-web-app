@@ -7,17 +7,11 @@
                 <div class="right-nav">
             </div>
             <div class="search-bar">
-                <form id="search-condo" onsubmit="goToCondoPage()">
-                  <input id="condo-name" list="condo-list" type="text" placeholder="Search a Condo" required></input>  
+                <form id="search-condo">
+                  <input id="condo-name" type="text" placeholder="Search a Condo" required></input>  
                   <button type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
-                  <datalist id="condo-list">
-                    <option>2 Torre Lorenzo</option>
-                    <option>W.H. Taft residences</option>
-                    <option>Burgundy Transpacific Taft</option>
-                    <option>Green Residences</option>
-                  </datalist>
                 </form>       
 
                 
@@ -28,107 +22,42 @@
             <h1 >List of Condominiums</h1>
         </div>
 
+        <form id="filter-rating">
         <div class="filterclass">
-            <select name="filter" id="filter" onchange="updateFilterInput()">
-                <option value="rating">Rating</option>
-                <option value="price">Rent Price</option>
-                <option value="location">Location</option>
+            <label>Minimum Rating:</label>           
+            <select name="filter" id="filter">
+                <option value="0">None</option>
+                <option value="5">5 star</option>
+                <option value="4">4 star</option>
+                <option value="3">3 star</option>
+                <option value="2">2 star</option>
+                <option value="1">1 star</option>
             </select>
             <div class="filterinput">
-                <select name="Type" id="filterinput">
-                    <!-- Automatic fillup in javascript -->
-                </select>
+                <button type="submit">Filter</button>
             </div>
-        </div>
+        </div>    
+        </form>
+        
 
         <div class="condo-list" id="condo-container">
-            <a href="/condo/wh-taft">
+            {{#each condos}}
+            <a href="/condo/{{id}}">
                 <div>
                     <div class="condo-image-container">
-                        <img src="images/wh taft.jpg" class="condo-list-img"> <br/>
+                        <img src="{{img}}" class="condo-list-img"> <br/>
                     </div>
                     <div class="condo-name-container">
-                        <h2>W.H. Taft<br/>Residences</h2>
+                        <h2>{{{name}}}</h2>
                     </div>
                     <div class="condo-description-container">
-                        <p> From studio rooms to study and game rooms, WH Taft Residences has rooms conducive for play, study, and work activities. Look no further as our amenities are suited to compliment your student life.</p>
+                        <p>{{description}}</p>
                     </div>
                     <div class="condo-rating-container">
-                        Average Rating: 4/5 <br/>
-                        <progress value="4" max="5"></progress>                  
+                        <p>Average Rating: {{rating}}/5</p>
+                        <progress value="{{rating}}" max="5"></progress>                  
                     </div>
                 </div>
             </a>
-
-            <a href="/condo/2-torre">
-                <div>
-                    <div class="condo-image-container">
-                        <img src="images/2 torre.gif" class="condo-list-img"> <br/>
-                    </div>
-                    <div class="condo-name-container">
-                        <h2>2 Torre<br/>Lorenzo</h2>
-                    </div>
-                    <div class="condo-description-container">
-                        <p> 2Torre Lorenzo is located along Taft Avenue, right across De La Salle University and at the gateway to the rest of the metro. It offers the same convenience, accessibility and security that are trademarks of all Torre Lorenzo properties.</p>
-                    </div>
-                    <div class="condo-rating-container">
-                        Average Rating: 4/5 <br/>
-                        <progress value="4" max="5"></progress>                  
-                    </div>
-                </div>
-            </a>
-
-            <a href="/condo/burgundy">
-                <div>
-                    <div class="condo-image-container">
-                        <img src="images/burgundy.jpg" class="condo-list-img"> <br/>
-                    </div>
-                    <div class="condo-name-container">
-                        <h2>Burgundy Transpacific Taft</h2>
-                    </div>
-                    <div class="condo-description-container">
-                        <p> Burgundy Transpacific Taft is a residence right across Gate 2 of De La Salle Univeristy. The place offers comfortable and convenient rooms with restaurants close in proximity.</p>
-                    </div>
-                    <div class="condo-rating-container">
-                        Average Rating: 4/5 <br/>
-                        <progress value="4" max="5"></progress>                  
-                    </div>
-                </div>
-            </a>
-
-            <a href="/condo/green-residence">
-                <div>
-                    <div class="condo-image-container">
-                        <img src="images/green residences.jpg" class="condo-list-img"> <br/>
-                    </div>
-                    <div class="condo-name-container">
-                        <h2>Green<br/>Residences</h2>
-                    </div>
-                    <div class="condo-description-container">
-                        <p> Located right beside De La Salle University in Manila, Green Residences Taft gives you a great place to live out the best parts of college life: a stress-free, easy, and fun one that every college student should experience</p>
-                    </div>
-                    <div class="condo-rating-container">
-                        Average Rating: 4/5 <br/>
-                        <progress value="4" max="5"></progress>                  
-                    </div>
-                </div>
-            </a>
-
-            <a href="/condo/other-condos">
-                <div>
-                    <div class="condo-image-container">
-                        <img src="images/condos.png" class="condo-list-img"> <br/>
-                    </div>
-                    <div class="condo-name-container">
-                        <h2>Other<br/>Condos</h2>
-                    </div>
-                    <div class="condo-description-container">
-                        <p>Uncover valuable insights on a broader spectrum of condominium options with our newly introduced generalized condo review, designed to assist renters in effectively navigating the diverse and dynamic market landscape.</p>
-                    </div>
-                    <div class="condo-rating-container">
-                        Average Rating: 5/5 <br/>
-                        <progress value="5" max="5"></progress>                  
-                    </div>
-                </div>
-            </a>
+            {{/each}}
         </div>

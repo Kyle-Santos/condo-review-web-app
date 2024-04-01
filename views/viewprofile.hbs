@@ -1,39 +1,91 @@
+    <!-- Edit Review Modal; will only show when edit is pressed -->
+    <div id="editReviewModal" class="modal pop-up">
+        <div>
+            <button type="button" class="close-button">&times;</button>
+        </div>
+        <div class="modal-content pop-up-body">
+            <div>The<br/>Condo<br/>Bro<br/></div>
+            <h2>Edit Review</h2>
+            <form id="editReviewForm" method="POST" action="/edit-review/{{review._id}}">
+                <input id="editReviewTitle" type="text" name="title" value="" required>
+                <textarea name="editedReview" id="editReviewContent" rows="7" cols="50"></textarea>
+                <div class="star-rating" id="rating">
+                    <button type="button" class="star-rating-button" data-rating="1" aria-label="Rate 1" tabindex="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ipc-icon icon-star star star-active" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                            <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="star-rating-button" data-rating="2" aria-label="Rate 2" tabindex="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ipc-icon icon-star star star-active" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                            <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="star-rating-button" data-rating="3" aria-label="Rate 3" tabindex="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ipc-icon icon-star star star-active" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                            <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="star-rating-button" data-rating="4" aria-label="Rate 4" tabindex="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ipc-icon icon-star star star-active" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                            <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="star-rating-button" data-rating="5" aria-label="Rate 5" tabindex="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon icon-star star star-active" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                            <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <p>Add Image (optional)</p>
+                <input type="file" id="add-image" accept="image/*" name="filename">
+                <div class="button-container">
+                    <button id="edit-review-submit-button" type="submit" class="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <div class="cover-photo"></div>
+
 
     <div class="profile-container">
         <div class="profile-info">
             <img class="profile-picture" src="{{data.picture}}"/>
-            <h1 class="profile-name">{{data.user}}<span class="verified-checkmark">✔️</span></h1>
+            <h1 class="profile-name">{{data.user}}<span class="verified-checkmark">{{#if_eq data.role 'Owner'}}✔️{{/if_eq}}</span></h1>
             {{!-- <p class="friend-count">2K connections</p> --}}
             <div class="profile-nav">
             <ul>
                 <li><a href="#">Posts</a></li>
-                <li><a href="#">About</a></li>
-                <li><button class="edit-profile"><a href="edit-profile" class="hover-element">Edit Profile</a></button></li>
+                <li><a href="#about-section">About</a></li>
+                <li><button class="edit-profile"><a id="edit-profile-link" href="edit-profile" class="hover-element">Edit Profile</a></button></li>
             </ul>
             </div>
-            <h2 class="info-title"><br/>Intro</h2>
-            <p class="info-item"><b>Email:</b> {{data.email}}</p>
-            <p class="info-item"><b>Occupation/Role:</b> {{data.job}}</p>
-            <p class="info-item"><b>Studied at</b> {{data.education}}</p>
-            <p class="info-item"><b>Lives in</b> {{data.city}}</p>
-            <p class="info-item"><b>About me:</b><br/>{{data.bio}}</p>
+
+                <h2 class="info-title"><br/>Intro</h2>
+                <p class="info-item"><b>Email:</b> {{data.email}}</p>
+                <p class="info-item"><b>Occupation:</b> {{data.role}}</p>
+                <p class="info-item"><b>Studied at</b> {{data.education}}</p>
+                <p class="info-item"><b>Lives in</b> {{data.city}}</p>
+                <div id="about-section">
+                 <p class="info-item"><b>About me:</b><br/>{{data.bio}}</p>
+                </div>
         </div>
         
         
         <div class="posts-section">
             <h2 class="post-title">Reviews</h2>
             {{#each reviews}}
-            <div class="grid-item">
+            <div id="{{_id}}" class="grid-item">
                 <div class="review-header">
                     <div class="review-header-left">
                         <a href="condo/{{condoId}}"><h3>{{title}}</h3></a>
+                        {{#if isEdited}}<span><i>Edited</i></span>{{/if}}
                         <p>Posted on {{date}} | <a href="condo/{{condoId}}"><i>View Condo</i></a></p>
                     </div>
                     <div class="review-header-right">
                         <div class="edit-delete-icons">
                             <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
-                            <button class="delete-icon-btn"><i class="fas fa-trash"></i></button>
+                            <button class="delete-icon-btn" data-value="{{condoId}}" value="{{_id}}"><i class="fas fa-trash"></i></button>
                         </div>
                         <div class="star-rating" id="rating">
                             {{#each rating}}
@@ -64,15 +116,15 @@
                         <div>
                             <b>{{../data.user}}</b>
                             
-                            <br/>{{../data.job}}
+                            <br/>{{../data.role}}
                         </div>
                     </div>
                     <div class="react-post">
                         <div class="icon-like">
-                            <button type="button" class="fa fa-thumbs-up"></button>
-                            <button type="button" class="fa fa-thumbs-down"></button>
+                            <button type="button" class="fa fa-thumbs-up {{#if userLike.isLike}}clicked{{/if}}"></button>
+                            <button type="button" class="fa fa-thumbs-down {{#if_eq userLike.isLike '0'}}clicked{{/if_eq}}"></button>
                         </div>
-                        999 people liked
+                        <span class="total-likes">{{totalLikes}} people liked</span> 
                     </div>
                 </div>
             </div>

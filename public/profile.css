@@ -181,6 +181,7 @@ color: #000; /* Change color on hover */
 
 
 
+
 .review-header {
   display: flex;
   justify-content: space-between;
@@ -319,5 +320,60 @@ a:hover {
 }
 .fa-thumbs-down:hover {
   color: rgb(229, 55, 55);
+}
+.clicked {
+  color: #1877F2; 
+}
+
+.pop-up-body {
+  gap: 20px;
+}
+#editReviewForm {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+#editReviewForm > input {
+  width: 60%;
+  text-align: center;
+}
+#editReviewForm > textarea {
+  width: 90%;
+}
+/* stars in review */
+.star-rating-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+}
+
+form > .star-rating svg {
+  width: 24px;
+  height: 24px;
+}
+
+.star-rating-button:focus {
+  outline: none;
+}
+
+.star-rating-button .ipc-icon {
+  width: 24px;
+  height: 24px;
+  fill: #ccc;
+}
+
+.star-rating-button.active .ipc-icon {
+  fill: #ffcc00;
+}
+
+.star-rating-button:hover .ipc-icon {
+  fill: #ffcc00;
 }
 /*  */

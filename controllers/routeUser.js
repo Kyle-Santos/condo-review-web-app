@@ -1,4 +1,5 @@
 const userModel = require('../models/User');
+const condoModel = require('../models/Condo');
 const userFunctions = require('../models/userFunctions');
 
 function add(server){
@@ -9,7 +10,7 @@ function add(server){
                 isAuthenticated: req.session.isAuthenticated,
                 username: req.session.username,
                 picture: req.session.picture,
-                job: req.session.job
+                role: req.session.role
             });
         } else {
             resp.send({
@@ -19,10 +20,17 @@ function add(server){
     });
 
     server.get('/', function(req,resp){
-        resp.render('home',{
-            layout: 'index',
-            title: 'Home Page',
-            isHome: true
+        condoModel.find().lean().then(function(condos){
+            for(const condo of condos) {
+                condo.description = condo.description.slice(0, 150) + "...";
+            }
+            
+            resp.render('home',{
+                layout: 'index',
+                title: 'Home Page',
+                isHome: true,
+                condos: condos
+            });
         });
     });
     
@@ -30,7 +38,7 @@ function add(server){
     server.post('/create-account', async (req, resp) => {
         let createSuccess, createStatus, createMessage;
 
-       [createSuccess, createStatus, createMessage] = await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture);
+       [createSuccess, createStatus, createMessage] = await userFunctions.createAccount(req.body.username, req.body.password, req.body.picture, req.body.bio);
 
         resp.status(createStatus).send({success: createSuccess, message: createMessage});
     });
@@ -56,7 +64,7 @@ function add(server){
 
             req.session.username = user.user;
             req.session.picture = user.picture;
-            req.session.job = user.job;
+            req.session.role = user.role;
             req.session.isAuthenticated = true;
             req.session._id = user._id;
         }
@@ -74,7 +82,7 @@ function add(server){
             // Query MongoDB to get data
             var data = await userModel.findOne({ user: username }).populate('reviews').lean();
 
-           processedReviews = data.reviews ? userFunctions.processReviews(data.reviews) : [];
+            processedReviews = data.reviews ? await userFunctions.processReviews(data.reviews, req.session._id) : [];
 
             resp.render('viewprofile', {
                 layout: 'index',
@@ -110,13 +118,13 @@ function add(server){
 
                 if (newData.user !== undefined) req.session.username = newData.user;
                 if (newData.picture !== undefined) req.session.picture = newData.picture.replace('public/', '');
-                if (newData.job !== undefined) req.session.job = newData.job;
 
                 resp.json({message: 'Profile updated successfully!', user: req.session.username });
             })
             .catch(err => {
                 // Handle error
                 console.error("Error updating document:", err);
+                resp.json({message: 'Error. That username is already taken.', user: req.session.username });
                 return false;
             });
 
