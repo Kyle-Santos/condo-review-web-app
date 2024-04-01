@@ -1,5 +1,7 @@
 var ratingButtons;
 $(document).ready(function(){
+
+
     // create review form
     $("#search-review").submit(function(event){
         event.preventDefault();
