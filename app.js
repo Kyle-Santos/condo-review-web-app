@@ -13,7 +13,7 @@ server.use(express.urlencoded({ extended: true }));
 // SESSION HANDLER
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
-const mongoURI = process.env.MONGODB_URI
+const mongoURI = process.env.MONGODB_URI;
 
 server.use(session({
     secret: 'penguin-banana-jazz-1234',
