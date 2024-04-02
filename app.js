@@ -74,7 +74,7 @@ server.use(express.static('public'));
 
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/condodb');
+mongoose.connect('mongodb+srv://kailu:asd@cluster0.4ed2hxw.mongodb.net/');
 
 const controllers = ['routeUser', 'routeCondo', 'routeReview'];
 
