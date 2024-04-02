@@ -19,7 +19,7 @@ server.use(session({
     saveUninitialized: false, 
     resave: false,
     store: new mongoStore({
-        uri: 'mongodb://localhost:27017/condodb', // MongoDB connection URI
+        uri: 'mongodb+srv://kailu:asd@cluster0.4ed2hxw.mongodb.net/', // MongoDB connection URI
         collection: 'mySession', // Collection where sessions are stored
         expires: 24 * 60 * 60 * 1000 // Default session expiration: 1 day in milliseconds
     })
