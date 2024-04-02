@@ -4,7 +4,6 @@
 
 const express = require('express');
 const server = express();
-const path = require('path');
 
 const bodyParser = require('body-parser');
 server.use(express.json()); 

@@ -1,10 +1,10 @@
 const userModel = require('../models/User');
 const reviewModel = require('../models/Review');
 const likeModel = require('../models/Like');
+const condoModel = require('../models/Condo');
 
 // can be added to hash the password for confidentiality
 const bcrypt = require('bcrypt'); 
-const condoModel = require('./Condo');
 const saltRounds = 10;
 
 async function updateAverageRating(condoId){

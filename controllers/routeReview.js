@@ -7,6 +7,7 @@ const { ObjectId } = require('mongodb');
 // saving uploaded image
 const multer = require('multer');
 const fs = require('fs');
+const path = require('path');
 
 // Define storage for uploaded files
 const storage = multer.diskStorage({
@@ -115,7 +116,7 @@ function add(server){
         const tempFilePath = req.file.path;
     
         if (fs.existsSync(tempFilePath)) {
-            const destinationPath = path.join(__dirname, 'public', 'images', 'client-uploaded-files', req.file.originalname);
+            const destinationPath = path.join(__dirname, '..', 'public', 'images', 'client-uploaded-files', req.file.originalname);
             // Move the uploaded file to the destination path
             fs.rename(tempFilePath, destinationPath, err => {
                 if (err) {
