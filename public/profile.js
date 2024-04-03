@@ -1,5 +1,16 @@
-
+function fetchComments(reviewId) {
+    $.get('/fetch-comments/' + reviewId, function(data) {
+        data.comments.forEach(comment => {
+            const commentHtml = `<div class="comment" id="comment-${comment._id}">${comment.content}</div>`;
+            $(`#review-${reviewId}`).append(commentHtml);
+        });
+    });
+}
 $(document).ready(function() {
+    $('.review').each(function() {
+        const reviewId = $(this).attr();
+        fetchComments(reviewId);
+    });
     const editReviewModal = $('#editReviewModal');
     const closeEditReviewBtn = $('.close-button');
     editReviewModal.css('display', 'none');
@@ -95,6 +106,8 @@ $(document).ready(function() {
             editReview(editedTitle, editedContent, rating, imagePath, date, reviewId);
         }
     });
+
+
 
     $('#editProfileForm').on('submit', function(e) {
         e.preventDefault(); // Prevent the default form submission

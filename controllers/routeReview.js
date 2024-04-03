@@ -142,6 +142,17 @@ function add(server){
         }
     });
 
+    server.get('/fetch-comments/:reviewId', async (req, res) => {
+        try {
+            const reviewId = req.params.reviewId;
+            const review = await reviewModel.findById(reviewId).populate('comments.user').lean();
+            res.json({ comments: review.comments });
+        } catch (error) {
+            console.error("Error fetching comments:", error);
+            res.status(500).send('Error fetching comments');
+        }
+    });
+
     server.patch('/update-review/:id', async (req, resp) => {
         try {
             const reviewId = req.params.id;

@@ -129,5 +129,27 @@
                 </div>
             </div>
             {{/each}}
+            <div class="comments-section">
+                <h2 class="comment-title">Your Comments</h2>
+                <div class="comments">
+                    {{#each userComments}}
+                        <div class="comment">
+                            <div>
+                                <a href="/profile/{{user.user}}"><img src="{{user.picture}}"/></a>
+                            </div>
+                            <div class="comment-right">
+                                <div>
+                                    <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a>
+                                    <span class="verified-checkmark">{{#if_eq user.role 'Owner'}}✔️{{/if_eq}}</span>
+                                    {{date}}
+                                </div>
+                                <div>
+                                    <p>{{content}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
         </div>
     </div>

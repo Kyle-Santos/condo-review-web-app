@@ -376,4 +376,66 @@ form > .star-rating svg {
 .star-rating-button:hover .ipc-icon {
   fill: #ffcc00;
 }
+
+/* Move the comments section below the reviews */
+.comments-section {
+  width: 100%; /* Occupy full width */
+  margin-top: 20px; /* Add some space between reviews and comments */
+}
+
+/* Optional: Adjust styles for comment title */
+.comment-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Optional: Adjust styles for individual comments */
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Add space between comments */
+}
+
+.comment {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.comment img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.comment .comment-right {
+  flex: 1; /* Allow the comment content to occupy remaining space */
+}
+
+.comment .comment-right > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment .comment-right > div a {
+  text-decoration: none;
+  color: #333;
+}
+
+.comment .comment-right > div span {
+  color: #666;
+  margin-left: 10px;
+}
+
+.comment .comment-right > div span.verified-checkmark {
+  font-size: 16px;
+}
+
+.comment .comment-right > div p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
 /*  */
