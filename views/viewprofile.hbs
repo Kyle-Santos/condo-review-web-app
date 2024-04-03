@@ -138,12 +138,14 @@
                                 <a href="/profile/{{user.user}}"><img src="{{user.picture}}"/></a>
                             </div>
                             <div class="comment-right">
-                                <div>
-                                    <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a>
-                                    <span class="verified-checkmark">{{#if_eq user.role 'Owner'}}✔️{{/if_eq}}</span>
-                                    {{date}}
+                                <div class="user-info">
+                                    <div>
+                                        <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a>
+                                        <span class="verified-checkmark">{{#if_eq user.role 'Owner'}}✔️{{/if_eq}}</span>
+                                    </div>
+                                    <div class="comment-date">{{date}}</div>
                                 </div>
-                                <div>
+                                <div class="comment-content">
                                     <p>{{content}}</p>
                                 </div>
                             </div>

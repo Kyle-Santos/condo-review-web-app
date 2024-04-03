@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
 body{
+    font-family: "Dosis", sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(rgba(30, 34, 39, 0.48), #3A3535);

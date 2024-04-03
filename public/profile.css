@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
 body, h1, h2, p, ul, li, .profile-container div, img {
+  font-family: "Dosis", sans-serif;
   margin: 0;
   box-sizing: border-box;
 }
@@ -53,6 +56,7 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   background-position: center;
 }
 .profile-container {
+  font-family: "Dosis", sans-serif;
   width: 70%;
   margin: -120px auto 30px auto;
   background: #fff;
@@ -116,6 +120,7 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   width: 35%;
 }
 .posts-section {
+  font-family: "Dosis", sans-serif;
   width: 60%;
   padding-left: 20px;
   border-top: 1px solid #ccc;
@@ -385,6 +390,7 @@ form > .star-rating svg {
 
 /* Optional: Adjust styles for comment title */
 .comment-title {
+  font-family: "Dosis", sans-serif;
   font-size: 20px;
   color: #333;
   margin-bottom: 10px;
@@ -392,14 +398,19 @@ form > .star-rating svg {
 
 /* Optional: Adjust styles for individual comments */
 .comments {
+  font-family: "Dosis", sans-serif;
   display: flex;
   flex-direction: column;
   gap: 20px; /* Add space between comments */
 }
 
 .comment {
+  background-color: #f0f2f5;
+  border-radius: 25px;
+  font-size: 12px;
+  padding: 20px;
   display: flex;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
 }
 
@@ -415,8 +426,8 @@ form > .star-rating svg {
 
 .comment .comment-right > div {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  align-items: center; /* Center elements vertically */
 }
 
 .comment .comment-right > div a {
@@ -426,7 +437,7 @@ form > .star-rating svg {
 
 .comment .comment-right > div span {
   color: #666;
-  margin-left: 10px;
+  font-size: 12px; /* Adjust font size as needed */
 }
 
 .comment .comment-right > div span.verified-checkmark {
@@ -438,4 +449,16 @@ form > .star-rating svg {
   color: #666;
   margin-top: 5px;
 }
+
+.comment .user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.comment .user-info > div:first-child {
+  margin-right: 10px; /* Adjust the margin between username and verified-checkmark */
+}
+
+
 /*  */
