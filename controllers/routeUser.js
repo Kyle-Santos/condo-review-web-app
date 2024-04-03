@@ -97,6 +97,8 @@ function add(server){
     
                     // Check if the comment author is the user we're interested in
                     if (commentUser && commentUser === username) {
+                        // Format date without time component
+                        comment.date = comment.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
                         // Append the comment to the list
                         commentsByUser.push(comment);
                     }
