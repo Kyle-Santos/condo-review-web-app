@@ -1,5 +1,6 @@
 const userModel = require('../models/User');
 const condoModel = require('../models/Condo');
+const reviewModel = require('../models/Review');
 const userFunctions = require('../models/userFunctions');
 
 function add(server){
@@ -84,11 +85,32 @@ function add(server){
 
             processedReviews = data.reviews ? await userFunctions.processReviews(data.reviews, req.session._id) : [];
 
+            const reviews = await reviewModel.find().populate('comments.user').lean();
+
+            const commentsByUser = [];
+    
+            // Iterate over the comments array
+            reviews.forEach(review => {
+                review.comments.forEach(comment => {
+                    // Access the comment author's user information
+                    const commentUser = comment.user.user;
+    
+                    // Check if the comment author is the user we're interested in
+                    if (commentUser && commentUser === username) {
+                        // Format date without time component
+                        comment.date = comment.date.toLocaleDateString(); // Assuming date is a JavaScript Date object
+                        // Append the comment to the list
+                        commentsByUser.push(comment);
+                    }
+                });
+            });
+
             resp.render('viewprofile', {
                 layout: 'index',
                 title: data.user,
                 'data': data,
                 'reviews': processedReviews.reverse(),
+                'comments': commentsByUser,
                 isProfile: true
             });
         } catch (err) {

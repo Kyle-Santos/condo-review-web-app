@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
 body, h1, h2, p, ul, li, .profile-container div, img {
+  font-family: "Dosis", sans-serif;
   margin: 0;
   box-sizing: border-box;
 }
@@ -53,6 +56,7 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   background-position: center;
 }
 .profile-container {
+  font-family: "Dosis", sans-serif;
   width: 70%;
   margin: -120px auto 30px auto;
   background: #fff;
@@ -116,13 +120,14 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   width: 35%;
 }
 .posts-section {
+  font-family: "Dosis", sans-serif;
   width: 60%;
   padding-left: 20px;
   border-top: 1px solid #ccc;
   padding-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 .info-title, .post-title, .photos-title {
   font-size: 20px;
@@ -376,4 +381,73 @@ form > .star-rating svg {
 .star-rating-button:hover .ipc-icon {
   fill: #ffcc00;
 }
+
+
+/* Optional: Adjust styles for comment title */
+.comment-title {
+  font-family: "Dosis", sans-serif;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.comment {
+  background-color: #f0f2f5;
+  border-radius: 25px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.comment img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.comment .comment-right {
+  flex: 1; /* Allow the comment content to occupy remaining space */
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment .comment-right > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center elements vertically */
+}
+
+.comment .comment-right > div a {
+  text-decoration: none;
+  color: #333;
+}
+
+.comment .comment-right > div span {
+  color: #666;
+  font-size: 12px; /* Adjust font size as needed */
+}
+
+.comment .comment-right > div span.verified-checkmark {
+  font-size: 16px;
+}
+
+.comment .comment-right > div p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.comment .user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
 /*  */

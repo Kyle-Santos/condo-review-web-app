@@ -1,11 +1,15 @@
-
 $(document).ready(function() {
+    // reviews
     const editReviewModal = $('#editReviewModal');
-    const closeEditReviewBtn = $('.close-button');
-    editReviewModal.css('display', 'none');
+    const closeEditBtn = $('.close-button');
+    editReviewModal.css('display', 'none');    
+
+    // comments
+    const editCommentModal = $('#editCommentModal');
+    editCommentModal.css('display', 'none');
 
     // Opens modal
-    $('.edit-icon-btn').on('click', function() {
+    $('.review-edit').on('click', function() {
         const reviewId = $(this).closest('.grid-item').attr('id');
         $.get('/edit-review/' + reviewId, function(data) {
             $(".modal-content h2").attr("id", reviewId);
@@ -27,9 +31,23 @@ $(document).ready(function() {
 
     });
 
+    $('.comment-edit').on('click', function() {
+        const comment = $(this).closest('.comment');
+        const content = comment.find('.comment-content').text().trim();
+        const commentId = this.value;
+
+        $("#editCommentContent").val(content);
+        $(".modal-content h2").attr("id", commentId);
+
+        editCommentModal.css('display', 'block');
+
+    });
+
+
     // Closes modal
-    closeEditReviewBtn.on('click', function() {
+    closeEditBtn.on('click', function() {
         editReviewModal.css('display', 'none');
+        editCommentModal.css('display', 'none');
         $('.star-rating-button').each(function() { 
             $(this).removeClass('active');
         });
@@ -39,6 +57,7 @@ $(document).ready(function() {
     $(window).on('click', function(e) {
         if (e.target === editReviewModal[0]) {
             editReviewModal.css('display', 'none');
+            editCommentModal.css('display', 'none');
         }
     });
 
@@ -95,6 +114,28 @@ $(document).ready(function() {
             editReview(editedTitle, editedContent, rating, imagePath, date, reviewId);
         }
     });
+
+
+    $('#editCommentForm').submit(function(event) {
+        event.preventDefault();
+
+        // Get edited review data
+        var editedContent = $("#editCommentContent").val().trim();
+        var commentId = $(".modal-content h2").attr('id');
+
+        // Validate the form inputs
+        if (!editedContent) {
+            alert("Please fill in the content.");
+            return;
+        }
+
+        var date = new Date().toLocaleDateString();
+
+        // Continue with review submission
+        editComment(editedContent, date, commentId);
+    });
+
+
 
     $('#editProfileForm').on('submit', function(e) {
         e.preventDefault(); // Prevent the default form submission
@@ -220,23 +261,30 @@ function editReview(editedTitle, editedContent, rating, imagePath, date, reviewI
     });
 }
 
-/* document.querySelectorAll('.delete-review-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const reviewId = this.getAttribute('data-review-id');
-
-        fetch(`/delete-review/${reviewId}`, {
-            method: 'DELETE',
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log(data.message);
-                } else {
-                    console.error('Failed to delete review');
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+function editComment(editedContent, date, commentId) {
+    const formData = {
+        content: editedContent,
+        date: date,
+        isEdited: true,
+    };
+    $.ajax({
+        url: '/update-comment/' + commentId,
+        method: 'PATCH',
+        data: formData,
+        success: function(response) {
+            alert("Comment updated successfully.");
+            window.location.reload();
+        },
+        error: function(xhr, status, error) {
+            console.error('Error updating review:', error);
+            alert('An error occurred while updating the review.');
+        }
     });
-}); */
+
+    // For demonstration purposes lang to
+    console.log("Edited Comment Content:", editedContent);
+
+    // Closes the modal
+    $('#editCommentModal').css('display', 'none');
+}
+

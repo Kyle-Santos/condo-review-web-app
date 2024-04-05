@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
 body{
+    font-family: "Dosis", sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(rgba(30, 34, 39, 0.48), #3A3535);
@@ -169,6 +172,20 @@ div.login-font {
     right: 50%;
     left: 50%;
     height: 550px;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    background-color: #2D2D2D;
+    color: white;
+    border-radius: 25px;
+}
+
+.pop-up-small {
+    position: fixed;
+    top: 55%;
+    bottom: 0;
+    right: 50%;
+    left: 50%;
+    height: 280px;
     transform: translate(-50%, -50%);
     width: 40%;
     background-color: #2D2D2D;

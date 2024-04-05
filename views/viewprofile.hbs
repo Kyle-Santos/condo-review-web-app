@@ -44,6 +44,21 @@
             </form>
         </div>
     </div>
+
+    <div id="editCommentModal" class="modal pop-up-small">
+        <div>
+            <button type="button" class="close-button">&times;</button>
+        </div>
+        <div class="modal-content pop-up-body">
+            <h2>Edit Comment</h2>
+            <form id="editCommentForm" method="POST" action="/edit-comment/{{comment._id}}">
+                <textarea name="editedComment" id="editCommentContent" rows="6" cols="35"></textarea>
+                <div class="button-container">
+                    <button id="edit-comment-submit-button" type="submit" class="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
     
     <div class="cover-photo"></div>
 
@@ -55,8 +70,6 @@
             {{!-- <p class="friend-count">2K connections</p> --}}
             <div class="profile-nav">
             <ul>
-                <li><a href="#">Posts</a></li>
-                <li><a href="#about-section">About</a></li>
                 <li><button class="edit-profile"><a id="edit-profile-link" href="edit-profile" class="hover-element">Edit Profile</a></button></li>
             </ul>
             </div>
@@ -84,8 +97,8 @@
                     </div>
                     <div class="review-header-right">
                         <div class="edit-delete-icons">
-                            <button class="edit-icon-btn"><i class="fas fa-edit"></i></button>
-                            <button class="delete-icon-btn" data-value="{{condoId}}" value="{{_id}}"><i class="fas fa-trash"></i></button>
+                            <button class="review-edit edit-icon-btn"><i class="fas fa-edit"></i></button>
+                            <button class="review-delete delete-icon-btn" data-value="{{condoId}}" value="{{_id}}"><i class="fas fa-trash"></i></button>
                         </div>
                         <div class="star-rating" id="rating">
                             {{#each rating}}
@@ -129,5 +142,32 @@
                 </div>
             </div>
             {{/each}}
+                
+            <h2 class="comment-title"><br/>Comments</h2>
+            {{#each comments}}
+                <div class="comment">
+                    <div>
+                        <a href="/profile/{{user.user}}"><img src="{{user.picture}}"/></a>
+                    </div>
+                    <div class="comment-right">
+                        <div class="comment-header">
+                            <div class="user-info">
+                                <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a>
+                                <span class="verified-checkmark">{{#if_eq user.role 'Owner'}}✔️{{/if_eq}}  </span>
+                                {{date}}
+                                {{#if isEdited}}<i>Edited</i>{{/if}}
+                            </div>
+                            <div class="edit-delete-icons">
+                                <button class="comment-edit edit-icon-btn" value="{{_id}}"><i class="fas fa-edit"></i></button>
+                                <button class="comment-delete delete-icon-btn" value="{{_id}}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <p>{{content}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
         </div>
+
     </div>
