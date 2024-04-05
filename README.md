@@ -35,11 +35,12 @@ npm i express express-handlebars body-parser mongoose multer bcrypt express-sess
 
 This command installs Express, Express Handlebars, Body-parser, Mongoose, Multer, Bcrypt, Express-session, and Connect-mongodb-session.
 
-4. **Update the MongoDB connection string.** Open the file where the MongoDB connection is established and change the connection string to your MongoDB instance. 
+4. **Update the MongoDB connection string.** Open app.js where the MongoDB connection is established and change the connection string to your MongoDB instance. 
 
 ```javascript
 // Replace the connection string with your MongoDB connection string
-mongoose.connect("mongodb://localhost:27017/condodb", { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoURI = process.env.MONGODB_URI; // from this 
+const mongoURI = "mongodb://localhost:27017/condodb"; // to this
 ```
 
 Ensure the database name condodb is correct. Adjust the connection string as necessary for your environment.
