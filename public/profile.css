@@ -447,11 +447,7 @@ form > .star-rating svg {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 5px;
 }
-
-.comment .user-info a {
-  margin-right: 10px; /* Adjust the margin between username and verified-checkmark */
-}
-
 
 /*  */

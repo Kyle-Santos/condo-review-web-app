@@ -440,6 +440,13 @@ form > .star-rating svg {
     gap: 10px;
 }
 
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
 .comment-textarea {
     width: 90%;
     height: 15px; 

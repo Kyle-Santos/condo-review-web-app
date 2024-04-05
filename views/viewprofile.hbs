@@ -143,7 +143,7 @@
             </div>
             {{/each}}
                 
-            <h2 class="comment-title"><br/>Your Comments</h2>
+            <h2 class="comment-title"><br/>Comments</h2>
             {{#each comments}}
                 <div class="comment">
                     <div>
@@ -153,15 +153,15 @@
                         <div class="comment-header">
                             <div class="user-info">
                                 <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a>
-                                <span class="verified-checkmark"> {{#if_eq user.role 'Owner'}}✔️{{/if_eq}}  </span>
+                                <span class="verified-checkmark">{{#if_eq user.role 'Owner'}}✔️{{/if_eq}}  </span>
                                 {{date}}
+                                {{#if isEdited}}<i>Edited</i>{{/if}}
                             </div>
                             <div class="edit-delete-icons">
                                 <button class="comment-edit edit-icon-btn" value="{{_id}}"><i class="fas fa-edit"></i></button>
                                 <button class="comment-delete delete-icon-btn" value="{{_id}}"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
-                        {{#if isEdited}}<span>Edited</span>{{/if}}
                         <div class="comment-content">
                             <p>{{content}}</p>
                         </div>

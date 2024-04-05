@@ -211,10 +211,11 @@ return options.inverse(this);
                             <a href="/profile/{{user.user}}"><img src="{{user.picture}}"/></a>
                         </div>
                         <div class="comment-right">
-                            <div>
+                            <div class="user-info">
                                 <a href="/profile/{{user.user}}"><b>{{user.user}}</b></a> 
-                                <span class="verified-checkmark">{{#if_eq user.role ../../data.id}}✔️{{/if_eq}}</span>
+                                {{#if_eq user.role ../../data.id}}<span class="verified-checkmark">✔️</span>{{/if_eq}}
                                 {{date}}
+                                {{#if isEdited}}<i>Edited </i>{{/if}}
                             </div>
                             <div>
                                 <p>{{content}}</p>
