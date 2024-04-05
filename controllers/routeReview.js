@@ -153,16 +153,56 @@ function add(server){
         }
     });
 
-    server.post('/delete-review', async (req, resp) => {
+
+    server.patch('/update-comment/:id', async (req, resp) => {
         try {
-            const reviewId = req.body.id;
-            await reviewModel.findByIdAndDelete(reviewId);
-            resp.redirect('/viewprofile');
-        } catch (error) {
-            console.error("Error deleting review:", error);
-            resp.status(500).send('Error deleting review');
+            const commentId = req.params.id;
+            const reviews = await reviewModel.find();
+            const { content, date, isEdited } = req.body;
+
+            // Loop through each review
+            reviews.forEach(async review => {
+                // Find the index of the comment with the given commentId
+                const index = review.comments.findIndex(comment => comment._id == commentId);
+
+                // If the comment is found (index is not -1), remove it
+                if (index !== -1) {
+                    review.comments[index].content = content;
+                    review.comments[index].date = date;
+                    review.comments[index].isEdited = isEdited;
+                    await review.save();
+                    resp.status(200).send({username: req.session.username});
+                    return; 
+                }
+            });
+        } catch(error) {
+            resp.status(500).send('Error updating comment');
         }
     });
+
+    server.post('/delete-comment', async (req, resp) => {
+        try {
+            const commentId = req.body.commentId;
+            const reviews = await reviewModel.find();
+
+            // Loop through each review
+            reviews.forEach(async review => {
+                // Find the index of the comment with the given commentId
+                const index = review.comments.findIndex(comment => comment._id == commentId);
+                // If the comment is found (index is not -1), remove it
+                if (index !== -1) {
+                    review.comments.splice(index, 1);
+                    await review.save();
+                    resp.send({deleted: 1});
+                    return; 
+                }
+            });
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+            resp.status(500).send('Error deleting comment');
+        }
+    });
+
 
 
     server.post('/like', async (req, resp) => {

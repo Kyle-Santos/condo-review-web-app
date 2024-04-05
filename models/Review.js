@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema({
     content: String,
     date: Date,
+    isEdited: Boolean,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user' // Reference to the User model for the user who posted the comment

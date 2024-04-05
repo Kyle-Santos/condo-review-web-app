@@ -179,6 +179,20 @@ div.login-font {
     border-radius: 25px;
 }
 
+.pop-up-small {
+    position: fixed;
+    top: 55%;
+    bottom: 0;
+    right: 50%;
+    left: 50%;
+    height: 280px;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    background-color: #2D2D2D;
+    color: white;
+    border-radius: 25px;
+}
+
 .pop-up-body {
     display: flex;
     flex-direction: column;

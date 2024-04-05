@@ -127,7 +127,7 @@ body, h1, h2, p, ul, li, .profile-container div, img {
   padding-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 .info-title, .post-title, .photos-title {
   font-size: 20px;
@@ -382,11 +382,6 @@ form > .star-rating svg {
   fill: #ffcc00;
 }
 
-/* Move the comments section below the reviews */
-.comments-section {
-  width: 100%; /* Occupy full width */
-  margin-top: 20px; /* Add some space between reviews and comments */
-}
 
 /* Optional: Adjust styles for comment title */
 .comment-title {
@@ -396,17 +391,10 @@ form > .star-rating svg {
   margin-bottom: 10px;
 }
 
-/* Optional: Adjust styles for individual comments */
-.comments {
-  font-family: "Dosis", sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Add space between comments */
-}
-
 .comment {
   background-color: #f0f2f5;
   border-radius: 25px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-size: 12px;
   padding: 20px;
   display: flex;
@@ -422,6 +410,11 @@ form > .star-rating svg {
 
 .comment .comment-right {
   flex: 1; /* Allow the comment content to occupy remaining space */
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .comment .comment-right > div {
@@ -456,7 +449,7 @@ form > .star-rating svg {
   align-items: center;
 }
 
-.comment .user-info > div:first-child {
+.comment .user-info a {
   margin-right: 10px; /* Adjust the margin between username and verified-checkmark */
 }
 
