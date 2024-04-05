@@ -13,13 +13,14 @@ server.use(express.urlencoded({ extended: true }));
 // SESSION HANDLER
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
+const mongoURI = process.env.MONGODB_URI;
 
 server.use(session({
     secret: 'penguin-banana-jazz-1234',
     saveUninitialized: false, 
     resave: false,
     store: new mongoStore({
-        uri: 'mongodb://localhost:27017/condodb', // MongoDB connection URI
+        uri: mongoURI, // MongoDB connection URI
         collection: 'mySession', // Collection where sessions are stored
         expires: 24 * 60 * 60 * 1000 // Default session expiration: 1 day in milliseconds
     })
@@ -74,7 +75,7 @@ server.use(express.static('public'));
 
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/condodb');
+mongoose.connect(mongoURI);
 
 const controllers = ['routeUser', 'routeCondo', 'routeReview'];
 
