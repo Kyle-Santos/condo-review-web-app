@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "3a7dd21e-acab-4c40-a2cc-9050db860c8c",
-            "zIndex": 3,
             "data": {
               "type": "tm.Process",
               "name": "Web\nApplication",
@@ -180,6 +180,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -263,7 +264,6 @@
               ]
             },
             "id": "04c44111-4d44-4821-93ef-e9da35f44187",
-            "zIndex": 4,
             "data": {
               "type": "tm.Actor",
               "name": "Browser Client",
@@ -320,6 +320,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 5,
             "ports": {
               "groups": {
                 "top": {
@@ -403,7 +404,6 @@
               ]
             },
             "id": "f4bd2aec-7ffe-4ee7-a767-46641148fddb",
-            "zIndex": 5,
             "data": {
               "type": "tm.Store",
               "name": "SQL Database",
@@ -461,6 +461,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 6,
             "ports": {
               "groups": {
                 "top": {
@@ -579,8 +580,7 @@
                 "denialOfService": 0,
                 "elevationOfPrivilege": 1
               }
-            },
-            "zIndex": 6
+            }
           },
           {
             "position": {
@@ -603,6 +603,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 7,
             "ports": {
               "groups": {
                 "top": {
@@ -721,8 +722,7 @@
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               }
-            },
-            "zIndex": 7
+            }
           },
           {
             "shape": "flow",
@@ -1298,8 +1298,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "7d39754f-32d7-4d40-93f6-99bcbf8be5f1",
             "zIndex": 11,
+            "id": "7d39754f-32d7-4d40-93f6-99bcbf8be5f1",
             "data": {
               "type": "tm.Text",
               "name": "Activity 2-1: Threat Model - Data Flow Diagram",
@@ -1310,6 +1310,7 @@
             "shape": "trust-boundary-curve",
             "width": 200,
             "height": 100,
+            "zIndex": 12,
             "connector": "smooth",
             "data": {
               "type": "tm.Boundary",
@@ -1339,13 +1340,13 @@
                 "x": 760,
                 "y": 260
               }
-            ],
-            "zIndex": 12
+            ]
           },
           {
             "shape": "trust-boundary-curve",
             "width": 200,
             "height": 100,
+            "zIndex": 13,
             "connector": "smooth",
             "data": {
               "type": "tm.Boundary",
@@ -1375,8 +1376,7 @@
                 "x": 904,
                 "y": 434
               }
-            ],
-            "zIndex": 13
+            ]
           }
         ]
       }
